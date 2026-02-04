@@ -1,0 +1,142 @@
+package Railway;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import Common.Utilities;
+import Constant.Constant;
+
+public class LoginTest {
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		System.out.println("Pre-condition");
+		
+	    io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
+		
+//		System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath()
+//				+ "\\Executables\\chromedriver.exe");
+		Constant.WEBDRIVER = new ChromeDriver();
+		Constant.WEBDRIVER.manage().window().maximize();
+		
+		Constant.WEBDRIVER.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(3));
+		
+	}
+	
+	@AfterMethod
+	public void afterMethod() {
+		System.out.println("Post-condition");
+		
+		Constant.WEBDRIVER.quit();
+	}
+	
+	@Test
+	public void TC01() {
+
+		System.out.println("TC01 - User can log into Railway with valid username and password");
+		HomePage homePage = new HomePage();
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		homePage.open();
+		
+		System.out.println("Step 2: Click on 'Login' tab");
+		LoginPage loginPage = homePage.gotoLoginPage();
+
+		System.out.println("Step 3: Enter valid Email and Password");
+		System.out.println("Step 4: Click on 'Login' button");
+		String actualMsg = loginPage.login(Constant.USERNAME, Constant.PASSWORD).getWelcomeMessage();
+		String expectedMsg = "Welcome " + Constant.USERNAME;
+
+		Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
+
+		}
+	
+	@Test
+	public void TC02() {
+		System.out.println("TC02: Verify that user cannot login with blank 'Username' textbox");
+		HomePage homePage = new HomePage();
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		homePage.open();
+		
+		System.out.println("Step 2: Click on 'Login' tab");
+		LoginPage loginPage = homePage.gotoLoginPage();
+		
+		System.out.println("Step 3: User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
+		System.out.println("Step 4: Click on 'Login' button");
+		String actualMsg = loginPage.loginWithoutUsername(Constant.PASSWORD).getLoginErrorMsg();
+		String expectedMsg = "There was a problem with your login and/or errors exist in your form. ";
+		
+		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
+	}
+	
+	@Test
+	public void TC03() {
+		System.out.println("TC03: Verify that user cannot log into Railway with invalid password ");
+		HomePage homePage = new HomePage();
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		homePage.open();
+		
+		System.out.println("Step 2: Click on 'Login' tab");
+		LoginPage loginPage = homePage.gotoLoginPage();
+		
+		System.out.println("Step 3: Enter valid Email and invalid Password");
+		System.out.println("Step 4: Click on 'Login' button");
+		String actualMsg = loginPage.loginWitValidUsernameAndInValidPassword("ABC",Constant.PASSWORD).getLoginErrorMsg();
+		String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
+		
+		Assert.assertEquals(actualMsg, expectedMsg, "Error message is not displayed as expected");
+	}
+	
+	@Test
+	public void TC04() {
+		System.out.println("TC04: Verify that system shows message when user enters wrong password many times");
+		HomePage homePage = new HomePage();
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		homePage.open();
+		
+		System.out.println("Step 2: Click on 'Login' tab");
+		LoginPage loginPage = homePage.gotoLoginPage();
+		
+		System.out.println("Step 3: Enter valid information into 'Username' textbox except 'Password' textbox.");
+		System.out.println("Step 4: Click on 'Login' button");
+		System.out.println("Step 5: Repeat step 3 and 4 three more times");
+		
+		String actualMsg = loginPage.loginWithoutPassword(Constant.USERNAME).getLoginErrorMsg();
+		String expectedMsg = "Invalid username or password. Please try again";
+//		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
+		for (int i = 2; i <= 4; i++) {
+			actualMsg = loginPage.loginWithoutPassword(Constant.USERNAME).getLoginErrorMsg();
+		}
+		expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
+		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
+	}
+	
+	@Test
+	public void TC05() {
+		System.out.println("TC05: Verify that user can't login with an account hasn't been activated");
+		HomePage homePage = new HomePage();
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		homePage.open();
+		
+		System.out.println("Step 2: Click on 'Login' tab");
+		LoginPage loginPage = homePage.gotoLoginPage();
+		
+		System.out.println("Step 3: Enter username and password of account hasn't been activated.");
+		System.out.println("Step 4: Click on 'Login' button");
+		System.out.println("Step 5: Repeat step 3 and 4 three more times");
+		
+		String actualMsg = loginPage.loginWithoutPassword(Constant.USERNAME).getLoginErrorMsg();
+		String expectedMsg = "Invalid username or password. Please try again";
+//		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
+		for (int i = 2; i <= 4; i++) {
+			actualMsg = loginPage.loginWithoutPassword(Constant.USERNAME).getLoginErrorMsg();
+		}
+		expectedMsg = "Invalid username or password. Please try again.";
+		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
+	}
+	
+	
+}

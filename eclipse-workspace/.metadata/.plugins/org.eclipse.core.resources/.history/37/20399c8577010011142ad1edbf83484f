@@ -1,0 +1,76 @@
+package Railway;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import Common.Utilities;
+import Constant.Constant;
+
+public class LoginTest {
+	
+	@Test
+	public void TC01() {
+		System.out.println("TC01 - User can log into Railway with valid username and password");
+		HomePage homePage = new HomePage();
+		homePage.open();
+		
+		LoginPage loginPage = homePage.gotoLoginPage();
+		
+		String actualMsg = loginPage.login(Constant.USERNAME, Constant.PASSWORD).getWelcomeMessage();
+
+		Assert.assertTrue(actualMsg.length() > 0, "Welcome message is not displayed");	}
+	
+	@Test
+	public void TC02() {
+		System.out.println("TC02: Verify that user cannot login with blank 'Username' textbox");
+		HomePage homePage = new HomePage();
+		homePage.open();
+		
+		LoginPage loginPage = homePage.gotoLoginPage();
+		
+		String actualMsg = loginPage.loginWithoutUsername(Constant.PASSWORD).getLoginErrorMsg();
+		String expectedMsg = "There was a problem with your login and/or errors exist in your form. ";
+		
+		Assert.assertEquals(actualMsg, expectedMsg, "Error message is not displayed as expected");
+	}
+	
+	@Test
+	public void TC03() {
+		System.out.println("TC03: Verify that user cannot log into Railway with invalid password ");
+		HomePage homePage = new HomePage();
+		homePage.open();
+		
+		LoginPage loginPage = homePage.gotoLoginPage();
+		
+		String actualMsg = loginPage.loginWitValidUsernameAndInValidPassword("ABC",Constant.PASSWORD).getLoginErrorMsg();
+		String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
+		
+		Assert.assertEquals(actualMsg, expectedMsg, "Error message is not displayed as expected");
+	}
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		System.out.println("Pre-condition");
+		
+	    io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
+		
+//		System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath()
+//				+ "\\Executables\\chromedriver.exe");
+		Constant.WEBDRIVER = new ChromeDriver();
+		Constant.WEBDRIVER.manage().window().maximize();
+		
+		Constant.WEBDRIVER.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(3));
+		
+	}
+	
+	@AfterMethod
+	public void afterMethod() {
+		System.out.println("Post-condition");
+		
+		Constant.WEBDRIVER.quit();
+	}
+}

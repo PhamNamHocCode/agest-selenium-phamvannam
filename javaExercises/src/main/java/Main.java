@@ -1,17 +1,17 @@
 public class Main {
     public static void main(String[] args){
         System.out.println("______________________________________________\nArray and List");
-        int [] inputArr = {4, 3, 8, 7, 5, 2, 6};
+        int [] inputArr = { };
         System.out.println("The missing number in the array is: " + new ArrayListExercise().findMissingNumber(inputArr));
 
-        ArrayListExercise.sumOfTwoPrime(18);
+        ArrayListExercise.sumOfTwoPrime(2);
 
         String[] strArr = {"apple", "banana", "cherry"};
         String targetStr = "banana";
         System.out.println(ArrayListExercise.isInTheList(targetStr, strArr));
 
         System.out.println("______________________________________________\nVariable, Dicision and Loop");
-        VariableDicisionLoopEx.convertAndInverse(-123);
+        VariableDicisionLoopEx.convertAndInverse((int) -1E9);
 
         VariableDicisionLoopEx.findFactorial(10);
 

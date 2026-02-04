@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="HomePage"/>
+    <fullyQualifiedTypeName name="java.lang.invoke.ConstantBootstraps"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.classfile.Constant"/>
+    <fullyQualifiedTypeName name="java.lang.Byte"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebElement"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.chrome.ChromeDriver"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="Railway.RegisterPage"/>
+    <fullyQualifiedTypeName name="Constant.Constant"/>
+    <fullyQualifiedTypeName name="FakeEmail.HomePage"/>
+</qualifiedTypeNameHistroy>
