@@ -23,7 +23,6 @@ public class LoginTest {
 		Constant.WEBDRIVER = new ChromeDriver();
 		Constant.WEBDRIVER.manage().window().maximize();
 		
-		Constant.WEBDRIVER.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(3));
 	}
 	
 	
@@ -37,7 +36,7 @@ public class LoginTest {
 	@Test
 	public void TC01() {
 
-		System.out.println("TC01 - User can log into Railway with valid username and password");
+		System.out.println("TC01: User can log into Railway with valid username and password");
 		HomePage homePage = new HomePage();
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
