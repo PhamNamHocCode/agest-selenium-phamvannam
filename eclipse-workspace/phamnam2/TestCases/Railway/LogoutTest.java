@@ -1,32 +1,12 @@
 package Railway;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import Common.Utilities;
 import Constant.Constant;
+import Constant.PageMenu;
 
-public class LogoutTest {
-	
-	@BeforeMethod
-	public void beforeMethod() {
-		System.out.println("Pre-condition");
-		
-		io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
-		
-	}
-	
-	@AfterMethod
-	public void afterMethod() {
-		System.out.println("Post-condition");
-		
-		Constant.WEBDRIVER.quit();
-		
-	}
+public class LogoutTest extends TestBase{
 	
 	@Test
 	public void TC06() {
@@ -35,7 +15,24 @@ public class LogoutTest {
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
 		
+		System.out.println("Step 2: Login with valid Email and Password");
+		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		loginPage.login(Constant.USERNAME, Constant.PASSWORD);
 		
+		System.out.println("Step 3:  Click on 'FAQ' tab");
+		FAQPage faqPage = new FAQPage();
+		faqPage.gotoPage(PageMenu.FAQ, FAQPage.class);
+		
+		System.out.println("Step 4: Click on 'Log out' tab");
+		homePage.gotoPage(PageMenu.LOGOUT, HomePage.class);
+		
+		Assert.assertTrue(
+				homePage.isHomePageDisplayed(),
+				"Home page is not displays");
+		
+		Assert.assertFalse(
+				homePage.isMenuDisplayed(PageMenu.LOGOUT),
+				"\"Log out\" tab is not disappeared");
 	}
 	
 }

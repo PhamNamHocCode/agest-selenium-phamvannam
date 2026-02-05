@@ -4,45 +4,38 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import Constant.Constant;
+import Constant.PageMenu;
 
 public class GeneralPage {
 	
 	// Locators
-	private final By tabLogin = By.xpath("//div[@id='menu']//a[contains(@href, 'Login')]");
-	private final By tabLogout = By.xpath("//div[@id='menu']//a[contains(@href, 'Logout')]");
 	private final By lblWelcomeMessage = By.xpath("//div[@id='banner']//strong");
-	private final By tabFAQ = By.xpath("//div[@id='menu']//a[contains(@href, 'FAQ')]");
-
-	//Elements
-	protected WebElement getTabLogin() {
-		return Constant.WEBDRIVER.findElement(tabLogin);
-	}
-
-	protected WebElement getTabLogout() {
-		return Constant.WEBDRIVER.findElement(tabLogout);
-	}
 	
+	//Elements
 	protected WebElement getLblWelcomeMessage() {
 		return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
 	}
 	
-	protected WebElement getTabFAQ () {
-		return Constant.WEBDRIVER.findElement(tabFAQ);
-	}
 
 	//Methods
 	public String getWelcomeMessage() {
 		return this.getLblWelcomeMessage().getText();
 	}
 	
-	public LoginPage gotoLoginPage() {
-		this.getTabLogin().click();
-		return new LoginPage();
+	public <T> T gotoPage(PageMenu menu, Class<T> pageClass) {
+		Constant.WEBDRIVER.findElement(menu.locator).click();
+		try {
+			return pageClass.getDeclaredConstructor().newInstance();
+		}
+		catch(Exception e) {
+			throw new RuntimeException("Cannot navigate to page: " + pageClass.getSimpleName(), e);
+		}
 	}
 	
-	public FAQPage gotoFAQPage() {
-		this.getTabFAQ().click();
-		
-		return new FAQPage(); 
+	public boolean isMenuDisplayed(PageMenu menu) {
+		return !Constant.WEBDRIVER.findElements(
+					menu.locator
+					).isEmpty();
 	}
+	
 }

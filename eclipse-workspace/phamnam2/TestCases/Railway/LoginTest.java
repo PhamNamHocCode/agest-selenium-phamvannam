@@ -9,29 +9,9 @@ import org.testng.annotations.Test;
 
 import Common.Utilities;
 import Constant.Constant;
+import Constant.PageMenu;
 
-public class LoginTest {
-	
-	@BeforeMethod
-	public void beforeMethod() {
-		System.out.println("Pre-condition");
-		
-	    io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
-		
-//		System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath()
-//				+ "\\Executables\\chromedriver.exe");
-		Constant.WEBDRIVER = new ChromeDriver();
-		Constant.WEBDRIVER.manage().window().maximize();
-		
-	}
-	
-	
-	@AfterMethod
-	public void afterMethod() {
-		System.out.println("Post-condition");
-		
-		Constant.WEBDRIVER.quit();
-	}
+public class LoginTest extends TestBase {
 	
 	@Test
 	public void TC01() {
@@ -42,7 +22,7 @@ public class LoginTest {
 		homePage.open();
 		
 		System.out.println("Step 2: Click on 'Login' tab");
-		LoginPage loginPage = homePage.gotoLoginPage();
+		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 
 		System.out.println("Step 3: Enter valid Email and Password");
 		System.out.println("Step 4: Click on 'Login' button");
@@ -61,7 +41,7 @@ public class LoginTest {
 		homePage.open();
 		
 		System.out.println("Step 2: Click on 'Login' tab");
-		LoginPage loginPage = homePage.gotoLoginPage();
+		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		
 		System.out.println("Step 3: User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
 		System.out.println("Step 4: Click on 'Login' button");
@@ -79,7 +59,7 @@ public class LoginTest {
 		homePage.open();
 		
 		System.out.println("Step 2: Click on 'Login' tab");
-		LoginPage loginPage = homePage.gotoLoginPage();
+		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		
 		System.out.println("Step 3: Enter valid Email and invalid Password");
 		System.out.println("Step 4: Click on 'Login' button");
@@ -97,7 +77,7 @@ public class LoginTest {
 		homePage.open();
 		
 		System.out.println("Step 2: Click on 'Login' tab");
-		LoginPage loginPage = homePage.gotoLoginPage();
+		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		
 		System.out.println("Step 3: Enter valid information into 'Username' textbox except 'Password' textbox.");
 		System.out.println("Step 4: Click on 'Login' button");
@@ -121,7 +101,7 @@ public class LoginTest {
 		homePage.open();
 		
 		System.out.println("Step 2: Click on 'Login' tab");
-		LoginPage loginPage = homePage.gotoLoginPage();
+		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		
 		System.out.println("Step 3: Enter username and password of account hasn't been activated.");
 		System.out.println("Step 4: Click on 'Login' button");
@@ -130,6 +110,5 @@ public class LoginTest {
 		String expectedMsg = "Invalid username or password. Please try again.";
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
 	}
-	
 	
 }
