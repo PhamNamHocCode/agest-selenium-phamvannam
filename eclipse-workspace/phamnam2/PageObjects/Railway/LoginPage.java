@@ -12,7 +12,10 @@ public class LoginPage extends GeneralPage{
 	private final By _txtPassword= By.xpath("//input[@id='password']");
 	private final By _btnLogin = By.xpath("//input[@value='login']");
 	private final By _lblLoginErrorMsg = By.xpath("//div[@id='content']//p[contains(@class, 'message error LoginForm')]");
-
+	private final By _linkForgotPassword = By.xpath("//div[@id='content']//a[contains(@href,'ForgotPassword')]");
+	private final By _txtEmailForgotPassword = By.xpath("//input[@id='email']");
+	private final By _btnSendInstructions = By.xpath("//div[@id='content']//input[@value='Send Instructions']");
+	
 	// Elements
 	public WebElement getTxtUsername() {
 		return Constant.WEBDRIVER.findElement(_txtUsername);
@@ -30,50 +33,38 @@ public class LoginPage extends GeneralPage{
 		return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
 	}
 	
+	public WebElement getLinkForgotPassword() {
+		return Constant.WEBDRIVER.findElement(_linkForgotPassword);
+	}
+	
+	public WebElement getTxtEmailForgotPassword() {
+		return Constant.WEBDRIVER.findElement(_txtEmailForgotPassword);
+	}
+	
+	public WebElement getBtnSendInstructions() {
+		return Constant.WEBDRIVER.findElement(_btnSendInstructions);
+	}
+	
 	// Methods
-	public HomePage login(String username, String password) {
-		this.getTxtUsername().sendKeys(username);
-		this.getTxtPassword().sendKeys(password);
-		this.getBtnLogin().click();
-		
-		return new HomePage();
+	public LoginPage login(String username, String password) {
+	    if (username != null) {
+	        this.getTxtUsername().clear();
+	        this.getTxtUsername().sendKeys(username);
+	    }
+
+	    if (password != null) {
+	        this.getTxtPassword().clear();
+	        this.getTxtPassword().sendKeys(password);
+	    }
+
+	    Utilities.scrollToElement(this.getBtnLogin());
+	    this.getBtnLogin().click();
+
+	    return this;
 	}
 	
 	public String getLoginErrorMsg() {
 		return this.getLblLoginErrorMsg().getText();
 	}
 	
-	public LoginPage loginWithoutUsername(String password) {
-		this.getTxtPassword().sendKeys(password);
-		this.getBtnLogin().click();
-		
-		return new LoginPage();
-	}
-	
-	public LoginPage loginWitValidUsernameAndInValidPassword(String username, String password) {
-		this.getTxtUsername().sendKeys(username);
-		this.getTxtPassword().sendKeys(password);
-		this.getBtnLogin().click();
-		
-		return this;
-	}
-	
-	public LoginPage loginWithoutPassword(String username) {
-		this.getTxtUsername().clear();
-		
-		this.getTxtUsername().sendKeys(username);
-		
-		Utilities.scrollToElement(this.getBtnLogin());
-		this.getBtnLogin().click();
-		
-		return this;
-	}
-	
-	public LoginPage loginWithUnactivaedAccount(String username, String password) {
-		this.getTxtUsername().sendKeys(username);
-		this.getTxtPassword().sendKeys(password);
-		this.getBtnLogin().click();
-		
-		return this;
-	}
 }

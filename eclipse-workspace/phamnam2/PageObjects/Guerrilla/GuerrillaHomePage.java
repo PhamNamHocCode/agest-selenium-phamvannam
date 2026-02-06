@@ -1,13 +1,15 @@
 package Guerrilla;
 
-import Railway.HomePage;
 import Railway.RegisterPage;
+
 import Constant.Constant;
+import Constant.PageMenu;
 import Common.Utilities;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 
 public class GuerrillaHomePage {
@@ -46,9 +48,8 @@ public class GuerrillaHomePage {
 	}
 	
 	// Methods
-	public String createNewEmail() {
-		String emailName = Utilities.generateRandomEmail();
-
+	public String createNewEmail(String emailName) {
+		Utilities.waitForVisible(_editNameBtn, Constant.WAIT_TIMEOUT);
 		this.getEditNameBtn().click();
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
@@ -61,19 +62,28 @@ public class GuerrillaHomePage {
 		return this.getFullEmailAddress().getText().trim();
 	}
 	
-	public RegisterPage confirmNewEmail(String emailName) {
+	public RegisterPage confirmNewEmail(String emailName, Boolean isCheckLabel, String expectedMsgConfirmed) {
 		this.getEditNameBtn().click();
 		
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 		
 		Utilities.waitForVisible(_emailLetter, Constant.WAIT_TIMEOUT);
-		
 		this.getEmailLetter().click();
-		
+
+		Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT);
 		this.getLinkConfirmAccout().click();
+
+		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
+			Constant.WEBDRIVER.switchTo().window(handle);
+		}
+		RegisterPage registerPage = new RegisterPage();
+		Utilities.waitForVisible(registerPage.getByLblMsgRegistrationConfirmed(),Constant.WAIT_TIMEOUT);
 		
-		return new RegisterPage();
+		if (isCheckLabel) {
+			Assert.assertEquals(registerPage.getTextLblMsgRegistrationConfirmed(), expectedMsgConfirmed, "Message is not displayed as expected");
+		}
+		return registerPage;
 	}
 	
 	public GuerrillaHomePage open() {

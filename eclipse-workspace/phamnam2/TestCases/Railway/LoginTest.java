@@ -26,8 +26,8 @@ public class LoginTest extends TestBase {
 
 		System.out.println("Step 3: Enter valid Email and Password");
 		System.out.println("Step 4: Click on 'Login' button");
-		String actualMsg = loginPage.login(Constant.USERNAME, Constant.PASSWORD).getWelcomeMessage();
-		String expectedMsg = "Welcome " + Constant.USERNAME;
+		String actualMsg = loginPage.login(Constant.VALID_USERNAME, Constant.VALID_PASSWORD).getWelcomeMessage();
+		String expectedMsg = "Welcome " + Constant.VALID_USERNAME;
 
 		Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
 
@@ -45,7 +45,7 @@ public class LoginTest extends TestBase {
 		
 		System.out.println("Step 3: User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
 		System.out.println("Step 4: Click on 'Login' button");
-		String actualMsg = loginPage.loginWithoutUsername(Constant.PASSWORD).getLoginErrorMsg();
+		String actualMsg = loginPage.login(null, Constant.VALID_PASSWORD).getLoginErrorMsg();
 		String expectedMsg = "There was a problem with your login and/or errors exist in your form. ";
 		
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
@@ -63,7 +63,7 @@ public class LoginTest extends TestBase {
 		
 		System.out.println("Step 3: Enter valid Email and invalid Password");
 		System.out.println("Step 4: Click on 'Login' button");
-		String actualMsg = loginPage.loginWitValidUsernameAndInValidPassword("ABC",Constant.PASSWORD).getLoginErrorMsg();
+		String actualMsg = loginPage.login(null, Constant.VALID_PASSWORD).getLoginErrorMsg();
 		String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
 		
 		Assert.assertEquals(actualMsg, expectedMsg, "Error message is not displayed as expected");
@@ -83,11 +83,11 @@ public class LoginTest extends TestBase {
 		System.out.println("Step 4: Click on 'Login' button");
 		System.out.println("Step 5: Repeat step 3 and 4 three more times");
 		
-		String actualMsg = loginPage.loginWithoutPassword(Constant.USERNAME).getLoginErrorMsg();
+		String actualMsg = loginPage.login(Constant.VALID_USERNAME, null).getLoginErrorMsg();
 		String expectedMsg = "Invalid username or password. Please try again";
 //		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
 		for (int i = 2; i <= 4; i++) {
-			actualMsg = loginPage.loginWithoutPassword(Constant.USERNAME).getLoginErrorMsg();
+			actualMsg = loginPage.login(Constant.VALID_USERNAME, null).getLoginErrorMsg();
 		}
 		expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
@@ -97,6 +97,14 @@ public class LoginTest extends TestBase {
 	public void TC05() {
 		System.out.println("TC05: Verify that user can't login with an account hasn't been activated");
 		HomePage homePage = new HomePage();
+		System.out.println("Pre-condition: a not-active account is existing");
+		String registerEmail = Utilities.generateRandomEmail();
+		String registerPassword = Utilities.generateRandomPassword();
+		String registerPip = Utilities.generateRandomPIP();
+		RegisterAccount account = new RegisterAccount(registerEmail, registerPassword, registerPip);
+		homePage.open();
+		account = PreconditionHelper.createUnactiveAccout(account, false, "");
+		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
 		
@@ -106,7 +114,7 @@ public class LoginTest extends TestBase {
 		System.out.println("Step 3: Enter username and password of account hasn't been activated.");
 		System.out.println("Step 4: Click on 'Login' button");
 		
-		String actualMsg = loginPage.loginWithUnactivaedAccount(Constant.USERNAME_HASNT_ACTIVATED, Constant.PASSWORD_HASNT_ACTIVATED).getLoginErrorMsg();
+		String actualMsg = loginPage.login(Constant.USERNAME_HASNT_ACTIVATED, Constant.PASSWORD_HASNT_ACTIVATED).getLoginErrorMsg();
 		String expectedMsg = "Invalid username or password. Please try again.";
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
 	}

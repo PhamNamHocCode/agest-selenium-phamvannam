@@ -1,9 +1,26 @@
 package Railway;
 
 public class RegisterAccount {
-	public final String email;
-	public final String password;
-	public final String pip;
+	private String email;
+	private String password;
+	private String pip;
+	
+	//Elements
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public String getPip() {
+		return pip;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	public RegisterAccount(String email, String password, String pip) {
 		this.email = email;

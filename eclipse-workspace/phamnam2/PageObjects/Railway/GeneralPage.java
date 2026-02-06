@@ -23,7 +23,7 @@ public class GeneralPage {
 	}
 	
 	public <T> T gotoPage(PageMenu menu, Class<T> pageClass) {
-		Constant.WEBDRIVER.findElement(menu.locator).click();
+		Constant.WEBDRIVER.findElement(PageMenuLocator.get(menu)).click();
 		try {
 			return pageClass.getDeclaredConstructor().newInstance();
 		}
@@ -34,7 +34,7 @@ public class GeneralPage {
 	
 	public boolean isMenuDisplayed(PageMenu menu) {
 		return !Constant.WEBDRIVER.findElements(
-					menu.locator
+					PageMenuLocator.get(menu)
 					).isEmpty();
 	}
 	

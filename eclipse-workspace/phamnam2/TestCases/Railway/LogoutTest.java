@@ -17,7 +17,7 @@ public class LogoutTest extends TestBase{
 		
 		System.out.println("Step 2: Login with valid Email and Password");
 		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		loginPage.login(Constant.USERNAME, Constant.PASSWORD);
+		loginPage.login(Constant.VALID_USERNAME, Constant.VALID_PASSWORD);
 		
 		System.out.println("Step 3:  Click on 'FAQ' tab");
 		FAQPage faqPage = new FAQPage();

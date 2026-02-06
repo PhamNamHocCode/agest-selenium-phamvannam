@@ -4,28 +4,28 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Common.Utilities;
-import Constant.Constant;
 import Constant.PageMenu;
+import Constant.Constant;
 import Guerrilla.GuerrillaHomePage;
 
 public class CreateAccount extends TestBase{
 	
 	@Test
 	public void TC07() {
-		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
-		guerrillaHomePage.open();
+		HomePage homePage = new HomePage();
+		RegisterPage registerPage = new RegisterPage();
 		
-		String registerEmail = guerrillaHomePage.createNewEmail();
+		homePage.open();
+		
+		String registerEmail = Utilities.generateRandomEmail();
 		String registerPassword = Utilities.generateRandomPassword();
 		String registerPip = Utilities.generateRandomPIP();
-		
 		RegisterAccount account = new RegisterAccount(registerEmail, registerPassword, registerPip);
 		
-		System.out.println("TC06: Verify that user is redirected to Home page after logging out ");
+		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
 		System.out.println("Pre-condition: an actived account is existing");
-		RegisterPage registerPage = PreconditionHelper.createActivedAccount(account.email, account.password, account.pip);
+		account = PreconditionHelper.createActivedAccount(account, false, "", "");
 		
-		HomePage homePage = new HomePage();
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
 		
@@ -34,7 +34,65 @@ public class CreateAccount extends TestBase{
 		
 		System.out.println("Step 3: Enter information of the created account in Pre-condition");
 		System.out.println("Step 4: Click on \"Register\" button");
-		registerPage.registerNewAccount(account.email, account.password, account.pip);
+		registerPage.registerNewAccount(account.getEmail(), account.getPassword(), account.getPip(), false, "");
+		
+		String actualMsg = registerPage.getTextLblMsgGeneralError();
+		String expectedMsg = "This email address is already in use.";
+		
+		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
+	}
 	
+	@Test
+	public void TC08() {
+		System.out.println("TC08: Verify that user can't create account while password and PID fields are empty");
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		HomePage homePage = new HomePage();
+		homePage.open();
+		
+		System.out.println("Step 2:  Click on \"Register\" tab");
+		homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
+		
+		System.out.println("Step 3: Enter valid email address and leave other fields empty");
+		System.out.println("Step 4: Click on \"Register\" button");
+		RegisterPage registerPage = new RegisterPage();
+		registerPage.registerWithOnlyValidEmail(Constant.VALID_USERNAME);
+		
+		String actualMsgGeneralError = registerPage.getTextLblMsgGeneralError();
+		String expectedMsgGeneralError = "There're errors in the form. Please correct the errors and try again.";
+		Assert.assertEquals(actualMsgGeneralError.replaceFirst("\\.$", ""), expectedMsgGeneralError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
+		
+		String actualMsgPasswordError = registerPage.getTextLblMsgErrorPassword();
+		String expectedMsgPasswordError = "Invalid password length.";
+		Assert.assertEquals(actualMsgPasswordError.replaceFirst("\\.$", ""), expectedMsgPasswordError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
+		
+		String actualMsgPipError = registerPage.getTextLblMsgErrorPip();
+		String expectedMsgPipError = "Invalid ID length.";
+		Assert.assertEquals(actualMsgPipError.replaceFirst("\\.$", ""), expectedMsgPipError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
+	}
+	
+	@Test
+	public void TC09() {
+		System.out.println("TC09: Verify that user create and activate account");
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		HomePage homePage = new HomePage();
+		homePage.open();
+		
+		System.out.println("Step 2:  Click on \"Create an account\"");
+		System.out.println("Step 3:  Enter valid information into all fields");
+		System.out.println("Step 4: Click on \"Register\" button");
+		System.out.println("Step 5: Get email information (webmail address, mailbox and password) and navigate to that webmail ");
+		System.out.println("Step 6: Login to the mailbox");
+		System.out.println("Step 7: Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
+		System.out.println("Step 8: Click on the activate link");
+
+		String registerEmail = Utilities.generateRandomEmail();
+		String registerPassword = Utilities.generateRandomPassword();
+		String registerPip = Utilities.generateRandomPIP();
+		RegisterAccount account = new RegisterAccount(registerEmail, registerPassword, registerPip);
+		
+		String expectedMsgThankyou = "Thank you for registering your account";
+		String expectedMsgConfirmed = "Registration Confirmed! You can now log in to the site.";
+		account = PreconditionHelper.createActivedAccount(account, true, expectedMsgThankyou, expectedMsgConfirmed);
+
 	}
 }

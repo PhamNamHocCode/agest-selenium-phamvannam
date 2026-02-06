@@ -6,6 +6,7 @@ import Guerrilla.GuerrillaHomePage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 
 public class RegisterPage extends GeneralPage{
@@ -15,7 +16,11 @@ public class RegisterPage extends GeneralPage{
 	private final By _txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
 	private final By _txtPIPNumber = By.xpath("//input[@id='pid']");
 	private final By _btnRegister = By.xpath("//input[@value='Register']");
-	
+	private final By _lblMsgGeneralError = By.xpath("//div[@id='content']/p[@class='message error']");
+	private final By _lblMsgRegistrationConfirmed = By.xpath("//div[@id='content']//p");
+	private final By _lblMsgThankyou = By.xpath("//div[@id='content']//h1");
+	private final By _lblMsgErrorPassword = By.xpath("//form[@id='RegisterForm']//label[@class='validation-error' and @for='password']");
+	private final By _lblMsgErrorPip = By.xpath("//form[@id='RegisterForm']//label[@class='validation-error' and @for='pid']");
 	// Elements
 	public WebElement getTxtEmail() {
 		return Constant.WEBDRIVER.findElement(_txtEmail);
@@ -37,10 +42,51 @@ public class RegisterPage extends GeneralPage{
 		return Constant.WEBDRIVER.findElement(_btnRegister);
 	}
 	
+	public WebElement getLblMsgGeneralError() {
+		return Constant.WEBDRIVER.findElement(_lblMsgGeneralError);
+	}
+	public WebElement getLblMsgRegistrationConfirmed() {
+		return Constant.WEBDRIVER.findElement(_lblMsgRegistrationConfirmed);
+	}
+	
+	public WebElement getLblMsgErrorPassword() {
+		return Constant.WEBDRIVER.findElement(_lblMsgErrorPassword);
+	}
+	 
+	public WebElement getLblMsgErrorPip() {
+		return Constant.WEBDRIVER.findElement(_lblMsgErrorPip);
+	}
+	
+	public WebElement getLblMsgThankyou() {
+		return Constant.WEBDRIVER.findElement(_lblMsgThankyou);
+	}
 	
 	// Methods
+	public String getTextLblMsgGeneralError() {
+		return this.getLblMsgGeneralError().getText();
+	}
 	
-	public RegisterPage registerNewAccount(String registerEmail, String registerPassword, String registerPIP) {
+	public String getTextLblMsgErrorPassword() {
+		return this.getLblMsgErrorPassword().getText();
+	}
+	
+	public String getTextLblMsgErrorPip() {
+		return this.getLblMsgErrorPip().getText();
+	}
+	
+	public String getTextLblMsgThankyou() {
+		return this.getLblMsgThankyou().getText();
+	}
+	
+	public String getTextLblMsgRegistrationConfirmed() {
+		return this.getLblMsgRegistrationConfirmed().getText();
+	}
+	
+	public By getByLblMsgRegistrationConfirmed() {
+		return _lblMsgRegistrationConfirmed;
+	}
+	
+	public RegisterPage registerNewAccount(String registerEmail, String registerPassword, String registerPIP, Boolean isCheckLabel, String expectedMsgThankyou) {
 		this.getTxtEmail().clear();
 		this.getTxtEmail().sendKeys(registerEmail);
 		
@@ -53,10 +99,25 @@ public class RegisterPage extends GeneralPage{
 		this.getTxtPIPNumber().clear();
 		this.getTxtPIPNumber().sendKeys(registerPIP);
 		
-//		Utilities.scrollToElement(getBtnRegister());
+		Utilities.scrollToElement(getBtnRegister());
 		this.getBtnRegister().click();
+		
+		String actualMsg = new RegisterPage().getTextLblMsgThankyou();
+		
+		if (isCheckLabel) {
+			Assert.assertEquals(actualMsg, expectedMsgThankyou, "Message is not displayed as expected");
+		}
 		
 		return new RegisterPage();
 	}
 	
+	public RegisterPage registerWithOnlyValidEmail(String registerEmail) {
+		this.getTxtEmail().clear();
+		this.getTxtEmail().sendKeys(registerEmail);
+		
+		Utilities.scrollToElement(getBtnRegister());
+		this.getBtnRegister().click();
+		
+		return new RegisterPage();
+	}
 }
