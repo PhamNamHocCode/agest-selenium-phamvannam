@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import Common.Utilities;
 
 public class BookTicketPage extends GeneralPage{
+	//Locators
 	private final By _sltDepartDate = By.xpath("//select[@name='Date']");
 	private final By _sltDepratFrom = By.xpath("//select[@name='DepartStation']");
 	private final By _sltArriveAt = By.xpath("//select[@name='ArriveStation']");

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import Constant.PageMenu;
 
 public class PageMenuLocator {
+	//Locators
 	private static final EnumMap<PageMenu, By> LOCATORS = 
 			new EnumMap<>(PageMenu.class);
 	
@@ -27,6 +28,7 @@ public class PageMenuLocator {
 				By.xpath("//div[@id='menu']//a[contains(@href,'BookTicketPage')]"));
 	}
 	
+	// Elements
 	public static By get(PageMenu menu) {
 		return LOCATORS.get(menu);
 	}
