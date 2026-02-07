@@ -1,6 +1,7 @@
 package Railway;
 
 public class RegisterAccount {
+	// Fields
 	private String email;
 	private String password;
 	private String pip;

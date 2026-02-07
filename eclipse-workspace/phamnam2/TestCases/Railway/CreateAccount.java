@@ -24,7 +24,7 @@ public class CreateAccount extends TestBase{
 		
 		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
 		System.out.println("Pre-condition: an actived account is existing");
-		account = PreconditionHelper.createActivedAccount(account, false, "", "");
+		account = PreconditionHelper.createActivedAccount(account, false, null, null);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -34,7 +34,7 @@ public class CreateAccount extends TestBase{
 		
 		System.out.println("Step 3: Enter information of the created account in Pre-condition");
 		System.out.println("Step 4: Click on \"Register\" button");
-		registerPage.registerNewAccount(account.getEmail(), account.getPassword(), account.getPip(), false, "");
+		registerPage.registerNewAccount(account.getEmail(), account.getPassword(), account.getPip(), false, null);
 		
 		String actualMsg = registerPage.getTextLblMsgGeneralError();
 		String expectedMsg = "This email address is already in use.";

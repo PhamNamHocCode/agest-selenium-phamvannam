@@ -22,7 +22,7 @@ public class PreconditionHelper {
 		registerPage = registerPage.registerNewAccount(account.getEmail(), account.getPassword(), account.getPip(), isCheckLabel, expectedMsgThankyou);
 		
 		guerrillaHomePage.open();
-		registerPage = guerrillaHomePage.confirmNewEmail(account.getEmail(), isCheckLabel, expectedMsgConfirmed);
+		registerPage = guerrillaHomePage.confirmRegistrationEmail(account.getEmail(), isCheckLabel, expectedMsgConfirmed);
 		
 		return account;
 	}

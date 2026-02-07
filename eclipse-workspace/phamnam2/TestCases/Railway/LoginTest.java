@@ -16,7 +16,7 @@ public class LoginTest extends TestBase {
 	@Test
 	public void TC01() {
 
-		System.out.println("TC01: User can log into Railway with valid username and password");
+		System.out.println("TC01: Verify that user can log into Railway with valid username and password");
 		HomePage homePage = new HomePage();
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();

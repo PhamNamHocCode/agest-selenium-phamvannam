@@ -10,6 +10,7 @@ import java.util.Date;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import Common.Utilities;
 
@@ -21,7 +22,7 @@ public class BookTicketPage extends GeneralPage{
 	private final By _sltSeatType = By.xpath("//select[@name='SeatType']");
 	private final By _sltTicketAmount = By.xpath("//select[@name='TicketAmount']");
 	private final By _btnBookTicket = By.xpath("//input[@value='Book ticket']");
-	private final By _tblBookTicket = By.xpath("//div[@id='content']//table");
+	private static final String _tblCellXpath = "//tr[td[normalize-space()='%s']]/td[count(//table//th[normalize-space()='%s']/preceding-sibling::th) + 1]";
 
 	// Elements
 	public WebElement getSltDepartDate() {
@@ -48,8 +49,8 @@ public class BookTicketPage extends GeneralPage{
 		return Constant.WEBDRIVER.findElement(_btnBookTicket);
 	}
 	
-	public WebElement getTblBookTicket() {
-		return Constant.WEBDRIVER.findElement(_tblBookTicket);
+	public String getTblCellXpath() {
+		return _tblCellXpath;
 	}
 	
 	// Methods
@@ -67,9 +68,22 @@ public class BookTicketPage extends GeneralPage{
         return this;
     }
 	
-//	public boolean checkTicket(BookTicketData data) {
-//		
-//	}
+	public void checkTicket(BookTicketData data) {
+		
+		int row = 1;
+		
+		String actualDepartStation = getTableCellValue(row, "Depart Station");
+		String actualArriveStation = getTableCellValue(row, "Arrive Station");
+		String actualSeatType = getTableCellValue(row, "Seat Type");
+		String actualDepartDate = getTableCellValue(row, "Depart Date");
+		String actualAmount = getTableCellValue(row, "Amount");
+		
+		Assert.assertEquals(actualDepartStation, data.getDepartFrom().getDisplayText(), "Departure information is not displaying correctly");
+		Assert.assertEquals(actualArriveStation, data.getArriveAt().getDisplayText(), "Arrival station information is displayed incorrectly");
+		Assert.assertEquals(actualSeatType, data.getSeatType().getDisplayText(), "Seat type information is displayed incorrectly");
+		Assert.assertEquals(actualDepartDate, data.getDepartDate().toString(), "Departure date information is displayed incorrectly");
+		Assert.assertEquals(actualAmount, String.valueOf(data.getTicketAmount()), "Ticket amount information is displayed incorrectly");
+	}
 
     //Low levels actions
     private void selectDepartDate(LocalDate date) {
@@ -100,9 +114,17 @@ public class BookTicketPage extends GeneralPage{
 
     // Helper
     private void selectByVisibleText(By locator, String text) {
+    	Utilities.waitForVisible(locator, Constant.WAIT_TIMEOUT);
+    	
         Select select = new Select(
                 Constant.WEBDRIVER.findElement(locator)
         );
         select.selectByVisibleText(text);
+    }
+    
+    private String getTableCellValue(int rowValue, String colValue) {
+        String xpath = String.format(_tblCellXpath,
+                rowValue, colValue);
+        return Constant.WEBDRIVER.findElement(By.xpath(xpath)).getText().trim();
     }
 }

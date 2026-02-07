@@ -108,9 +108,17 @@ public class Utilities {
 	    }
     }
 	
-	/* Close tab */
-//	pubclic static void closeTab() {
-//		
-//	}
+	/* Check */
+	public static boolean isTextboxNotEmpty(By locator) {
+	    try {
+	        WebElement element = waitForVisible(locator, Constant.WAIT_TIMEOUT);
+	        String value = element.getDomProperty("value");
+	        return value != null && !value.trim().isEmpty();
+	    } catch (Exception e) {
+	        return false;
+	    }
+	}
+
+
 	
 }
