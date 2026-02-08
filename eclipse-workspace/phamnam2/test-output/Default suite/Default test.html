@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Feb 07 15:46:51 GMT+07:00 2026</td>
+<td>Started on:</td><td>Sun Feb 08 22:57:08 GMT+07:00 2026</td>
 </tr>
-<tr><td>Total time:</td><td>63 seconds (63828 ms)</td>
+<tr><td>Total time:</td><td>36 seconds (36889 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,15 +76,13 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Railway.ResetPassword.TC10()'><b>TC10</b><br>Test class: Railway.ResetPassword</td>
-<td><div><pre>java.lang.AssertionError: The message is not displayed as expected expected [The new password cannot be the same with the current password] but found [Password changed! Click here to login.]
+<td title='Railway.CancelBooking.TC16()'><b>TC16</b><br>Test class: Railway.CancelBooking</td>
+<td><div><pre>java.lang.AssertionError: The canceled ticket is not disappeared expected [false] but found [true]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at Railway.LoginPage.forgotPassword(LoginPage.java:117)
-	at Railway.ResetPassword.TC10(ResetPassword.java:39)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at Railway.MyTicketPage.verifyCancleBooking(MyTicketPage.java:29)
+	at Railway.CancelBooking.TC16(CancelBooking.java:56)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -111,15 +109,13 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace797416363", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace797416363'><pre>java.lang.AssertionError: The message is not displayed as expected expected [The new password cannot be the same with the current password] but found [Password changed! Click here to login.]
+</pre></div><a href='#' onClick='toggleBox("stack-trace438228197", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace438228197'><pre>java.lang.AssertionError: The canceled ticket is not disappeared expected [false] but found [true]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at Railway.LoginPage.forgotPassword(LoginPage.java:117)
-	at Railway.ResetPassword.TC10(ResetPassword.java:39)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at Railway.MyTicketPage.verifyCancleBooking(MyTicketPage.java:29)
+	at Railway.CancelBooking.TC16(CancelBooking.java:56)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -147,8 +143,8 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
-<td>61</td>
-<td>Railway.ResetPassword@49ec71f8</td></tr>
+<td>34</td>
+<td>Railway.CancelBooking@49ec71f8</td></tr>
 </table><p>
 </body>
 </html>

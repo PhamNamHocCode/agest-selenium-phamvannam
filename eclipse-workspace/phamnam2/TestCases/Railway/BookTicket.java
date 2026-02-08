@@ -1,7 +1,8 @@
 package Railway;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.EnumMap;
+import java.util.Map;
 
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
@@ -34,10 +35,11 @@ public class BookTicket extends TestBase{
 		
 		System.out.println("Step 2: Login with a valid account");
 		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		new LoginPage().login(Constant.VALID_USERNAME, Constant.VALID_PASSWORD);
+		new LoginPage().login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Book ticket\" tab"); 
-		homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
+		BookTicketPage bookTicketPage = new BookTicketPage();
+		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
 		
 		System.out.println("Step 4: Select the next 2 days from \"Depart date\""); 
 		System.out.println("Step 5: Select Depart from \"Nha Trang\" and Arrive at \"Huế\""); 
@@ -45,18 +47,18 @@ public class BookTicket extends TestBase{
 		System.out.println("Step 7: Select \"1\" for \"Ticket amount\""); 
 		System.out.println("Step 8: Click on \"Book ticket\" button"); 
 		BookTicketData bookTicketData = new BookTicketData();
-		BookTicketPage bookTicketPage = new BookTicketPage();
 		LocalDate targetDate =
 		        LocalDate.parse(new Select(bookTicketPage.getSltDepartDate()).getOptions().get(0).getText(), Constant.DATE_FORMAT)
 		                 .plusDays(2);
 		bookTicketData.setDepartDate(targetDate);
 		bookTicketData.setDepartFrom(StationCity.NHA_TRANG);
 		bookTicketData.setArriveAt(StationCity.HUE);
-		bookTicketData.setSeatType(SeatType.SOFT_BED_AC);
+		bookTicketData.setSeatType(SeatType.SBC);
 		bookTicketData.setTicketAmount(1);
+		Boolean isEditDepartFrom = true;
 		
-		bookTicketPage.bookTicket(bookTicketData);
-		bookTicketPage.checkTicket(bookTicketData);
+		bookTicketPage.bookTicket(bookTicketData, isEditDepartFrom);
+		bookTicketPage.verifyTicket(bookTicketData);
 		
 	}
 	
@@ -79,29 +81,129 @@ public class BookTicket extends TestBase{
 		
 		System.out.println("Step 2: Login with a valid account");
 		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		new LoginPage().login(Constant.VALID_USERNAME, Constant.VALID_PASSWORD);
+		new LoginPage().login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Book ticket\" tab"); 
-		homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
+		BookTicketPage bookTicketPage = new BookTicketPage();
+		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
 		
-		System.out.println("Step 4: Select the next 25 days from \"Depart date\"	"); 
+		System.out.println("Step 4: Select the next 25 days from \"Depart date\""); 
 		System.out.println("Step 5: Select \"Nha Trang\" for \"Depart from\" and \"Sài Gòn\" for \"Arrive at\""); 
 		System.out.println("Step 6: Select \"Soft seat with air conditioner\" for \"Seat type\""); 
 		System.out.println("Step 7: Select \"5\" for \"Ticket amount\""); 
 		System.out.println("Step 8: Click on \"Book ticket\" button"); 
 		BookTicketData bookTicketData = new BookTicketData();
-		BookTicketPage bookTicketPage = new BookTicketPage();
 		LocalDate targetDate =
 		        LocalDate.parse(new Select(bookTicketPage.getSltDepartDate()).getOptions().get(0).getText(), Constant.DATE_FORMAT)
 		                 .plusDays(25);
 		bookTicketData.setDepartDate(targetDate);
 		bookTicketData.setDepartFrom(StationCity.NHA_TRANG);
 		bookTicketData.setArriveAt(StationCity.SAI_GON);
-		bookTicketData.setSeatType(SeatType.SOFT_SEAT_AC);
+		bookTicketData.setSeatType(SeatType.SSC);
 		bookTicketData.setTicketAmount(5);
+		Boolean isEditDepartFrom = true;
 		
-		bookTicketPage.bookTicket(bookTicketData);
-		bookTicketPage.checkTicket(bookTicketData);
-		
+		bookTicketPage.bookTicket(bookTicketData, isEditDepartFrom);
+		bookTicketPage.verifyTicket(bookTicketData);
 	}
+	
+	@Test
+	public void TC14() {
+		System.out.println("TC14: Verify that user can check price of ticket from Timetable");
+		System.out.println("Pre-condition: an actived account is existing");
+		HomePage homePage = new HomePage();
+		homePage.open();
+		
+		String registerEmail = Utilities.generateRandomEmail();
+		String registerPassword = Utilities.generateRandomPassword();
+		String registerPip = Utilities.generateRandomPIP();
+		RegisterAccount account = new RegisterAccount(registerEmail, registerPassword, registerPip);
+		
+		account = PreconditionHelper.createActivedAccount(account, false, null, null);
+		
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		homePage.open();
+		
+		System.out.println("Step 2: Login with a valid account");
+		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		new LoginPage().login(account.getEmail(), account.getPassword());
+		
+		System.out.println("Step 3: Click on \"Timetable\" tab");
+		TimetablePage timetablePage = new TimetablePage();
+		timetablePage = homePage.gotoPage(PageMenu.TIMETABLE, TimetablePage.class);
+		
+		System.out.println("Step 4: Click on \"check price\" link of the route from \"Đà Nẵng\" to \"Sài Gòn\""); 
+		StationCity departStation = StationCity.DA_NANG;
+		StationCity arriveStation = StationCity.SAI_GON;
+		TicketPricePage ticketPricePage = new TicketPricePage();
+		ticketPricePage = timetablePage.checkPrice(departStation, arriveStation);
+		
+		String expectedHeaderMsg = "Ticket price from Đà Nẵng to Sài Gòn";
+		Map<SeatType, String> prices = new EnumMap<>(SeatType.class);
+		prices.put(SeatType.HS, "310000");
+		prices.put(SeatType.SS, "335000");
+		prices.put(SeatType.SSC, "360000");
+		prices.put(SeatType.HB, "410000");
+		prices.put(SeatType.SB, "460000");
+		prices.put(SeatType.SBC, "510000");
+		
+		ticketPricePage.checkTableData(expectedHeaderMsg, prices);
+	}
+	
+	@Test
+	public void TC15() {
+		System.out.println("TC15: Verify that user can book ticket from Timetable");
+		System.out.println("Pre-condition: an actived account is existing");
+		HomePage homePage = new HomePage();
+		homePage.open();
+		
+		String registerEmail = Utilities.generateRandomEmail();
+		String registerPassword = Utilities.generateRandomPassword();
+		String registerPip = Utilities.generateRandomPIP();
+		RegisterAccount account = new RegisterAccount(registerEmail, registerPassword, registerPip);
+		
+		account = PreconditionHelper.createActivedAccount(account, false, null, null);
+		
+		System.out.println("Step 1: Navigate to QA Railway Website");
+		homePage.open();
+		
+		System.out.println("Step 2: Login with a valid account");
+		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		new LoginPage().login(account.getEmail(), account.getPassword());
+		
+		System.out.println("Step 3: Click on \"Timetable\" tab"); 
+		TimetablePage timetablePage = new TimetablePage();
+		timetablePage = homePage.gotoPage(PageMenu.TIMETABLE, TimetablePage.class);
+		
+		System.out.println("Step 4: Click on book ticket of route \"Quảng Ngãi\" to \"Huế\""); 
+		StationCity departStation = StationCity.QUANG_NGAI;
+		StationCity arriveStation = StationCity.HUE;
+		timetablePage.bookTicket(departStation, arriveStation);
+		
+		System.out.println("Step 5: Select Depart date = tomorrow");
+		System.out.println("Step 6: Select Ticket amount = 5");
+		System.out.println("Step 7: Click on \"Book ticket\" button");
+		BookTicketData bookTicketData = new BookTicketData();
+		BookTicketPage bookTicketPage = new BookTicketPage();
+		LocalDate targetDate =
+		        LocalDate.parse(new Select(bookTicketPage.getSltDepartDate()).getOptions().get(0).getText(), Constant.DATE_FORMAT)
+		                 .plusDays(1);
+		bookTicketData.setDepartDate(targetDate);
+		bookTicketData.setDepartFrom(departStation);
+		bookTicketData.setArriveAt(arriveStation);
+		bookTicketData.setSeatType(null);
+		bookTicketData.setTicketAmount(5);
+		Boolean isEditDepartFrom = false;
+		
+		String msgDepart = "The depart selection is not displayed as expected";
+		String msgArrive = "The arrive selection is not displayed as expected";
+		bookTicketPage.verifyBookTicketForm(departStation.getDisplayText(), arriveStation.getDisplayText(), msgDepart, msgArrive);
+		bookTicketPage.bookTicket(bookTicketData, isEditDepartFrom);
+		
+		String expectedMsg = "Ticket booked successfully!";
+		String message = "The message is not displayed as expected";
+		bookTicketPage.verifyCenterMsg(expectedMsg, message);
+		bookTicketPage.verifyTicket(bookTicketData);
+	}
+	
 }

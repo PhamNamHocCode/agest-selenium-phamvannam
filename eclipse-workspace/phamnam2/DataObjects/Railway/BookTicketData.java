@@ -25,7 +25,12 @@ public class BookTicketData {
 		return arriveAt;
 	}
 	public SeatType getSeatType() {
-		return seatType;
+		if(seatType == null) {
+			return SeatType.HS;
+		}
+		else {
+			return seatType;
+		}
 	}
 	public int getTicketAmount() {
 		return ticketAmount;
@@ -41,7 +46,12 @@ public class BookTicketData {
 		this.arriveAt = arriveAt;
 	}
 	public void setSeatType(SeatType seatType) {
-		this.seatType = seatType;
+		if(seatType == null) {
+			seatType = SeatType.HS;
+		}
+		else {
+			this.seatType = seatType;
+		}
 	}
 	public void setTicketAmount(int ticketAmount) {
 		this.ticketAmount = ticketAmount;

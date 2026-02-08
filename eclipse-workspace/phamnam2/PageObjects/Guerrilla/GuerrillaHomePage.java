@@ -104,9 +104,9 @@ public class GuerrillaHomePage {
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 		
-		Utilities.waitForVisible(getByEmailLetter("ForgotPassword"), Constant.WAIT_TIMEOUT);
+		Utilities.waitForVisible(getByEmailLetter("ForgotPassword"), Constant.WAIT_TIMEOUT).click();;
 		
-	    getEmailLetterElement("ForgotPassword").click();
+//	    getEmailLetterElement("ForgotPassword").click();
 
 		Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT);
 		this.getLinkConfirmAccout().click();

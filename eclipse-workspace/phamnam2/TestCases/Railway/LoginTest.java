@@ -114,7 +114,7 @@ public class LoginTest extends TestBase {
 		System.out.println("Step 3: Enter username and password of account hasn't been activated.");
 		System.out.println("Step 4: Click on 'Login' button");
 		
-		String actualMsg = loginPage.login(Constant.USERNAME_HASNT_ACTIVATED, Constant.PASSWORD_HASNT_ACTIVATED).getLoginErrorMsg();
+		String actualMsg = loginPage.login(account.getEmail(), account.getPassword()).getLoginErrorMsg();
 		String expectedMsg = "Invalid username or password. Please try again.";
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
 	}

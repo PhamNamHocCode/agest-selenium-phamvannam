@@ -1,0 +1,11 @@
+package Constant;
+
+public enum LoginElement {
+    USERNAME,
+    PASSWORD,
+    LOGIN_ERROR_MSG,
+    FORGOT_PASSWROD_GENERAL_MSG,
+    FORGOT_PASSWORD_LINK,
+    FORGOT_PASSWORD_CONFIRM_PASSWORD_MSG
+}
+

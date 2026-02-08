@@ -74,8 +74,14 @@ public class RegisterPage extends GeneralPage{
 		return this.getLblMsgErrorPip().getText();
 	}
 	
+//	public String getTextLblMsgThankyou() {
+//		return this.getLblMsgThankyou().getText();
+//	}
 	public String getTextLblMsgThankyou() {
-		return this.getLblMsgThankyou().getText();
+	    return Utilities
+	            .waitForVisible(_lblMsgThankyou, Constant.WAIT_TIMEOUT)
+	            .getText()
+	            .trim();
 	}
 	
 	public String getTextLblMsgRegistrationConfirmed() {
@@ -85,6 +91,7 @@ public class RegisterPage extends GeneralPage{
 	public By getByLblMsgRegistrationConfirmed() {
 		return _lblMsgRegistrationConfirmed;
 	}
+	
 	
 	public RegisterPage registerNewAccount(String registerEmail, String registerPassword, String registerPIP, Boolean isCheckLabel, String expectedMsgThankyou) {
 		this.getTxtEmail().clear();

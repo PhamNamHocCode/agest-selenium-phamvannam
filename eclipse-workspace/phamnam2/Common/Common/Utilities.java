@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
@@ -67,7 +68,14 @@ public class Utilities {
 	}
 	public static WebElement waitForVisible(By locator, int timeout) {
 	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
-	    return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	    
+	    try {
+	        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	    } catch (TimeoutException e) {
+	        Constant.WEBDRIVER.navigate().refresh();
+
+	        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	    }
 	}
 	
 	/* Switch to */
@@ -118,7 +126,18 @@ public class Utilities {
 	        return false;
 	    }
 	}
-
-
+	
+	public static String getElementTextVisible(By locator) {
+		try {
+			WebElement element = Constant.WEBDRIVER.findElement(locator);
+			if (element.isDisplayed()) {
+				return element.getText();
+			}
+			return "HIDDEN";
+		}
+		catch (NoSuchElementException e) {
+			return "NOT_FOUND";
+		}
+	}
 	
 }

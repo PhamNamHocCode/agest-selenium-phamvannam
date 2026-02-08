@@ -1,6 +1,7 @@
 package Railway;
 
 import Constant.Constant;
+import Constant.LoginElement;
 import Guerrilla.GuerrillaHomePage;
 import Common.Utilities;
 import org.openqa.selenium.By;
@@ -21,8 +22,8 @@ public class LoginPage extends GeneralPage{
 	private final By _txtConfirmNewPassword = By.xpath("//input[@id='confirmPassword']");
 	private final By _btnResetPassword = By.xpath("//input[@value='Reset Password']");
 	private final By _txtResetPasswordToken = By.xpath("//input[@id='resetToken']");
-	private final By _lblMessage = By.xpath("//div[@id='content']//p[contains(@class,'message')]");
-	
+	private final By _lblForgotPasswordGeneralMsg = By.xpath("//div[@id='content']//p[contains(@class,'message')]");
+	private final By _lblForgotPasswordConfirmPasswordMsg = By.xpath("//label[@for='confirmPassword' and @class='validation-error']");
 	// Elements
 	public WebElement getTxtUsername() {
 		return Constant.WEBDRIVER.findElement(_txtUsername);
@@ -64,8 +65,37 @@ public class LoginPage extends GeneralPage{
 		return Constant.WEBDRIVER.findElement(_txtResetPasswordToken);
 	}
 	
-	public WebElement getLblMessage() {
-		return Constant.WEBDRIVER.findElement(_lblMessage);
+	public WebElement getLblForgotPasswordGeneralMsg() {
+		return Constant.WEBDRIVER.findElement(_lblForgotPasswordGeneralMsg);
+	}
+	
+	public WebElement getLblForgotPasswordConfirmPasswordMsg() {
+		return Constant.WEBDRIVER.findElement(_lblForgotPasswordConfirmPasswordMsg);
+	}
+	
+	public By getLocator(LoginElement element) {
+		switch (element) {
+        case USERNAME:
+            return _txtUsername;
+
+        case PASSWORD:
+            return _txtPassword;
+
+        case LOGIN_ERROR_MSG:
+            return _lblLoginErrorMsg;
+
+        case FORGOT_PASSWROD_GENERAL_MSG:
+            return _lblForgotPasswordGeneralMsg;
+
+        case FORGOT_PASSWORD_LINK:
+            return _linkForgotPassword;
+         
+        case FORGOT_PASSWORD_CONFIRM_PASSWORD_MSG:
+        	return _lblForgotPasswordConfirmPasswordMsg;
+        	
+        default:
+            throw new IllegalArgumentException("Unsupported element: " + element);
+		}
 	}
 	
 	
@@ -91,7 +121,7 @@ public class LoginPage extends GeneralPage{
 		return this.getLblLoginErrorMsg().getText();
 	}
 	
-	public LoginPage forgotPassword(String email, String newPassword, Boolean isCheck, String expectedMsg) {
+	public LoginPage forgotPassword(String email, String newPassword, String confirmPassword, Boolean isCheck, String expectedGenralMsg) {
 		LoginPage loginPage = new LoginPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		loginPage.getLinkForgotPassword().click();
@@ -108,16 +138,35 @@ public class LoginPage extends GeneralPage{
 		this.getTxtNewPassword().sendKeys(newPassword);
 		
 		this.getTxtConfirmNewPassword().clear();
-		this.getTxtConfirmNewPassword().sendKeys(newPassword);
+		this.getTxtConfirmNewPassword().sendKeys(confirmPassword);
 		
 		this.getBtnResetPassword().click();
 		
 		if (isCheck) {
-			String actualMsg = getLblMessage().getText();
-			Assert.assertEquals(actualMsg, expectedMsg, "The message is not displayed as expected");
+			String actualMsg = getLblForgotPasswordGeneralMsg().getText();
+			Assert.assertEquals(actualMsg, expectedGenralMsg, "The message is not displayed as expected");
 		}
 		
 		return loginPage;
+	}
+	
+	public void checkLblExists(LoginElement element, String expectedMsg) {
+		By locator = getLocator(element);
+		String actualMsg = Utilities.getElementTextVisible(locator);
+		
+		if ("NOT_FOUND".equals(actualMsg)) {
+	        Assert.fail("The error messege NOT FOUND: " + element);
+	    }
+
+	    if ("HIDDEN".equals(actualMsg)) {
+	        Assert.fail("The error messege is HIDDEN: " + element);
+	    }
+
+	    Assert.assertEquals(
+	        actualMsg,
+	        expectedMsg,
+	        "The error messege is not displayed as expected: " + element
+	    );	
 	}
 	
 	public LoginPage sendInstructions(String email) {

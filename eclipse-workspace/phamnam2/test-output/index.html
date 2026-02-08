@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\1202p\AppData\Local\Temp\testng-eclipse--1771699234\testng-customsuite.xml</span>
+                    <span>C:\Users\1202p\AppData\Local\Temp\testng-eclipse-1168903286\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="Railway.ResetPassword" class="method navigator-link" hash-for-method="TC10">TC10</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="Railway.CancelBooking" class="method navigator-link" hash-for-method="TC16">TC16</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,22 +121,20 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">Railway.ResetPassword</span>
+              <span class="class-name">Railway.CancelBooking</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TC10">
-                  </a> <!-- TC10 -->
-                  <span class="method-name">TC10</span>
-                  <div class="stack-trace">java.lang.AssertionError: The message is not displayed as expected expected [The new password cannot be the same with the current password] but found [Password changed! Click here to login.]
+                  <a name="TC16">
+                  </a> <!-- TC16 -->
+                  <span class="method-name">TC16</span>
+                  <div class="stack-trace">java.lang.AssertionError: The canceled ticket is not disappeared expected [false] but found [true]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at Railway.LoginPage.forgotPassword(LoginPage.java:117)
-	at Railway.ResetPassword.TC10(ResetPassword.java:39)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at Railway.MyTicketPage.verifyCancleBooking(MyTicketPage.java:29)
+	at Railway.CancelBooking.TC16(CancelBooking.java:56)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -172,7 +170,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\1202p\AppData\Local\Temp\testng-eclipse--1771699234\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\1202p\AppData\Local\Temp\testng-eclipse-1168903286\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -181,7 +179,7 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;Railway.ResetPassword&quot;/&gt;
+      &lt;class name=&quot;Railway.CancelBooking&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -223,14 +221,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'TC10')
-data.setCell(0, 2, 'Railway.ResetPassword')
-data.setCell(0, 3, 61526);
+data.setCell(0, 1, 'TC16')
+data.setCell(0, 2, 'Railway.CancelBooking')
+data.setCell(0, 3, 34894);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 34 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -256,7 +254,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">Railway.ResetPassword</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">Railway.CancelBooking</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
                 <span class="method-start">0 ms</span>
@@ -264,12 +262,12 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">TC10</span>
-                <span class="method-start">1945 ms</span>
+                <span class="method-name">TC16</span>
+                <span class="method-start">1698 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">afterMethod</span>
-                <span class="method-start">63480 ms</span>
+                <span class="method-start">36600 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
