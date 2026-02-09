@@ -46,7 +46,7 @@ public class CreateAccount extends TestBase{
 		
 		System.out.println("Step 3: Enter valid email address and leave other fields empty");
 		System.out.println("Step 4: Click on \"Register\" button");
-		registerPage = registerPage.registerWithOnlyValidEmail(Constant.VALID_USERNAME);
+		registerPage = registerPage.registerWithOnlyEmail(Constant.VALID_USERNAME);
 		
 		String actualMsgGeneralError = registerPage.getTextLblMsgGeneralError();
 		String expectedMsgGeneralError = "There're errors in the form. Please correct the errors and try again.";

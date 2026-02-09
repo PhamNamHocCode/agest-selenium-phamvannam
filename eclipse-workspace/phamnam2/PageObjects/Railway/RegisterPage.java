@@ -77,8 +77,7 @@ public class RegisterPage extends GeneralPage{
 	public String getTextLblMsgThankyou() {
 	    return Constant.WEBDRIVER.findElement(Utilities
 	            .waitForVisible(_lblMsgThankyou))
-	            .getText()
-	            .trim();
+	            .getText();
 	}
 	
 	public String getTextLblMsgRegistrationConfirmed() {
@@ -117,7 +116,7 @@ public class RegisterPage extends GeneralPage{
 		return new RegisterPage();
 	}
 	
-	public RegisterPage registerWithOnlyValidEmail(String registerEmail) {
+	public RegisterPage registerWithOnlyEmail(String registerEmail) {
 		this.getTxtEmail().clear();
 		this.getTxtEmail().sendKeys(registerEmail);
 		

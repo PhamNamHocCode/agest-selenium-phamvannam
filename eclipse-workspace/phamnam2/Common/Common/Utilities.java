@@ -2,6 +2,7 @@ package Common;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -62,11 +63,18 @@ public class Utilities {
     }
 	
 	private static String getRandomString(int limit) {
-	    String base36 = Long.toString(System.currentTimeMillis(), 36);
-	    return base36.substring(base36.length() - limit).toUpperCase();
+	    String timestamp = Long.toString(System.currentTimeMillis(), 36);
+	    String randomPart = Integer.toString(ThreadLocalRandom.current().nextInt(1000000), 36);
+	    String combined = (timestamp + randomPart).toLowerCase();
+	    
+	    if (combined.length() >= limit) {
+	        return combined.substring(combined.length() - limit);
+	    } else {
+	        return String.format("%" + limit + "s", combined)
+	                     .replace(' ', (char)('a' + ThreadLocalRandom.current().nextInt(26)));
+	    }
 	}
 
-	
 	/* Wait */
 	public static By waitForClickable(By locator) {
 		return waitForClickable(locator, Constant.WAIT_TIMEOUT);
@@ -116,7 +124,6 @@ public class Utilities {
 	
 	/* Switch */
 	public static void switchToPageByUrlContains(String locator) {
-
         for (String window : Constant.WEBDRIVER.getWindowHandles()) {
         	Constant.WEBDRIVER.switchTo().window(window);
 
