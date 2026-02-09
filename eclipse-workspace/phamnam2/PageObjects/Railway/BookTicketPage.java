@@ -154,7 +154,7 @@ public class BookTicketPage extends GeneralPage{
     private void selectByVisibleText(By locator, String text) {
     	
         Select select = new Select(
-        		Utilities.waitForVisible(locator, Constant.WAIT_TIMEOUT)
+        	Constant.WEBDRIVER.findElement(Utilities.waitForVisible(locator))
         );
         select.selectByVisibleText(text);
     }

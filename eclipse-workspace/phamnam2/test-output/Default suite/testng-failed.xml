@@ -3,14 +3,6 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Railway.LoginTest">
-        <methods>
-          <include name="beforeMethod"/>
-          <include name="TC01"/>
-          <include name="TC04"/>
-          <include name="afterMethod"/>
-        </methods>
-      </class> <!-- Railway.LoginTest -->
       <class name="Railway.CancelBooking">
         <methods>
           <include name="beforeMethod"/>
@@ -28,11 +20,19 @@
       <class name="Railway.BookTicket">
         <methods>
           <include name="beforeMethod"/>
+          <include name="TC14"/>
           <include name="afterMethod"/>
           <include name="TC15"/>
-          <include name="TC12"/>
         </methods>
       </class> <!-- Railway.BookTicket -->
+      <class name="Railway.LoginTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="TC01"/>
+          <include name="TC04"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- Railway.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -77,8 +77,8 @@ public class RegisterPage extends GeneralPage{
 //		return this.getLblMsgThankyou().getText();
 //	}
 	public String getTextLblMsgThankyou() {
-	    return Utilities
-	            .waitForVisible(_lblMsgThankyou, Constant.WAIT_TIMEOUT)
+	    return Constant.WEBDRIVER.findElement(Utilities
+	            .waitForVisible(_lblMsgThankyou))
 	            .getText()
 	            .trim();
 	}

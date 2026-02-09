@@ -47,8 +47,10 @@ public class GuerrillaHomePage {
 		switch (letterKeyword) {
 		case "Registration":
 			return By.xpath(String.format(_emailLetter, "confirmation code"));
+			
 		case "ForgotPassword":
 			return By.xpath(String.format(_emailLetter, "password reset"));
+			
 		default:
 			throw new IllegalArgumentException("Unsupported email type");
 		}
@@ -60,8 +62,7 @@ public class GuerrillaHomePage {
 	
 	// Methods
 	public String createNewEmail(String emailName) {
-		Utilities.waitForVisible(_editNameBtn, Constant.WAIT_TIMEOUT);
-		this.getEditNameBtn().click();
+		Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_editNameBtn, Constant.WAIT_TIMEOUT)).click();
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 		
@@ -82,17 +83,16 @@ public class GuerrillaHomePage {
 		Utilities.waitForVisibleWithRefresh(getByEmailLetter("Registration"), Constant.WAIT_TIMEOUT);
 	    getEmailLetterElement("Registration").click();
 
-		Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT);
-		this.getLinkConfirmAccout().click();
+	    Constant.WEBDRIVER.findElement(Utilities.waitForClickable(_linkConfirmAccount)).click();
 
 		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
 			Constant.WEBDRIVER.switchTo().window(handle);
 		}
 		RegisterPage registerPage = new RegisterPage();
-		Utilities.waitForVisible(registerPage.getByLblMsgRegistrationConfirmed(),Constant.WAIT_TIMEOUT);
+		String actualMsg = Constant.WEBDRIVER.findElement(Utilities.waitForVisible(registerPage.getByLblMsgRegistrationConfirmed(),Constant.WAIT_TIMEOUT)).getText();
 		
 		if (isCheckLabel) {
-			Assert.assertEquals(registerPage.getTextLblMsgRegistrationConfirmed(), expectedMsgConfirmed, "Message is not displayed as expected");
+			Assert.assertEquals(actualMsg, expectedMsgConfirmed, "Message is not displayed as expected");
 		}
 		return registerPage;
 	}
@@ -103,12 +103,9 @@ public class GuerrillaHomePage {
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 		
-		Utilities.waitForVisibleWithRefresh(getByEmailLetter("ForgotPassword"), Constant.WAIT_TIMEOUT).click();;
-		
-//	    getEmailLetterElement("ForgotPassword").click();
+		Constant.WEBDRIVER.findElement(Utilities.waitForVisibleWithRefresh(getByEmailLetter("ForgotPassword"))).click();;
 
-		Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT);
-		this.getLinkConfirmAccout().click();
+		Constant.WEBDRIVER.findElement(Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT)).click();;
 
 		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
 			Constant.WEBDRIVER.switchTo().window(handle);

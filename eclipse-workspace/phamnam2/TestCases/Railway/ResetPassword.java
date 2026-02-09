@@ -61,7 +61,7 @@ public class ResetPassword extends TestBase{
 		String expectedGenralMsg = "Could not reset password. Please correct the errors and try again.";
 		String expectedPasswordErrorMsg = "The password confirmation did not match the new password.";
 		String failMsgPassToken = "\"Password Change Form\" is not shown with the reset password token";
-		String confirmPassword = Utilities.generateRandomPassword();
+		String confirmPassword = Utilities.generateRandomPassword(5);
 		System.out.println("VP: Redirect to Railways page and Form \"Password Change Form\" is shown with the reset password token"
 				+ "Error message \"Could not reset password. Please correct the errors and try again.\" displays above the form.\r\n"
 				+ "\r\n"

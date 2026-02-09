@@ -1,25 +1,449 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="3" total="4" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="16" passed="10" failed="6" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-09T16:55:15 GMT+07:00" name="Default suite" finished-at="2026-02-09T16:58:11 GMT+07:00" duration-ms="176506">
+  <suite started-at="2026-02-09T19:42:22 GMT+07:00" name="Default suite" finished-at="2026-02-09T19:49:34 GMT+07:00" duration-ms="431669">
     <groups>
     </groups>
-    <test started-at="2026-02-09T16:55:15 GMT+07:00" name="Default test" finished-at="2026-02-09T16:58:11 GMT+07:00" duration-ms="176506">
-      <class name="Railway.BookTicket">
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.BookTicket@35d019a3]" started-at="2026-02-09T16:55:15 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T16:55:16 GMT+07:00" duration-ms="1314" status="PASS">
+    <test started-at="2026-02-09T19:42:22 GMT+07:00" name="Default test" finished-at="2026-02-09T19:49:34 GMT+07:00" duration-ms="431669">
+      <class name="Railway.CreateAccount">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:43:10 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:43:11 GMT+07:00" duration-ms="1049" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="TC12()[pri:0, instance:Railway.BookTicket@35d019a3]" started-at="2026-02-09T16:55:16 GMT+07:00" name="TC12" finished-at="2026-02-09T16:58:11 GMT+07:00" duration-ms="174916" status="PASS">
+        <test-method signature="TC07()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:43:11 GMT+07:00" name="TC07" finished-at="2026-02-09T19:43:43 GMT+07:00" duration-ms="32348" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC07 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:43:43 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:43:43 GMT+07:00" duration-ms="270" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:43:43 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:43:44 GMT+07:00" duration-ms="1083" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC08()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:43:44 GMT+07:00" name="TC08" finished-at="2026-02-09T19:43:50 GMT+07:00" duration-ms="5330" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC08 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:43:50 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:43:50 GMT+07:00" duration-ms="188" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:43:50 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:43:51 GMT+07:00" duration-ms="1014" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC09()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:43:51 GMT+07:00" name="TC09" finished-at="2026-02-09T19:44:19 GMT+07:00" duration-ms="28331" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC09 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.CreateAccount@3754a4bf]" started-at="2026-02-09T19:44:19 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:44:20 GMT+07:00" duration-ms="395" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- Railway.CreateAccount -->
+      <class name="Railway.LoginTest">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:22 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:42:25 GMT+07:00" duration-ms="2246" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC01()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:25 GMT+07:00" name="TC01" finished-at="2026-02-09T19:42:31 GMT+07:00" duration-ms="6466" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Welcome message is not displayed as expected expected [Welcome phamnam@sharklasers.com] but found []]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Welcome message is not displayed as expected expected [Welcome phamnam@sharklasers.com] but found []
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at Railway.LoginTest.TC01(LoginTest.java:28)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC01 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:31 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:42:32 GMT+07:00" duration-ms="454" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:32 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:42:33 GMT+07:00" duration-ms="1070" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC02()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:33 GMT+07:00" name="TC02" finished-at="2026-02-09T19:42:38 GMT+07:00" duration-ms="5341" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC02 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:38 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:42:38 GMT+07:00" duration-ms="218" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:38 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:42:39 GMT+07:00" duration-ms="1048" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC03()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:39 GMT+07:00" name="TC03" finished-at="2026-02-09T19:42:45 GMT+07:00" duration-ms="5507" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC03 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:45 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:42:45 GMT+07:00" duration-ms="293" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:45 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:42:46 GMT+07:00" duration-ms="1136" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC04()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:46 GMT+07:00" name="TC04" finished-at="2026-02-09T19:42:52 GMT+07:00" duration-ms="5584" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Error message is not displayed as expected expected [Invalid username or password. Please try again] but found [There was a problem with your login and/or errors exist in your form.]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Error message is not displayed as expected expected [Invalid username or password. Please try again] but found [There was a problem with your login and/or errors exist in your form.]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at Railway.LoginTest.TC04(LoginTest.java:86)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC04 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:52 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:42:52 GMT+07:00" duration-ms="237" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:52 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:42:53 GMT+07:00" duration-ms="1091" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC05()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:42:53 GMT+07:00" name="TC05" finished-at="2026-02-09T19:43:09 GMT+07:00" duration-ms="16288" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC05 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.LoginTest@34a3d150]" started-at="2026-02-09T19:43:09 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:43:10 GMT+07:00" duration-ms="236" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- Railway.LoginTest -->
+      <class name="Railway.BookTicket">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:44:20 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:44:21 GMT+07:00" duration-ms="1016" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC12()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:44:21 GMT+07:00" name="TC12" finished-at="2026-02-09T19:44:57 GMT+07:00" duration-ms="35957" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC12 -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.BookTicket@35d019a3]" started-at="2026-02-09T16:58:11 GMT+07:00" name="afterMethod" finished-at="2026-02-09T16:58:11 GMT+07:00" duration-ms="241" status="PASS">
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:44:57 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:44:57 GMT+07:00" duration-ms="297" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:44:57 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:44:58 GMT+07:00" duration-ms="1040" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC13()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:44:58 GMT+07:00" name="TC13" finished-at="2026-02-09T19:45:35 GMT+07:00" duration-ms="36856" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC13 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:45:35 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:45:35 GMT+07:00" duration-ms="296" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:45:35 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:45:36 GMT+07:00" duration-ms="958" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC14()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:45:36 GMT+07:00" name="TC14" finished-at="2026-02-09T19:46:13 GMT+07:00" duration-ms="36680" status="FAIL">
+          <exception class="java.lang.ClassCastException">
+            <message>
+              <![CDATA[class Railway.LoginPage cannot be cast to class Railway.HomePage (Railway.LoginPage and Railway.HomePage are in unnamed module of loader 'app')]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.ClassCastException: class Railway.LoginPage cannot be cast to class Railway.HomePage (Railway.LoginPage and Railway.HomePage are in unnamed module of loader 'app')
+at Railway.BookTicket.TC14(BookTicket.java:104)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.ClassCastException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC14 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:46:13 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:46:13 GMT+07:00" duration-ms="314" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:46:13 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:46:14 GMT+07:00" duration-ms="1014" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC15()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:46:14 GMT+07:00" name="TC15" finished-at="2026-02-09T19:47:05 GMT+07:00" duration-ms="51309" status="FAIL">
+          <exception class="java.lang.IllegalStateException">
+            <message>
+              <![CDATA[Cannot select a date because select does not have a suitable date option: 2/10/2026]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.IllegalStateException: Cannot select a date because select does not have a suitable date option: 2/10/2026
+at Railway.BookTicketPage.bookTicket(BookTicketPage.java:65)
+at Railway.BookTicket.TC15(BookTicket.java:167)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IllegalStateException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC15 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.BookTicket@4afcd809]" started-at="2026-02-09T19:47:05 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:47:06 GMT+07:00" duration-ms="315" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
       </class> <!-- Railway.BookTicket -->
+      <class name="Railway.ResetPassword">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.ResetPassword@175c2241]" started-at="2026-02-09T19:47:06 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:47:07 GMT+07:00" duration-ms="1014" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC10()[pri:0, instance:Railway.ResetPassword@175c2241]" started-at="2026-02-09T19:47:07 GMT+07:00" name="TC10" finished-at="2026-02-09T19:47:56 GMT+07:00" duration-ms="49465" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The message is not displayed as expected expected [The new password cannot be the same with the current password] but found [Password changed! Click here to login.]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The message is not displayed as expected expected [The new password cannot be the same with the current password] but found [Password changed! Click here to login.]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at Railway.LoginPage.forgotPassword(LoginPage.java:160)
+at Railway.ResetPassword.TC10(ResetPassword.java:37)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC10 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.ResetPassword@175c2241]" started-at="2026-02-09T19:47:56 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:47:56 GMT+07:00" duration-ms="317" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.ResetPassword@175c2241]" started-at="2026-02-09T19:47:56 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:47:57 GMT+07:00" duration-ms="960" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC11()[pri:0, instance:Railway.ResetPassword@175c2241]" started-at="2026-02-09T19:47:57 GMT+07:00" name="TC11" finished-at="2026-02-09T19:48:48 GMT+07:00" duration-ms="50646" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC11 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.ResetPassword@175c2241]" started-at="2026-02-09T19:48:48 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:48:48 GMT+07:00" duration-ms="333" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- Railway.ResetPassword -->
+      <class name="Railway.LogoutTest">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.LogoutTest@5bf0d49]" started-at="2026-02-09T19:48:48 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:48:49 GMT+07:00" duration-ms="1019" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC06()[pri:0, instance:Railway.LogoutTest@5bf0d49]" started-at="2026-02-09T19:48:49 GMT+07:00" name="TC06" finished-at="2026-02-09T19:48:58 GMT+07:00" duration-ms="8244" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC06 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.LogoutTest@5bf0d49]" started-at="2026-02-09T19:48:58 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:48:58 GMT+07:00" duration-ms="233" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- Railway.LogoutTest -->
+      <class name="Railway.CancelBooking">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.CancelBooking@5b7a5baa]" started-at="2026-02-09T19:48:58 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T19:48:59 GMT+07:00" duration-ms="1020" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC16()[pri:0, instance:Railway.CancelBooking@5b7a5baa]" started-at="2026-02-09T19:48:59 GMT+07:00" name="TC16" finished-at="2026-02-09T19:49:34 GMT+07:00" duration-ms="34751" status="FAIL">
+          <exception class="java.lang.IllegalStateException">
+            <message>
+              <![CDATA[Cannot select a date because select does not have a suitable date option: 2/9/2026]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.IllegalStateException: Cannot select a date because select does not have a suitable date option: 2/9/2026
+at Railway.BookTicketPage.bookTicket(BookTicketPage.java:65)
+at Railway.CancelBooking.TC16(CancelBooking.java:39)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IllegalStateException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC16 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.CancelBooking@5b7a5baa]" started-at="2026-02-09T19:49:34 GMT+07:00" name="afterMethod" finished-at="2026-02-09T19:49:34 GMT+07:00" duration-ms="306" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- Railway.CancelBooking -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

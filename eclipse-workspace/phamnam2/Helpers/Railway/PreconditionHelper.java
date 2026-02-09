@@ -28,7 +28,6 @@ public class PreconditionHelper {
 	
 	public static RegisterAccount createUnactiveAccout(RegisterAccount account, Boolean isCheck, String expectedMsgThankyou) {
 		RegisterPage registerPage = new RegisterPage();
-		
 		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
 		
 		Utilities.openUrlInNewTab(Constant.GUERRILLA_URL);
@@ -44,9 +43,9 @@ public class PreconditionHelper {
 	
 	public static RegisterAccount createRandomAccount() {
 		return new RegisterAccount(
-			Utilities.generateRandomEmail(),
-			Utilities.generateRandomPassword(),
-			Utilities.generateRandomPIP()
+			Utilities.generateRandomEmail(5),
+			Utilities.generateRandomPassword(5),
+			Utilities.generateRandomPIP(5)
 		);
 	}
 	

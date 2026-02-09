@@ -23,6 +23,7 @@ public class Utilities {
 		((JavascriptExecutor) Constant.WEBDRIVER)
         .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 	}
+	
 	public static void scrollToElement(By locator) {
 	    WebElement element = Constant.WEBDRIVER.findElement(locator);
 
@@ -41,15 +42,15 @@ public class Utilities {
 	    }
 	}
 	/*Data generator*/
-	public static String generateRandomEmail() {
+	public static String generateRandomEmail(int limit) {
 		return "user" + getRandomString(5);
 	}
 	
-	public static String generateRandomPassword() {
+	public static String generateRandomPassword(int limit) {
 		return "password" + getRandomString(5);
 	}
 	
-	public static String generateRandomPIP() {
+	public static String generateRandomPIP(int limit) {
 		StringBuilder result = new StringBuilder();
 
 	    result.append((int) (Math.random() * 9) + 1);
@@ -67,31 +68,41 @@ public class Utilities {
 
 	
 	/* Wait */
+	public static By waitForClickable(By locator) {
+		return waitForClickable(locator, Constant.WAIT_TIMEOUT);
+	}
+	
 	public static By waitForClickable(By locator, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		return locator;
 	}
 	
-	public static void waitForElementExist(By locator) {
-		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.WAIT_TIMEOUT));
-		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-	}
-	public static WebElement waitForVisible(By locator, int timeout) {
-	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
-	    return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	public static By waitForVisible(By locator) {
+		return waitForVisible(locator, Constant.WAIT_TIMEOUT);
 	}
 	
-	public static WebElement waitForVisibleWithRefresh(By locator, int timeout) {
+	public static By waitForVisible(By locator, int timeout) {
+	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	    return locator;
+	}
+	
+	public static By waitForVisibleWithRefresh(By locator) {
+        return waitForVisibleWithRefresh(locator, Constant.WAIT_TIMEOUT);
+	}
+	
+	public static By waitForVisibleWithRefresh(By locator, int timeout) {
 	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
 	    
 	    try {
-	        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	        return locator;
 	    } catch (TimeoutException e) {
 	        Constant.WEBDRIVER.navigate().refresh();
 
-	        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	    }
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	        return locator;	    }
 	}
 	
 	public static void waitUntilStale(WebElement element) {
@@ -144,7 +155,7 @@ public class Utilities {
 	/* Element State */
 	public static boolean hasValue(By locator) {
 	    try {
-	        WebElement element = waitForVisible(locator, Constant.WAIT_TIMEOUT);
+	        WebElement element = Constant.WEBDRIVER.findElement(waitForVisible(locator));
 	        String value = element.getDomProperty("value");
 	        return value != null && !value.trim().isEmpty();
 	    } catch (Exception e) {
