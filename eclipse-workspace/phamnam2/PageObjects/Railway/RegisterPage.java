@@ -100,9 +100,11 @@ public class RegisterPage extends GeneralPage{
 		this.getTxtPassword().clear();
 		this.getTxtPassword().sendKeys(registerPassword);
 		
+		Utilities.scrollToElement(getTxtConfirmPassword());
 		this.getTxtConfirmPassword().clear();
 		this.getTxtConfirmPassword().sendKeys(registerPassword);
 		
+		Utilities.scrollToElement(getTxtPIPNumber());
 		this.getTxtPIPNumber().clear();
 		this.getTxtPIPNumber().sendKeys(registerPIP);
 		

@@ -10,6 +10,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,11 +18,21 @@ import Constant.Constant;
 
 public class Utilities {
 	
+	/* Scroll */
 	public static void scrollToElement(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
 		js.executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 	
+	/*Click*/
+	public static void clickException(WebElement element) {
+	    try {
+	        element.click();
+	    } catch (Exception e) {
+	        ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].click();", element);
+	    }
+	}
+
 	/*Create Account*/
 	public static String generateRandomEmail() {
 		return "user" + getRandomString(5);

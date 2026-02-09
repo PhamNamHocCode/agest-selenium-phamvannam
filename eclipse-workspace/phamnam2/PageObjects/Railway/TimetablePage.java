@@ -5,12 +5,13 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import Common.Utilities;
 import Constant.Constant;
 import Constant.StationCity;
 
 public class TimetablePage extends GeneralPage{
 	//Locators
-	private final By _tblHeader = By.xpath("//table[@class='MyTable']//th");
+	private final By _tblHeader = By.xpath("//table[contains(@class,'MyTable')]//th");
 	private static final String _linkInTbl = "//a[normalize-space()='%s']";
 	
 	//Elements
@@ -43,7 +44,7 @@ public class TimetablePage extends GeneralPage{
 		int arriveCol = getColIndexByHeader("Arrive Station");
 		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(getLinkInTbl(), "check price"));
 		
-		Constant.WEBDRIVER.findElement(linkCheckPrice).click();
+		Utilities.clickException(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
 		return new TicketPricePage();
 	}
@@ -54,7 +55,7 @@ public class TimetablePage extends GeneralPage{
 		
 		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(getLinkInTbl(), "book ticket"));
 		
-		Constant.WEBDRIVER.findElement(linkCheckPrice).click();
+		Utilities.clickException(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
 		return new BookTicketPage();
 	}
