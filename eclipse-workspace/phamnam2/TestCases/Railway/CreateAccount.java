@@ -13,9 +13,6 @@ public class CreateAccount extends TestBase{
 	public void TC07() {
 		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
 		System.out.println("Pre-condition: an actived account is existing");
-		HomePage homePage = new HomePage();
-		RegisterPage registerPage = new RegisterPage();
-		
 		homePage.open();
 		
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
@@ -42,7 +39,6 @@ public class CreateAccount extends TestBase{
 	public void TC08() {
 		System.out.println("TC08: Verify that user can't create account while password and PID fields are empty");
 		System.out.println("Step 1: Navigate to QA Railway Website");
-		HomePage homePage = new HomePage();
 		homePage.open();
 		
 		System.out.println("Step 2:  Click on \"Register\" tab");
@@ -50,7 +46,6 @@ public class CreateAccount extends TestBase{
 		
 		System.out.println("Step 3: Enter valid email address and leave other fields empty");
 		System.out.println("Step 4: Click on \"Register\" button");
-		RegisterPage registerPage = new RegisterPage();
 		registerPage.registerWithOnlyValidEmail(Constant.VALID_USERNAME);
 		
 		String actualMsgGeneralError = registerPage.getTextLblMsgGeneralError();
@@ -73,7 +68,6 @@ public class CreateAccount extends TestBase{
 	public void TC09() {
 		System.out.println("TC09: Verify that user create and activate account");
 		System.out.println("Step 1: Navigate to QA Railway Website");
-		HomePage homePage = new HomePage();
 		homePage.open();
 		
 		System.out.println("Step 2:  Click on \"Create an account\"");

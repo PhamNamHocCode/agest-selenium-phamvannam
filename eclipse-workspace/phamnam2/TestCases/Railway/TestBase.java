@@ -7,14 +7,17 @@ import org.testng.annotations.BeforeMethod;
 import Constant.Constant;
 
 public class TestBase {
+	HomePage homePage = new HomePage();
+	BookTicketPage bookTicketPage = new BookTicketPage();
+	TimetablePage timetablePage = new TimetablePage();
+	FAQPage faqPage = new FAQPage();
+	RegisterPage registerPage = new RegisterPage();
+	LoginPage loginPage = new LoginPage();
+	
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("Pre-condition");
 		
-//	    io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
-		
-//		System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath()
-//				+ "\\Executables\\chromedriver.exe");
 		Constant.WEBDRIVER = new ChromeDriver();
 		Constant.WEBDRIVER.manage().window().maximize();
 		

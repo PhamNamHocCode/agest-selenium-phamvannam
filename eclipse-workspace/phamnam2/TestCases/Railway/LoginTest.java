@@ -13,7 +13,6 @@ public class LoginTest extends TestBase {
 	public void TC01() {
 
 		System.out.println("TC01: Verify that user can log into Railway with valid username and password");
-		HomePage homePage = new HomePage();
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
 		
@@ -33,7 +32,6 @@ public class LoginTest extends TestBase {
 	@Test
 	public void TC02() {
 		System.out.println("TC02: Verify that user cannot login with blank 'Username' textbox");
-		HomePage homePage = new HomePage();
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
 		
@@ -52,7 +50,6 @@ public class LoginTest extends TestBase {
 	@Test
 	public void TC03() {
 		System.out.println("TC03: Verify that user cannot log into Railway with invalid password ");
-		HomePage homePage = new HomePage();
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
 		
@@ -71,7 +68,6 @@ public class LoginTest extends TestBase {
 	@Test
 	public void TC04() {
 		System.out.println("TC04: Verify that system shows message when user enters wrong password many times");
-		HomePage homePage = new HomePage();
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
 		
@@ -98,7 +94,6 @@ public class LoginTest extends TestBase {
 	public void TC05() {
 		System.out.println("TC05: Verify that user can't login with an account hasn't been activated");
 		System.out.println("Pre-condition: a not-active account is existing");
-		HomePage homePage = new HomePage();
 		homePage.open();
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
 		account = PreconditionHelper.createUnactiveAccout(account, false, "");

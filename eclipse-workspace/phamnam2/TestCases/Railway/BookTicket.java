@@ -19,7 +19,6 @@ public class BookTicket extends TestBase{
 	public void TC12() {
 		System.out.println("TC12: Verify that user can book 1 ticket at a time");
 		System.out.println("Pre-condition: an actived account is existing");
-		HomePage homePage = new HomePage();
 		homePage.open();
 		
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
@@ -33,7 +32,6 @@ public class BookTicket extends TestBase{
 		new LoginPage().login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Book ticket\" tab"); 
-		BookTicketPage bookTicketPage = new BookTicketPage();
 		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
 		
 		System.out.println("Step 4: Select the next 2 days from \"Depart date\""); 
@@ -57,7 +55,6 @@ public class BookTicket extends TestBase{
 	public void TC13() {
 		System.out.println("TC13: Verify that user can book many tickets at a time");
 		System.out.println("Pre-condition: an actived account is existing");
-		HomePage homePage = new HomePage();
 		homePage.open();
 		
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
@@ -71,7 +68,6 @@ public class BookTicket extends TestBase{
 		new LoginPage().login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Book ticket\" tab"); 
-		BookTicketPage bookTicketPage = new BookTicketPage();
 		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
 		
 		System.out.println("Step 4: Select the next 25 days from \"Depart date\""); 
@@ -95,7 +91,6 @@ public class BookTicket extends TestBase{
 	public void TC14() {
 		System.out.println("TC14: Verify that user can check price of ticket from Timetable");
 		System.out.println("Pre-condition: an actived account is existing");
-		HomePage homePage = new HomePage();
 		homePage.open();
 		
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
@@ -109,7 +104,6 @@ public class BookTicket extends TestBase{
 		new LoginPage().login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Timetable\" tab");
-		TimetablePage timetablePage = new TimetablePage();
 		timetablePage = homePage.gotoPage(PageMenu.TIMETABLE, TimetablePage.class);
 		
 		System.out.println("Step 4: Click on \"check price\" link of the route from \"Đà Nẵng\" to \"Sài Gòn\""); 
@@ -138,7 +132,6 @@ public class BookTicket extends TestBase{
 	public void TC15() {
 		System.out.println("TC15: Verify that user can book ticket from Timetable");
 		System.out.println("Pre-condition: an actived account is existing");
-		HomePage homePage = new HomePage();
 		homePage.open();
 		
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
@@ -159,7 +152,6 @@ public class BookTicket extends TestBase{
 		StationCity departStation = StationCity.QUANG_NGAI;
 		StationCity arriveStation = StationCity.HUE;
 		timetablePage.bookTicket(departStation, arriveStation);
-		BookTicketPage bookTicketPage = new BookTicketPage();
 		String msgDepart = "The depart selection is not displayed as expected";
 		String msgArrive = "The arrive selection is not displayed as expected";
 		System.out.println("VP: Book ticket form is shown with the corrected \"depart from\" and \"Arrive at\"");
