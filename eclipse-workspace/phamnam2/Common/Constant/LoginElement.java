@@ -1,6 +1,8 @@
 package Constant;
 
 public enum LoginElement {
+	
+    // Login elements
     USERNAME,
     PASSWORD,
     LOGIN_ERROR_MSG,
