@@ -44,7 +44,7 @@ public class TimetablePage extends GeneralPage{
 		int arriveCol = getColIndexByHeader("Arrive Station");
 		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(getLinkInTbl(), "check price"));
 		
-		Utilities.clickException(Constant.WEBDRIVER.findElement(linkCheckPrice));
+		Utilities.safeClick(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
 		return new TicketPricePage();
 	}
@@ -55,7 +55,7 @@ public class TimetablePage extends GeneralPage{
 		
 		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(getLinkInTbl(), "book ticket"));
 		
-		Utilities.clickException(Constant.WEBDRIVER.findElement(linkCheckPrice));
+		Utilities.safeClick(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
 		return new BookTicketPage();
 	}

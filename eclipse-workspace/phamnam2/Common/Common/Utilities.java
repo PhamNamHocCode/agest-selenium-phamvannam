@@ -1,16 +1,13 @@
 package Common;
 
 import java.time.Duration;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -25,7 +22,7 @@ public class Utilities {
 	}
 	
 	/*Click*/
-	public static void clickException(WebElement element) {
+	public static void safeClick(WebElement element) {
 	    try {
 	        element.click();
 	    } catch (Exception e) {
@@ -53,14 +50,11 @@ public class Utilities {
 	    return result.toString();
     }
 	
-	private static String getRandomString(int length) {
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            int index = ThreadLocalRandom.current().nextInt(Constant.ALPHA_NUMERIC.length());
-            sb.append(Constant.ALPHA_NUMERIC.charAt(index));
-        }
-        return sb.toString();
-    }
+	private static String getRandomString(int limit) {
+	    String base36 = Long.toString(System.currentTimeMillis(), 36);
+	    return base36.substring(base36.length() - limit).toUpperCase();
+	}
+
 	
 	/* WAIT */
 	public static By waitForClickable(By locator) {

@@ -30,10 +30,6 @@ public class Constant {
     public static final DateTimeFormatter DATE_FORMAT =
             DateTimeFormatter.ofPattern("M/d/yyyy");      
 
-    // Random chars
-    public static final String ALPHA_NUMERIC =
-            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; 
-
     // Table row
     public static final String ROW_BY_2_COLS =
             "//tr[td[%d][normalize-space()='%s'] and td[%d][normalize-space()='%s']]"; 

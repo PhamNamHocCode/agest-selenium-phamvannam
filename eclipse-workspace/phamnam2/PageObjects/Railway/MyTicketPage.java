@@ -37,7 +37,7 @@ public class MyTicketPage extends GeneralPage{
 		int arriveCol = timetablePage.getColIndexByHeader("Arrive Station");
 		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + getBtnCancle());
 		
-		Utilities.clickException(Constant.WEBDRIVER.findElement(linkCheckPrice));
+		Utilities.safeClick(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
 		Alert alert = Constant.WEBDRIVER.switchTo().alert();
 		alert.accept();
