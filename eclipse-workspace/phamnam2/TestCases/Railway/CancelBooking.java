@@ -18,11 +18,7 @@ public class CancelBooking extends TestBase{
 		HomePage homePage = new HomePage();
 		homePage.open();
 		
-		String registerEmail = Utilities.generateRandomEmail();
-		String registerPassword = Utilities.generateRandomPassword();
-		String registerPip = Utilities.generateRandomPIP();
-		RegisterAccount account = new RegisterAccount(registerEmail, registerPassword, registerPip);
-		
+		RegisterAccount account = PreconditionHelper.createRandomAccount();
 		account = PreconditionHelper.createActivedAccount(account, false, null, null);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
@@ -34,14 +30,10 @@ public class CancelBooking extends TestBase{
 		
 		System.out.println("Step 3: Book a ticket"); 
 		BookTicketPage bookTicketPage = new BookTicketPage();
-		BookTicketData bookTicketData = new BookTicketData();
 		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
-
-		bookTicketData.setDepartDate(LocalDate.now());
-		bookTicketData.setDepartFrom(StationCity.NHA_TRANG);
-		bookTicketData.setArriveAt(StationCity.HUE);
-		bookTicketData.setSeatType(SeatType.SBC);
-		bookTicketData.setTicketAmount(1);
+		LocalDate targetDate = LocalDate.now();
+		int ticketAmount = 1;
+		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.HUE, SeatType.SBC, ticketAmount);
 		Boolean isEditDepartFrom = true;
 		
 		bookTicketPage.bookTicket(bookTicketData, isEditDepartFrom);
@@ -53,6 +45,7 @@ public class CancelBooking extends TestBase{
 		System.out.println("Step 6: Click on \"OK\" button on Confirmation message \"Are you sure?\"");
 		myTicketPage = myTicketPage.cancleBooking(bookTicketData.getDepartFrom(), bookTicketData.getArriveAt());
 		String message = "The canceled ticket is not disappeared";
+		System.out.println("VP: The canceled ticket is disappeared.");
 		myTicketPage.verifyCancleBooking(bookTicketData.getDepartFrom(), bookTicketData.getArriveAt(), message);
 		
 	}

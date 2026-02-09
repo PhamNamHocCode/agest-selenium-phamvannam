@@ -68,7 +68,7 @@ public class BookTicketPage extends GeneralPage{
 		if (data.getDepartDate() != null) {
 			if (!isDepartDateAvailable(Utilities.formatDate(data.getDepartDate()))) {
 			    throw new IllegalStateException(
-			        "Không thể chọn ngày vì select không có lựa chọn ngày phù hợp: " + Utilities.formatDate(data.getDepartDate())
+			        "Cannot select a date because select does not have a suitable date option: " + Utilities.formatDate(data.getDepartDate())
 			    );
 			}
 			selectDepartDate(data.getDepartDate());

@@ -121,7 +121,7 @@ public class LoginPage extends GeneralPage{
 		return this.getLblLoginErrorMsg().getText();
 	}
 	
-	public LoginPage forgotPassword(String email, String newPassword, String confirmPassword, Boolean isCheck, String expectedGenralMsg) {
+	public LoginPage forgotPassword(String email, String newPassword, String confirmPassword, Boolean isCheck, String expectedGenralMsg, String failMsgForPassToken) {
 		LoginPage loginPage = new LoginPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		loginPage.getLinkForgotPassword().click();
@@ -131,7 +131,7 @@ public class LoginPage extends GeneralPage{
 		loginPage = guerrillaHomePage.confirmForgotPasswordEmail(email);
 		
 		if (isCheck) {
-			Assert.assertTrue(Utilities.hasValue(_txtResetPasswordToken), "\"Password Change Form\" is not shown with the reset password token");
+			Assert.assertTrue(Utilities.hasValue(_txtResetPasswordToken), failMsgForPassToken);
 		}
 		
 		this.getTxtNewPassword().clear();

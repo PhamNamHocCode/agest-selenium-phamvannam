@@ -11,18 +11,14 @@ public class CreateAccount extends TestBase{
 	
 	@Test
 	public void TC07() {
+		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
+		System.out.println("Pre-condition: an actived account is existing");
 		HomePage homePage = new HomePage();
 		RegisterPage registerPage = new RegisterPage();
 		
 		homePage.open();
 		
-		String registerEmail = Utilities.generateRandomEmail();
-		String registerPassword = Utilities.generateRandomPassword();
-		String registerPip = Utilities.generateRandomPIP();
-		RegisterAccount account = new RegisterAccount(registerEmail, registerPassword, registerPip);
-		
-		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
-		System.out.println("Pre-condition: an actived account is existing");
+		RegisterAccount account = PreconditionHelper.createRandomAccount();
 		account = PreconditionHelper.createActivedAccount(account, false, null, null);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
@@ -38,6 +34,7 @@ public class CreateAccount extends TestBase{
 		String actualMsg = registerPage.getTextLblMsgGeneralError();
 		String expectedMsg = "This email address is already in use.";
 		
+		System.out.println("VP: Error message \"This email address is already in use.\" displays above the form.");
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
 	}
 	
@@ -58,14 +55,17 @@ public class CreateAccount extends TestBase{
 		
 		String actualMsgGeneralError = registerPage.getTextLblMsgGeneralError();
 		String expectedMsgGeneralError = "There're errors in the form. Please correct the errors and try again.";
+		System.out.println("VP: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
 		Assert.assertEquals(actualMsgGeneralError.replaceFirst("\\.$", ""), expectedMsgGeneralError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
 		
 		String actualMsgPasswordError = registerPage.getTextLblMsgErrorPassword();
 		String expectedMsgPasswordError = "Invalid password length.";
+		System.out.println("VP: Next to password fields, error message \"Invalid password length.\" displays");
 		Assert.assertEquals(actualMsgPasswordError.replaceFirst("\\.$", ""), expectedMsgPasswordError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
 		
 		String actualMsgPipError = registerPage.getTextLblMsgErrorPip();
 		String expectedMsgPipError = "Invalid ID length.";
+		System.out.println("VP: Next to PID field, error message \"Invalid ID length.\" displays");
 		Assert.assertEquals(actualMsgPipError.replaceFirst("\\.$", ""), expectedMsgPipError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
 	}
 	
@@ -83,14 +83,12 @@ public class CreateAccount extends TestBase{
 		System.out.println("Step 6: Login to the mailbox");
 		System.out.println("Step 7: Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
 		System.out.println("Step 8: Click on the activate link");
-
-		String registerEmail = Utilities.generateRandomEmail();
-		String registerPassword = Utilities.generateRandomPassword();
-		String registerPip = Utilities.generateRandomPIP();
-		RegisterAccount account = new RegisterAccount(registerEmail, registerPassword, registerPip);
-		
+		RegisterAccount account = PreconditionHelper.createRandomAccount();
 		String expectedMsgThankyou = "Thank you for registering your account";
 		String expectedMsgConfirmed = "Registration Confirmed! You can now log in to the site.";
+		System.out.println("VP: \"Thank you for registering your account\" is shown"
+				+ "Redirect to Railways page and message \"Registration Confirmed! You can now log in to the site\" is shown");
+		
 		account = PreconditionHelper.createActivedAccount(account, true, expectedMsgThankyou, expectedMsgConfirmed);
 
 	}

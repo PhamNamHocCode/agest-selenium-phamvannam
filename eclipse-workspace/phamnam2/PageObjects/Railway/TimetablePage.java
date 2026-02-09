@@ -55,6 +55,7 @@ public class TimetablePage extends GeneralPage{
 		
 		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(getLinkInTbl(), "book ticket"));
 		
+		Utilities.scrollToElement(linkCheckPrice);
 		Utilities.safeClick(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
 		return new BookTicketPage();

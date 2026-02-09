@@ -56,4 +56,16 @@ public class BookTicketData {
 	public void setTicketAmount(int ticketAmount) {
 		this.ticketAmount = ticketAmount;
 	}
+	
+	//Constructor
+	public BookTicketData() {}
+	
+	public BookTicketData(LocalDate departDate, StationCity departFrom, StationCity arriveAt, SeatType seatType, int ticketAmount) {
+	    this.departDate = departDate;
+	    this.departFrom = departFrom;
+	    this.arriveAt = arriveAt;
+	    this.seatType = seatType;
+	    this.ticketAmount = ticketAmount;
+	}
+	
 }

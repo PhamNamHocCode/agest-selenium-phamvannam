@@ -4,8 +4,10 @@ import java.time.Duration;
 import java.time.LocalDate;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
@@ -18,19 +20,28 @@ public class Utilities {
 	
 	/* Scroll */
 	public static void scrollToElement(WebElement element) {
-		JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
-		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		((JavascriptExecutor) Constant.WEBDRIVER)
+        .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 	}
+	public static void scrollToElement(By locator) {
+	    WebElement element = Constant.WEBDRIVER.findElement(locator);
+
+	    ((JavascriptExecutor) Constant.WEBDRIVER)
+	        .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+	}
+	
+	
 	
 	/*Click*/
 	public static void safeClick(WebElement element) {
 	    try {
 	        element.click();
-	    } catch (Exception e) {
-	        ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].click();", element);
+	    } catch (ElementClickInterceptedException | StaleElementReferenceException e) {
+	        System.out.println("Normal click failed, using JS click: " + e.getMessage());
+	        ((JavascriptExecutor) Constant.WEBDRIVER)
+	            .executeScript("arguments[0].click();", element);
 	    }
 	}
-
 	/*Data generator*/
 	public static String generateRandomEmail() {
 		return "user" + getRandomString(5);

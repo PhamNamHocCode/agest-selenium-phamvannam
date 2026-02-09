@@ -10,11 +10,10 @@ public class PreconditionHelper {
 	public static RegisterAccount createActivedAccount(RegisterAccount account, Boolean isCheckLabel, String expectedMsgThankyou, String expectedMsgConfirmed) {
 		HomePage homePage = new HomePage();
 		RegisterPage registerPage = new RegisterPage();
-		
+		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
 		
 		Utilities.openUrlInNewTab(Constant.GUERRILLA_URL);
-		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		account.setEmail(guerrillaHomePage.createNewEmail(account.getEmail()));
 		
 		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
@@ -42,5 +41,15 @@ public class PreconditionHelper {
 		
 		return account;
 	}
+	
+	public static RegisterAccount createRandomAccount() {
+		return new RegisterAccount(
+			Utilities.generateRandomEmail(),
+			Utilities.generateRandomPassword(),
+			Utilities.generateRandomPIP()
+		);
+	}
+	
+	
 	
 }
