@@ -12,6 +12,8 @@ public enum PageMenu {
     BOOK_TICKET("BookTicketPage"),
     TIMETABLE("TrainTimeListPage"),
     MY_TICKET("ManageTicket");
+	
+	//Locators
 	private final By locator;
 	
 	//Build locator for each menu item
@@ -19,7 +21,7 @@ public enum PageMenu {
 		this.locator = By.xpath("//div[@id='menu']//a[contains(@href,'" + href + "')]");
 	}
 	
-	//Elements
+	//Accessory
 	public By getLocator() {
 		return locator;
 	}

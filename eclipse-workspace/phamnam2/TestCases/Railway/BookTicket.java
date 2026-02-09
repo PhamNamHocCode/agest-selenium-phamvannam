@@ -185,9 +185,7 @@ public class BookTicket extends TestBase{
 		System.out.println("Step 7: Click on \"Book ticket\" button");
 		BookTicketData bookTicketData = new BookTicketData();
 		BookTicketPage bookTicketPage = new BookTicketPage();
-		LocalDate targetDate =
-		        LocalDate.parse(new Select(bookTicketPage.getSltDepartDate()).getOptions().get(0).getText(), Constant.DATE_FORMAT)
-		                 .plusDays(1);
+		LocalDate targetDate = LocalDate.now().plusDays(1);
 		bookTicketData.setDepartDate(targetDate);
 		bookTicketData.setDepartFrom(departStation);
 		bookTicketData.setArriveAt(arriveStation);

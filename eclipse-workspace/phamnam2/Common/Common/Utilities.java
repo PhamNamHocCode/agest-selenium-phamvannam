@@ -1,6 +1,7 @@
 package Common;
 
 import java.time.Duration;
+import java.time.LocalDate;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -30,7 +31,7 @@ public class Utilities {
 	    }
 	}
 
-	/*Create Account*/
+	/*Data generator*/
 	public static String generateRandomEmail() {
 		return "user" + getRandomString(5);
 	}
@@ -56,11 +57,7 @@ public class Utilities {
 	}
 
 	
-	/* WAIT */
-	public static By waitForClickable(By locator) {
-		return waitForClickable(locator, Constant.WAIT_TIMEOUT);
-	}
-	
+	/* Wait */
 	public static By waitForClickable(By locator, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -73,6 +70,11 @@ public class Utilities {
 	}
 	public static WebElement waitForVisible(By locator, int timeout) {
 	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
+	    return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
+	public static WebElement waitForVisibleWithRefresh(By locator, int timeout) {
+	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
 	    
 	    try {
 	        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -83,7 +85,8 @@ public class Utilities {
 	    }
 	}
 	
-	/* Switch to */
+	
+	/* Switch */
 	public static void switchToPageByUrlContains(String locator) {
 
         for (String window : Constant.WEBDRIVER.getWindowHandles()) {
@@ -121,8 +124,8 @@ public class Utilities {
 	    }
     }
 	
-	/* Check */
-	public static boolean isTextboxNotEmpty(By locator) {
+	/* Element State */
+	public static boolean hasValue(By locator) {
 	    try {
 	        WebElement element = waitForVisible(locator, Constant.WAIT_TIMEOUT);
 	        String value = element.getDomProperty("value");
@@ -132,7 +135,7 @@ public class Utilities {
 	    }
 	}
 	
-	public static String getElementTextVisible(By locator) {
+	public static String getElementTextStatus(By locator) {
 		try {
 			WebElement element = Constant.WEBDRIVER.findElement(locator);
 			if (element.isDisplayed()) {
@@ -145,4 +148,8 @@ public class Utilities {
 		}
 	}
 	
+	/*Format */
+	public static String formatDate(LocalDate date) {
+		return date.format(Constant.DATE_FORMAT);
+	}
 }

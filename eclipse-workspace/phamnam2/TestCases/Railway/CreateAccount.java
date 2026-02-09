@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import Common.Utilities;
 import Constant.PageMenu;
 import Constant.Constant;
-import Guerrilla.GuerrillaHomePage;
 
 public class CreateAccount extends TestBase{
 	

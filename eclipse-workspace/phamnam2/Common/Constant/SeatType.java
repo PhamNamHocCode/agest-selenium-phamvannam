@@ -1,6 +1,8 @@
 package Constant;
 
 public enum SeatType {
+	
+	// Menu items
 	HS("Hard seat"),
     SS("Soft seat"),
     SSC("Soft seat with air conditioner"),

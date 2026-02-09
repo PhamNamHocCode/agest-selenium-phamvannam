@@ -4,7 +4,6 @@ import Railway.LoginPage;
 import Railway.RegisterPage;
 
 import Constant.Constant;
-import Constant.PageMenu;
 import Common.Utilities;
 
 import org.openqa.selenium.Keys;
@@ -80,7 +79,7 @@ public class GuerrillaHomePage {
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 		
-		Utilities.waitForVisible(getByEmailLetter("Registration"), Constant.WAIT_TIMEOUT);
+		Utilities.waitForVisibleWithRefresh(getByEmailLetter("Registration"), Constant.WAIT_TIMEOUT);
 	    getEmailLetterElement("Registration").click();
 
 		Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT);
@@ -104,7 +103,7 @@ public class GuerrillaHomePage {
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 		
-		Utilities.waitForVisible(getByEmailLetter("ForgotPassword"), Constant.WAIT_TIMEOUT).click();;
+		Utilities.waitForVisibleWithRefresh(getByEmailLetter("ForgotPassword"), Constant.WAIT_TIMEOUT).click();;
 		
 //	    getEmailLetterElement("ForgotPassword").click();
 

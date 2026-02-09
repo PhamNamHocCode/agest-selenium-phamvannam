@@ -66,6 +66,11 @@ public class BookTicketPage extends GeneralPage{
 	// Methods
 	public BookTicketPage bookTicket(BookTicketData data, Boolean isEditDepartFrom) {
 		if (data.getDepartDate() != null) {
+			if (!isDepartDateAvailable(Utilities.formatDate(data.getDepartDate()))) {
+			    throw new IllegalStateException(
+			        "Không thể chọn ngày vì select không có lựa chọn ngày phù hợp: " + Utilities.formatDate(data.getDepartDate())
+			    );
+			}
 			selectDepartDate(data.getDepartDate());
 		}
 		if (data.getDepartFrom() != null) {
@@ -106,21 +111,28 @@ public class BookTicketPage extends GeneralPage{
 		String actualDepartStation = getTableCellValue(data.getDepartFrom().getDisplayText(), "Depart Station");
 		String actualArriveStation = getTableCellValue(data.getArriveAt().getDisplayText(), "Arrive Station");
 		String actualSeatType = getTableCellValue(data.getSeatType().getDisplayText(), "Seat Type");
-		String actualDepartDate = getTableCellValue(data.getDepartDate().format(Constant.DATE_FORMAT).toString(), "Depart Date");
+		String actualDepartDate = getTableCellValue(Utilities.formatDate(data.getDepartDate()).toString(), "Depart Date");
 		String actualAmount = getTableCellValue(String.valueOf(data.getTicketAmount()), "Amount");
 		
 		Assert.assertEquals(actualDepartStation, data.getDepartFrom().getDisplayText(), "Departure information is not displaying correctly");
 		Assert.assertEquals(actualArriveStation, data.getArriveAt().getDisplayText(), "Arrival station information is displayed incorrectly");
 		Assert.assertEquals(actualSeatType, data.getSeatType().getDisplayText(), "Seat type information is displayed incorrectly");
-		Assert.assertEquals(actualDepartDate, data.getDepartDate().format(Constant.DATE_FORMAT).toString(), "Departure date information is displayed incorrectly");
+		Assert.assertEquals(actualDepartDate, Utilities.formatDate(data.getDepartDate()).toString(), "Departure date information is displayed incorrectly");
 		Assert.assertEquals(actualAmount, String.valueOf(data.getTicketAmount()), "Ticket amount information is displayed incorrectly");
+	}
+	
+	public boolean isDepartDateAvailable(String expectedDate) {
+		Select select = new Select(getSltDepartDate());
+		
+		return select.getOptions().stream().anyMatch(
+				option -> option.getText().equals(expectedDate));
 	}
 	
     //Low levels actions
     private void selectDepartDate(LocalDate date) {
         WebElement element =
                 Constant.WEBDRIVER.findElement(_sltDepartDate);
-        element.sendKeys(date.format(Constant.DATE_FORMAT));
+        element.sendKeys(Utilities.formatDate(date));
     }
 
     private void selectDepartFrom(StationCity city) {

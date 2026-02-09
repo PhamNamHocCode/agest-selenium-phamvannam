@@ -131,7 +131,7 @@ public class LoginPage extends GeneralPage{
 		loginPage = guerrillaHomePage.confirmForgotPasswordEmail(email);
 		
 		if (isCheck) {
-			Assert.assertTrue(Utilities.isTextboxNotEmpty(_txtResetPasswordToken), "\"Password Change Form\" is not shown with the reset password token");
+			Assert.assertTrue(Utilities.hasValue(_txtResetPasswordToken), "\"Password Change Form\" is not shown with the reset password token");
 		}
 		
 		this.getTxtNewPassword().clear();
@@ -152,7 +152,7 @@ public class LoginPage extends GeneralPage{
 	
 	public void checkLblExists(LoginElement element, String expectedMsg) {
 		By locator = getLocator(element);
-		String actualMsg = Utilities.getElementTextVisible(locator);
+		String actualMsg = Utilities.getElementTextStatus(locator);
 		
 		if ("NOT_FOUND".equals(actualMsg)) {
 	        Assert.fail("The error messege NOT FOUND: " + element);
