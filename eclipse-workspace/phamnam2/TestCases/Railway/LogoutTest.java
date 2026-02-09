@@ -25,13 +25,9 @@ public class LogoutTest extends TestBase{
 		homePage.gotoPage(PageMenu.LOGOUT, HomePage.class);
 		
 		System.out.println("VP: Home page displays.");
-		Assert.assertTrue(
-				homePage.isHomePageDisplayed(),
-				"Home page is not displays");
+		Assert.assertTrue(homePage.isHomePageDisplayed(),"Home page is not displays");
 		System.out.println("VP: \"Log out\" tab is disappeared.");
-		Assert.assertFalse(
-				homePage.isMenuDisplayed(PageMenu.LOGOUT),
-				"\"Log out\" tab is not disappeared");
+		Assert.assertFalse(homePage.isMenuDisplayed(PageMenu.LOGOUT),"\"Log out\" tab is not disappeared");
 	}
 	
 }

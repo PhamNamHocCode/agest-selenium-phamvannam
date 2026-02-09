@@ -20,6 +20,7 @@ public class RegisterPage extends GeneralPage{
 	private final By _lblMsgThankyou = By.xpath("//div[@id='content']//h1");
 	private final By _lblMsgErrorPassword = By.xpath("//form[@id='RegisterForm']//label[@class='validation-error' and @for='password']");
 	private final By _lblMsgErrorPip = By.xpath("//form[@id='RegisterForm']//label[@class='validation-error' and @for='pid']");
+	
 	// Elements
 	public WebElement getTxtEmail() {
 		return Constant.WEBDRIVER.findElement(_txtEmail);
@@ -73,9 +74,6 @@ public class RegisterPage extends GeneralPage{
 		return this.getLblMsgErrorPip().getText();
 	}
 	
-//	public String getTextLblMsgThankyou() {
-//		return this.getLblMsgThankyou().getText();
-//	}
 	public String getTextLblMsgThankyou() {
 	    return Constant.WEBDRIVER.findElement(Utilities
 	            .waitForVisible(_lblMsgThankyou))
@@ -92,20 +90,20 @@ public class RegisterPage extends GeneralPage{
 	}
 	
 	
-	public RegisterPage registerNewAccount(String registerEmail, String registerPassword, String registerPIP, Boolean isCheckLabel, String expectedMsgThankyou) {
+	public RegisterPage registerNewAccount(RegisterAccount account, Boolean isCheckLabel, String expectedMsgThankyou) {
 		this.getTxtEmail().clear();
-		this.getTxtEmail().sendKeys(registerEmail);
+		this.getTxtEmail().sendKeys(account.getEmail());
 		
 		this.getTxtPassword().clear();
-		this.getTxtPassword().sendKeys(registerPassword);
+		this.getTxtPassword().sendKeys(account.getPassword());
 		
 		Utilities.scrollToElement(getTxtConfirmPassword());
 		this.getTxtConfirmPassword().clear();
-		this.getTxtConfirmPassword().sendKeys(registerPassword);
+		this.getTxtConfirmPassword().sendKeys(account.getPassword());
 		
 		Utilities.scrollToElement(getTxtPIPNumber());
 		this.getTxtPIPNumber().clear();
-		this.getTxtPIPNumber().sendKeys(registerPIP);
+		this.getTxtPIPNumber().sendKeys(account.getPip());
 		
 		Utilities.scrollToElement(getBtnRegister());
 		this.getBtnRegister().click();

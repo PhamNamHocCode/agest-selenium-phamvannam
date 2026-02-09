@@ -35,7 +35,6 @@ public class GeneralPage {
 	
 	public boolean isMenuDisplayed(PageMenu menu) {
 	    return !Constant.WEBDRIVER.findElements(menu.getLocator()).isEmpty();
-
 	}
 	
 }

@@ -29,7 +29,6 @@ public class MyTicketPage extends GeneralPage{
 		
 		Assert.assertFalse(actualResult, message);
 	}
-		
 	
 	public MyTicketPage cancleBooking(StationCity departStation, StationCity arriveStation) {
 		TimetablePage timetablePage = new TimetablePage();

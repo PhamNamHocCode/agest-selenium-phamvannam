@@ -18,7 +18,7 @@ public class PreconditionHelper {
 		
 		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
 		homePage.getLinkCreateAccount().click();
-		registerPage = registerPage.registerNewAccount(account.getEmail(), account.getPassword(), account.getPip(), isCheckLabel, expectedMsgThankyou);
+		registerPage = registerPage.registerNewAccount(account, isCheckLabel, expectedMsgThankyou);
 		
 		guerrillaHomePage.open();
 		registerPage = guerrillaHomePage.confirmRegistrationEmail(account.getEmail(), isCheckLabel, expectedMsgConfirmed);
@@ -36,7 +36,7 @@ public class PreconditionHelper {
 
 		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
 		registerPage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
-		registerPage = registerPage.registerNewAccount(account.getEmail(), account.getPassword(), account.getPip(), isCheck, expectedMsgThankyou);
+		registerPage = registerPage.registerNewAccount(account, isCheck, expectedMsgThankyou);
 		
 		return account;
 	}

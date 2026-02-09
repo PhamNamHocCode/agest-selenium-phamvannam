@@ -26,7 +26,7 @@ public class CreateAccount extends TestBase{
 		
 		System.out.println("Step 3: Enter information of the created account in Pre-condition");
 		System.out.println("Step 4: Click on \"Register\" button");
-		registerPage.registerNewAccount(account.getEmail(), account.getPassword(), account.getPip(), false, null);
+		registerPage.registerNewAccount(account, false, null);
 		
 		String actualMsg = registerPage.getTextLblMsgGeneralError();
 		String expectedMsg = "This email address is already in use.";

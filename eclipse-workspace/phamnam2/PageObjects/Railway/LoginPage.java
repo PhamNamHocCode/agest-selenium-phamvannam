@@ -25,6 +25,7 @@ public class LoginPage extends GeneralPage{
 	private final By _txtResetPasswordToken = By.xpath("//input[@id='resetToken']");
 	private final By _lblForgotPasswordGeneralMsg = By.xpath("//div[@id='content']//p[contains(@class,'message')]");
 	private final By _lblForgotPasswordConfirmPasswordMsg = By.xpath("//label[@for='confirmPassword' and @class='validation-error']");
+	
 	// Elements
 	public WebElement getTxtUsername() {
 		return Constant.WEBDRIVER.findElement(_txtUsername);
