@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\1202p\AppData\Local\Temp\testng-eclipse--330556601\testng-customsuite.xml</span>
+                    <span>C:\Users\1202p\AppData\Local\Temp\testng-eclipse-15484184\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -129,17 +129,18 @@
                   <a name="TC15">
                   </a> <!-- TC15 -->
                   <span class="method-name">TC15</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //tbody[@id=&apos;email_list&apos;]//span[contains(text(),&apos;confirmation code&apos;)] (tried for 20 second(s) with 500 milliseconds interval)
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //div[@id=&apos;content&apos;]//h1 (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: &apos;4.27.0&apos;, revision: &apos;d6e718d134&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25.0.2&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\1202p\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52163}, goog:processID: 4440, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52163/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: ae22c66efb44c32e8bd52756747f5cfd
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\1202p\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50480}, goog:processID: 21872, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50480/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5f1211348a013801a14e7b1f02292898
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at Common.Utilities.waitForVisibleWithRefresh(Utilities.java:84)
-	at Guerrilla.GuerrillaHomePage.confirmRegistrationEmail(GuerrillaHomePage.java:82)
-	at Railway.PreconditionHelper.createActivedAccount(PreconditionHelper.java:25)
+	at Common.Utilities.waitForVisible(Utilities.java:73)
+	at Railway.RegisterPage.getTextLblMsgThankyou(RegisterPage.java:81)
+	at Railway.RegisterPage.registerNewAccount(RegisterPage.java:113)
+	at Railway.PreconditionHelper.createActivedAccount(PreconditionHelper.java:22)
 	at Railway.BookTicket.TC15(BookTicket.java:165)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
@@ -176,7 +177,7 @@ Session ID: ae22c66efb44c32e8bd52756747f5cfd
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\1202p\AppData\Local\Temp\testng-eclipse--330556601\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\1202p\AppData\Local\Temp\testng-eclipse-15484184\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -233,12 +234,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'TC15')
 data.setCell(0, 2, 'Railway.BookTicket')
-data.setCell(0, 3, 63691);
+data.setCell(0, 3, 44241);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 44 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -284,11 +285,11 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">TC15</span>
-                <span class="method-start">1270 ms</span>
+                <span class="method-start">2438 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">afterMethod</span>
-                <span class="method-start">64977 ms</span>
+                <span class="method-start">46690 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

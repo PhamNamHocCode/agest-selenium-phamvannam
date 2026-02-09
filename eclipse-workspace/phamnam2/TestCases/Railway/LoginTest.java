@@ -81,7 +81,7 @@ public class LoginTest extends TestBase {
 		
 		String actualMsg = loginPage.login(Constant.VALID_USERNAME, null).getLoginErrorMsg();
 		String expectedMsg = "Invalid username or password. Please try again";
-//		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
+		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
 		for (int i = 2; i <= 4; i++) {
 			actualMsg = loginPage.login(Constant.VALID_USERNAME, null).getLoginErrorMsg();
 		}

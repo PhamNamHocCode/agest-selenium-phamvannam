@@ -2,37 +2,38 @@
 <testng-results ignored="3" total="4" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-09T10:42:08 GMT+07:00" name="Default suite" finished-at="2026-02-09T10:43:13 GMT+07:00" duration-ms="65268">
+  <suite started-at="2026-02-09T12:57:23 GMT+07:00" name="Default suite" finished-at="2026-02-09T12:58:10 GMT+07:00" duration-ms="46933">
     <groups>
     </groups>
-    <test started-at="2026-02-09T10:42:08 GMT+07:00" name="Default test" finished-at="2026-02-09T10:43:13 GMT+07:00" duration-ms="65268">
+    <test started-at="2026-02-09T12:57:23 GMT+07:00" name="Default test" finished-at="2026-02-09T12:58:10 GMT+07:00" duration-ms="46933">
       <class name="Railway.BookTicket">
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.BookTicket@3febb011]" started-at="2026-02-09T10:42:08 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T10:42:09 GMT+07:00" duration-ms="1268" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.BookTicket@3febb011]" started-at="2026-02-09T12:57:23 GMT+07:00" name="beforeMethod" finished-at="2026-02-09T12:57:25 GMT+07:00" duration-ms="2437" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="TC15()[pri:0, instance:Railway.BookTicket@3febb011]" started-at="2026-02-09T10:42:09 GMT+07:00" name="TC15" finished-at="2026-02-09T10:43:13 GMT+07:00" duration-ms="63691" status="FAIL">
+        <test-method signature="TC15()[pri:0, instance:Railway.BookTicket@3febb011]" started-at="2026-02-09T12:57:25 GMT+07:00" name="TC15" finished-at="2026-02-09T12:58:10 GMT+07:00" duration-ms="44241" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //tbody[@id='email_list']//span[contains(text(),'confirmation code')] (tried for 20 second(s) with 500 milliseconds interval)
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //div[@id='content']//h1 (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\1202p\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52163}, goog:processID: 4440, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52163/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: ae22c66efb44c32e8bd52756747f5cfd]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\1202p\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50480}, goog:processID: 21872, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50480/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5f1211348a013801a14e7b1f02292898]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //tbody[@id='email_list']//span[contains(text(),'confirmation code')] (tried for 20 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //div[@id='content']//h1 (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\1202p\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52163}, goog:processID: 4440, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52163/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: ae22c66efb44c32e8bd52756747f5cfd
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\1202p\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50480}, goog:processID: 21872, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50480/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5f1211348a013801a14e7b1f02292898
 at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at Common.Utilities.waitForVisibleWithRefresh(Utilities.java:84)
-at Guerrilla.GuerrillaHomePage.confirmRegistrationEmail(GuerrillaHomePage.java:82)
-at Railway.PreconditionHelper.createActivedAccount(PreconditionHelper.java:25)
+at Common.Utilities.waitForVisible(Utilities.java:73)
+at Railway.RegisterPage.getTextLblMsgThankyou(RegisterPage.java:81)
+at Railway.RegisterPage.registerNewAccount(RegisterPage.java:113)
+at Railway.PreconditionHelper.createActivedAccount(PreconditionHelper.java:22)
 at Railway.BookTicket.TC15(BookTicket.java:165)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:565)
@@ -66,7 +67,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC15 -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.BookTicket@3febb011]" started-at="2026-02-09T10:43:13 GMT+07:00" name="afterMethod" finished-at="2026-02-09T10:43:13 GMT+07:00" duration-ms="268" status="PASS">
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.BookTicket@3febb011]" started-at="2026-02-09T12:58:10 GMT+07:00" name="afterMethod" finished-at="2026-02-09T12:58:10 GMT+07:00" duration-ms="219" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
