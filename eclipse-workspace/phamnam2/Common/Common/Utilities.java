@@ -30,8 +30,6 @@ public class Utilities {
 	        .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 	}
 	
-	
-	
 	/*Click*/
 	public static void safeClick(WebElement element) {
 	    try {
@@ -96,6 +94,14 @@ public class Utilities {
 	    }
 	}
 	
+	public static void waitUntilStale(WebElement element) {
+		try {
+			WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.WAIT_TIMEOUT));
+			wait.until(ExpectedConditions.stalenessOf(element));
+		} catch (Exception e) {
+
+		}
+	}
 	
 	/* Switch */
 	public static void switchToPageByUrlContains(String locator) {
@@ -163,4 +169,5 @@ public class Utilities {
 	public static String formatDate(LocalDate date) {
 		return date.format(Constant.DATE_FORMAT);
 	}
+	
 }

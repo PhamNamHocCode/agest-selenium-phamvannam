@@ -28,8 +28,8 @@ public class BookTicket extends TestBase{
 		homePage.open();
 		
 		System.out.println("Step 2: Login with a valid account");
-		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		new LoginPage().login(account.getEmail(), account.getPassword());
+		loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		homePage = loginPage.login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Book ticket\" tab"); 
 		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
@@ -64,8 +64,8 @@ public class BookTicket extends TestBase{
 		homePage.open();
 		
 		System.out.println("Step 2: Login with a valid account");
-		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		new LoginPage().login(account.getEmail(), account.getPassword());
+		loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		homePage = loginPage.login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Book ticket\" tab"); 
 		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
@@ -100,8 +100,8 @@ public class BookTicket extends TestBase{
 		homePage.open();
 		
 		System.out.println("Step 2: Login with a valid account");
-		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		new LoginPage().login(account.getEmail(), account.getPassword());
+		loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		homePage = loginPage.login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Timetable\" tab");
 		timetablePage = homePage.gotoPage(PageMenu.TIMETABLE, TimetablePage.class);
@@ -141,8 +141,8 @@ public class BookTicket extends TestBase{
 		homePage.open();
 		
 		System.out.println("Step 2: Login with a valid account");
-		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		new LoginPage().login(account.getEmail(), account.getPassword());
+		loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		homePage = loginPage.login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Click on \"Timetable\" tab"); 
 		TimetablePage timetablePage = new TimetablePage();

@@ -1,6 +1,7 @@
 package Railway;
 
 import Constant.Constant;
+import Constant.PageMenu;
 import Constant.LoginElement;
 import Guerrilla.GuerrillaHomePage;
 import Common.Utilities;
@@ -100,8 +101,17 @@ public class LoginPage extends GeneralPage{
 	
 	
 	// Methods
-	public LoginPage login(String username, String password) {
-	    if (username != null) {
+	public boolean isLoggedIn () {
+		try {
+			return isMenuDisplayed(PageMenu.LOGOUT);
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends GeneralPage> T login(String username, String password) {
+		if (username != null) {
 	        this.getTxtUsername().clear();
 	        this.getTxtUsername().sendKeys(username);
 	    }
@@ -110,13 +120,16 @@ public class LoginPage extends GeneralPage{
 	        this.getTxtPassword().clear();
 	        this.getTxtPassword().sendKeys(password);
 	    }
-
+		
 	    Utilities.scrollToElement(this.getBtnLogin());
 	    this.getBtnLogin().click();
-
-	    return this;
+		
+		if (!this.isLoggedIn()) {
+			return (T) this;
+		}
+		return (T) new HomePage();
 	}
-	
+
 	public String getLoginErrorMsg() {
 		return this.getLblLoginErrorMsg().getText();
 	}

@@ -22,7 +22,7 @@ public class CreateAccount extends TestBase{
 		homePage.open();
 		
 		System.out.println("Step 2:  Click on \"Register\" tab");
-		homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
+		registerPage = homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
 		
 		System.out.println("Step 3: Enter information of the created account in Pre-condition");
 		System.out.println("Step 4: Click on \"Register\" button");
@@ -46,7 +46,7 @@ public class CreateAccount extends TestBase{
 		
 		System.out.println("Step 3: Enter valid email address and leave other fields empty");
 		System.out.println("Step 4: Click on \"Register\" button");
-		registerPage.registerWithOnlyValidEmail(Constant.VALID_USERNAME);
+		registerPage = registerPage.registerWithOnlyValidEmail(Constant.VALID_USERNAME);
 		
 		String actualMsgGeneralError = registerPage.getTextLblMsgGeneralError();
 		String expectedMsgGeneralError = "There're errors in the form. Please correct the errors and try again.";

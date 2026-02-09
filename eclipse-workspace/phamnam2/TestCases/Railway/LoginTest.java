@@ -17,7 +17,7 @@ public class LoginTest extends TestBase {
 		homePage.open();
 		
 		System.out.println("Step 2: Click on 'Login' tab");
-		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 
 		System.out.println("Step 3: Enter valid Email and Password");
 		System.out.println("Step 4: Click on 'Login' button");
@@ -36,11 +36,12 @@ public class LoginTest extends TestBase {
 		homePage.open();
 		
 		System.out.println("Step 2: Click on 'Login' tab");
-		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		
 		System.out.println("Step 3: User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
 		System.out.println("Step 4: Click on 'Login' button");
-		String actualMsg = loginPage.login(null, Constant.VALID_PASSWORD).getLoginErrorMsg();
+		loginPage = loginPage.login(null, Constant.VALID_PASSWORD);
+		String actualMsg = loginPage.getLoginErrorMsg();
 		String expectedMsg = "There was a problem with your login and/or errors exist in your form. ";
 		
 		System.out.println("VP: User can't login and message \"There was a problem with your login and/or errors exist in your form. \" appears.");
@@ -58,7 +59,8 @@ public class LoginTest extends TestBase {
 		
 		System.out.println("Step 3: Enter valid Email and invalid Password");
 		System.out.println("Step 4: Click on 'Login' button");
-		String actualMsg = loginPage.login(null, Constant.VALID_PASSWORD).getLoginErrorMsg();
+		loginPage = loginPage.login(null, Constant.VALID_PASSWORD);
+		String actualMsg = loginPage.getLoginErrorMsg();
 		String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
 		
 		System.out.println("VP: Error message \"There was a problem with your login and/or errors exist in your form.\" is displayed");
@@ -77,13 +79,14 @@ public class LoginTest extends TestBase {
 		System.out.println("Step 3: Enter valid information into 'Username' textbox except 'Password' textbox.");
 		System.out.println("Step 4: Click on 'Login' button");
 		System.out.println("Step 5: Repeat step 3 and 4 three more times");
-		
-		String actualMsg = loginPage.login(Constant.VALID_USERNAME, null).getLoginErrorMsg();
+		loginPage = loginPage.login(Constant.VALID_USERNAME, null);
+		String actualMsg = loginPage.getLoginErrorMsg();
 		String expectedMsg = "Invalid username or password. Please try again";
 		System.out.println("VP: \"Invalid username or password. Please try again\" is shown");
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
 		for (int i = 2; i <= 4; i++) {
-			actualMsg = loginPage.login(Constant.VALID_USERNAME, null).getLoginErrorMsg();
+			loginPage = loginPage.login(Constant.VALID_USERNAME, null);
+			actualMsg = loginPage.getLoginErrorMsg();
 		}
 		expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
 		System.out.println("VP: User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");
@@ -106,8 +109,8 @@ public class LoginTest extends TestBase {
 		
 		System.out.println("Step 3: Enter username and password of account hasn't been activated.");
 		System.out.println("Step 4: Click on 'Login' button");
-		
-		String actualMsg = loginPage.login(account.getEmail(), account.getPassword()).getLoginErrorMsg();
+		loginPage = loginPage.login(account.getEmail(), account.getPassword());
+		String actualMsg = loginPage.getLoginErrorMsg();
 		String expectedMsg = "Invalid username or password. Please try again.";
 		System.out.println("VP: User can't login and message \"Invalid username or password. Please try again.\" appears.");
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");

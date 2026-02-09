@@ -25,8 +25,8 @@ public class CancelBooking extends TestBase{
 		homePage.open();
 		
 		System.out.println("Step 2: Login with a valid account");
-		homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		new LoginPage().login(account.getEmail(), account.getPassword());
+		loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		homePage = loginPage.login(account.getEmail(), account.getPassword());
 		
 		System.out.println("Step 3: Book a ticket"); 
 		BookTicketPage bookTicketPage = new BookTicketPage();

@@ -22,6 +22,7 @@ public class GeneralPage {
 		return this.getLblWelcomeMessage().getText();
 	}
 	
+	
 	public <T> T gotoPage(PageMenu menu, Class<T> pageClass) {
 		Constant.WEBDRIVER.findElement(menu.getLocator()).click();
 		try {

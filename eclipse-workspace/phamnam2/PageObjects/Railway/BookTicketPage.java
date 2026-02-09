@@ -21,7 +21,6 @@ public class BookTicketPage extends GeneralPage{
 	private final By _sltSeatType = By.xpath("//select[@name='SeatType']");
 	private final By _sltTicketAmount = By.xpath("//select[@name='TicketAmount']");
 	private final By _btnBookTicket = By.xpath("//input[@value='Book ticket']");
-	private final By _lnkCenter = By.xpath("//span[@id='ArriveStation']//center//a");
 	private final By _lblCenterMsg = By.xpath("//div[@id='content']//h1");
 	private static final String _tblCellXpath = "//tr[td[normalize-space()='%s']]/td[count(//table//th[normalize-space()='%s']/preceding-sibling::th) + 1]";
 	
@@ -50,10 +49,6 @@ public class BookTicketPage extends GeneralPage{
 		return Constant.WEBDRIVER.findElement(_btnBookTicket);
 	}
 	
-	public WebElement getLnkCenter() {
-		return Constant.WEBDRIVER.findElement(_lnkCenter);
-	}
-	
 	public WebElement getLblCenterMsg() {
 		return Constant.WEBDRIVER.findElement(_lblCenterMsg);
 	}
@@ -77,7 +72,7 @@ public class BookTicketPage extends GeneralPage{
 			selectDepartFrom(data.getDepartFrom());
 		}
 		if (data.getArriveAt() != null && isEditDepartFrom) {
-			Utilities.waitForElementExist(_lnkCenter);
+			Utilities.waitUntilStale(getSltArriveAt());
 			selectArriveAt(data.getArriveAt());
 		}
 		if (data.getSeatType() != null) {
