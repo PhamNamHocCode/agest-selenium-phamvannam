@@ -30,7 +30,7 @@ public class ResetPassword extends TestBase{
 		System.out.println("Step 5: Login to the mailbox (the same mailbox when creating account) "); 
 		System.out.println("Step 6: Open email with subject contaning \"Please reset your password\" and the email of the account at step 3"); 
 		System.out.println("Step 7: Click on reset link"); 
-		loginPage = loginPage.forgotPassword(account.getEmail(), account.getPassword(), account.getPassword());
+		loginPage = loginPage.forgotPassword(account);
 		
 		System.out.println("VP: Redirect to Railways page and Form \"Password Change Form\" is shown with the reset password token");
 		Assert.assertTrue(loginPage.isResetPasswordTokenDisplayed(), "\"Password Change Form\" is not shown with the reset password token");
@@ -69,7 +69,7 @@ public class ResetPassword extends TestBase{
 		System.out.println("Step 5: Login to the mailbox (the same mailbox when creating account)"); 
 		System.out.println("Step 6: Open email with subject contaning \"Please reset your password\" and the email of the account at step 3"); 
 		System.out.println("Step 7: Click on reset link"); 
-		loginPage = loginPage.forgotPassword(account.getEmail(), account.getPassword(), confirmPassword);
+		loginPage = loginPage.forgotPassword(account);
 		
 		System.out.println("VP: Redirect to Railways page and Form \"Password Change Form\" is shown with the reset password token");  
 		Assert.assertTrue(loginPage.isResetPasswordTokenDisplayed(), "\"Password Change Form\" is not shown with the reset password token");

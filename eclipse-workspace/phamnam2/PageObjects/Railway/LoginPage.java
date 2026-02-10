@@ -149,14 +149,14 @@ public class LoginPage extends GeneralPage{
 		return Utilities.isElementHasValue(getLocator(FieldsLogin.RESET_PASSWORD_TOKEN));
 	}
 	
-	public LoginPage forgotPassword(String email, String newPassword, String confirmPassword) {
+	public LoginPage forgotPassword(RegisterAccount account) {
 		LoginPage loginPage = new LoginPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		loginPage.getLinkForgotPassword().click();
-		loginPage = sendInstructions(email);
+		loginPage = sendInstructions(account.getEmail());
 		
 		guerrillaHomePage.open();
-		return guerrillaHomePage.confirmForgotPasswordEmail(email);
+		return guerrillaHomePage.confirmForgotPasswordEmail(account.getEmail());
 	}
 	
 	public LoginPage enterResetPassword(String newPassword, String confirmPassword) {

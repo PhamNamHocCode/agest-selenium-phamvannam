@@ -22,7 +22,6 @@ public class BookTicket extends TestBase{
 		LoginPage loginPage = new LoginPage();
 		BookTicketPage bookTicketPage = new BookTicketPage();
 		PreconditionHelper preconditionHelper = new PreconditionHelper();
-		LocalDate targetDate = bookTicketPage.getSelectedDepartDate(2, Constant.DATE_FORMAT);
 		int ticketAmout = 1;
 		
 		System.out.println("TC12: Verify that user can book 1 ticket at a time");
@@ -42,6 +41,7 @@ public class BookTicket extends TestBase{
 		
 		System.out.println("Step 3: Click on \"Book ticket\" tab"); 
 		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
+		LocalDate targetDate = bookTicketPage.getSelectedDepartDate(2, Constant.DATE_FORMAT);
 		
 		System.out.println("Step 4: Select the next 2 days from \"Depart date\""); 
 		System.out.println("Step 5: Select Depart from \"Nha Trang\" and Arrive at \"Huế\""); 
@@ -76,7 +76,6 @@ public class BookTicket extends TestBase{
 		LoginPage loginPage = new LoginPage();
 		BookTicketPage bookTicketPage = new BookTicketPage();
 		PreconditionHelper preconditionHelper = new PreconditionHelper();
-		LocalDate targetDate = bookTicketPage.getSelectedDepartDate(25, Constant.DATE_FORMAT);
 		int ticketAmout = 5;
 		
 		System.out.println("TC13: Verify that user can book many tickets at a time");
@@ -96,6 +95,8 @@ public class BookTicket extends TestBase{
 		
 		System.out.println("Step 3: Click on \"Book ticket\" tab"); 
 		bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
+		LocalDate targetDate = bookTicketPage.getSelectedDepartDate(25, Constant.DATE_FORMAT);
+
 		
 		System.out.println("Step 4: Select the next 25 days from \"Depart date\""); 
 		System.out.println("Step 5: Select \"Nha Trang\" for \"Depart from\" and \"Sài Gòn\" for \"Arrive at\""); 

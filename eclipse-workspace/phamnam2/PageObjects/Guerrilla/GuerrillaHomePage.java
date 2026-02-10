@@ -1,7 +1,6 @@
 package Guerrilla;
 
 import Railway.LoginPage;
-import Railway.RegisterPage;
 
 import Constant.Constant;
 import Common.Utilities;
@@ -94,10 +93,8 @@ public class GuerrillaHomePage {
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 
 		Utilities.waitForVisibleWithRefresh(getByEmailLetter("ForgotPassword")).click();
-		;
 
 		Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT).click();
-		;
 
 		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
 			Constant.WEBDRIVER.switchTo().window(handle);
