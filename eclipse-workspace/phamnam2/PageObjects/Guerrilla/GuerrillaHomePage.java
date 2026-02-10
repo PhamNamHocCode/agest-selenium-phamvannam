@@ -9,11 +9,9 @@ import Common.Utilities;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-
 
 public class GuerrillaHomePage {
-	
+
 	// Locators
 	private final By _editNameBtn = By.xpath("//span[@class='editable button' and @id='inbox-id']");
 	private final By _txtName = By.xpath("//span[@id='inbox-id']/input");
@@ -21,98 +19,94 @@ public class GuerrillaHomePage {
 	private final By _linkConfirmAccount = By.xpath("//a[contains(text(), 'saferailway')]");
 	private final By _checkboxScramble = By.xpath("//input[@id='use-alias']");
 	private final By _fullEmailAddress = By.xpath("//span[@id='email-widget']");
-	
+
 	// Elements
-	public WebElement getEditNameBtn() {
+	protected WebElement getEditNameBtn() {
 		return Constant.WEBDRIVER.findElement(_editNameBtn);
 	}
-	
-	public WebElement getTxtName() {
+
+	protected WebElement getTxtName() {
 		return Constant.WEBDRIVER.findElement(_txtName);
 	}
-	
-	public WebElement getLinkConfirmAccout() {
+
+	protected WebElement getLinkConfirmAccout() {
 		return Constant.WEBDRIVER.findElement(_linkConfirmAccount);
 	}
-	
-	public WebElement getCheckboxScramble() {
+
+	protected WebElement getCheckboxScramble() {
 		return Constant.WEBDRIVER.findElement(_checkboxScramble);
 	}
-	
-	public WebElement getFullEmailAddress() {
+
+	protected WebElement getFullEmailAddress() {
 		return Constant.WEBDRIVER.findElement(_fullEmailAddress);
 	}
-	
-	private By getByEmailLetter(String letterKeyword) {
+
+	protected By getByEmailLetter(String letterKeyword) {
 		switch (letterKeyword) {
-		case "Registration":
-			return By.xpath(String.format(_emailLetter, "confirmation code"));
-			
-		case "ForgotPassword":
-			return By.xpath(String.format(_emailLetter, "password reset"));
-			
-		default:
-			throw new IllegalArgumentException("Unsupported email type");
+			case "Registration":
+				return By.xpath(String.format(_emailLetter, "confirmation code"));
+
+			case "ForgotPassword":
+				return By.xpath(String.format(_emailLetter, "password reset"));
+
+			default:
+				throw new IllegalArgumentException("Unsupported email type");
 		}
 	}
 
-	private WebElement getEmailLetterElement(String letterKeyword) {
-	    return Constant.WEBDRIVER.findElement(getByEmailLetter(letterKeyword));
+	protected WebElement getEmailLetterElement(String letterKeyword) {
+		return Constant.WEBDRIVER.findElement(getByEmailLetter(letterKeyword));
 	}
-	
+
 	// Methods
 	public String createNewEmail(String emailName) {
-		Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_editNameBtn, Constant.WAIT_TIMEOUT)).click();
+		Utilities.waitForVisible(_editNameBtn, Constant.WAIT_TIMEOUT).click();
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
-		
+
 		if (this.getCheckboxScramble().isEnabled()
-		        && this.getCheckboxScramble().isSelected()) {
+				&& this.getCheckboxScramble().isSelected()) {
 			this.getCheckboxScramble().click();
 		}
-		
+
 		return this.getFullEmailAddress().getText().trim();
 	}
-	
-	public RegisterPage confirmRegistrationEmail(String emailName, Boolean isCheckLabel, String expectedMsgConfirmed) {
+
+	public RegisterPage confirmRegistrationEmail(String emailName) {
 		this.getEditNameBtn().click();
-		
+
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
-		
-		Utilities.waitForVisibleWithRefresh(getByEmailLetter("Registration"), Constant.WAIT_TIMEOUT);
-	    getEmailLetterElement("Registration").click();
 
-	    Constant.WEBDRIVER.findElement(Utilities.waitForClickable(_linkConfirmAccount)).click();
+		Utilities.waitForVisibleWithRefresh(getByEmailLetter("Registration"), Constant.WAIT_TIMEOUT);
+		getEmailLetterElement("Registration").click();
+
+		Utilities.waitForClickable(_linkConfirmAccount).click();
 
 		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
 			Constant.WEBDRIVER.switchTo().window(handle);
 		}
-		RegisterPage registerPage = new RegisterPage();
-		String actualMsg = Constant.WEBDRIVER.findElement(Utilities.waitForVisible(registerPage.getByLblMsgRegistrationConfirmed(),Constant.WAIT_TIMEOUT)).getText();
-		
-		if (isCheckLabel) {
-			Assert.assertEquals(actualMsg, expectedMsgConfirmed, "Message is not displayed as expected");
-		}
-		return registerPage;
+		return new RegisterPage();
 	}
-	
+
 	public LoginPage confirmForgotPasswordEmail(String emailName) {
 		this.getEditNameBtn().click();
-		
+
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
-		
-		Constant.WEBDRIVER.findElement(Utilities.waitForVisibleWithRefresh(getByEmailLetter("ForgotPassword"))).click();;
 
-		Constant.WEBDRIVER.findElement(Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT)).click();;
+		Utilities.waitForVisibleWithRefresh(getByEmailLetter("ForgotPassword")).click();
+		;
+
+		Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT).click();
+		;
 
 		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
 			Constant.WEBDRIVER.switchTo().window(handle);
 		}
 		return new LoginPage();
 	}
-	
+
 	public GuerrillaHomePage open() {
 		Constant.WEBDRIVER.navigate().to(Constant.GUERRILLA_URL);
 		return this;

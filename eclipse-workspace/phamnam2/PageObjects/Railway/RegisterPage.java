@@ -5,8 +5,6 @@ import Common.Utilities;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-
 
 public class RegisterPage extends GeneralPage{
 	// Locators
@@ -22,74 +20,72 @@ public class RegisterPage extends GeneralPage{
 	private final By _lblMsgErrorPip = By.xpath("//form[@id='RegisterForm']//label[@class='validation-error' and @for='pid']");
 	
 	// Elements
-	public WebElement getTxtEmail() {
+	protected WebElement getTxtEmail() {
 		return Constant.WEBDRIVER.findElement(_txtEmail);
 	}
 	
-	public WebElement getTxtPassword() {
+	protected WebElement getTxtPassword() {
 		return Constant.WEBDRIVER.findElement(_txtPassword);
 	}
 	
-	public WebElement getTxtConfirmPassword() {
+	protected WebElement getTxtConfirmPassword() {
 		return Constant.WEBDRIVER.findElement(_txtConfirmPassword);
 	}
 	
-	public WebElement getTxtPIPNumber() {
+	protected WebElement getTxtPIPNumber() {
 		return Constant.WEBDRIVER.findElement(_txtPIPNumber);
 	}
 	
-	public WebElement getBtnRegister() {
+	protected WebElement getBtnRegister() {
 		return Constant.WEBDRIVER.findElement(_btnRegister);
 	}
 	
-	public WebElement getLblMsgGeneralError() {
+	protected WebElement getLblMsgGeneralError() {
 		return Constant.WEBDRIVER.findElement(_lblMsgGeneralError);
 	}
-	public WebElement getLblMsgRegistrationConfirmed() {
+	protected WebElement getLblMsgRegistrationConfirmed() {
 		return Constant.WEBDRIVER.findElement(_lblMsgRegistrationConfirmed);
 	}
 	
-	public WebElement getLblMsgErrorPassword() {
+	protected WebElement getLblMsgErrorPassword() {
 		return Constant.WEBDRIVER.findElement(_lblMsgErrorPassword);
 	}
 	 
-	public WebElement getLblMsgErrorPip() {
+	protected WebElement getLblMsgErrorPip() {
 		return Constant.WEBDRIVER.findElement(_lblMsgErrorPip);
 	}
 	
-	public WebElement getLblMsgThankyou() {
+	protected WebElement getLblMsgThankyou() {
 		return Constant.WEBDRIVER.findElement(_lblMsgThankyou);
 	}
 	
-	// Methods
-	public String getTextLblMsgGeneralError() {
+	protected String getTextLblMsgGeneralError() {
 		return this.getLblMsgGeneralError().getText();
 	}
 	
-	public String getTextLblMsgErrorPassword() {
+	protected String getTextLblMsgErrorPassword() {
 		return this.getLblMsgErrorPassword().getText();
 	}
 	
-	public String getTextLblMsgErrorPip() {
+	protected String getTextLblMsgErrorPip() {
 		return this.getLblMsgErrorPip().getText();
 	}
 	
-	public String getTextLblMsgThankyou() {
-	    return Constant.WEBDRIVER.findElement(Utilities
-	            .waitForVisible(_lblMsgThankyou))
+	protected String getTextLblMsgThankyou() {
+	    return Utilities.waitForVisible(_lblMsgThankyou)
 	            .getText();
 	}
 	
-	public String getTextLblMsgRegistrationConfirmed() {
+	protected String getTextLblMsgRegistrationConfirmed() {
 		return this.getLblMsgRegistrationConfirmed().getText();
 	}
 	
-	public By getByLblMsgRegistrationConfirmed() {
+	protected By getByLblMsgRegistrationConfirmed() {
 		return _lblMsgRegistrationConfirmed;
 	}
 	
-	
-	public RegisterPage registerNewAccount(RegisterAccount account, Boolean isCheckLabel, String expectedMsgThankyou) {
+	// Methods
+	public RegisterPage registerNewAccount(RegisterAccount account) {
 		this.getTxtEmail().clear();
 		this.getTxtEmail().sendKeys(account.getEmail());
 		
@@ -106,12 +102,6 @@ public class RegisterPage extends GeneralPage{
 		
 		Utilities.scrollToElement(getBtnRegister());
 		this.getBtnRegister().click();
-		
-		String actualMsg = new RegisterPage().getTextLblMsgThankyou();
-		
-		if (isCheckLabel) {
-			Assert.assertEquals(actualMsg, expectedMsgThankyou, "Message is not displayed as expected");
-		}
 		
 		return new RegisterPage();
 	}

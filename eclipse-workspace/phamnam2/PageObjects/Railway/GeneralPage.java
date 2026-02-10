@@ -16,13 +16,11 @@ public class GeneralPage {
 		return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
 	}
 	
-
-	//Methods
-	public String getWelcomeMessage() {
+	protected String getWelcomeMessage() {
 		return this.getLblWelcomeMessage().getText();
 	}
 	
-	
+	//Methods
 	public <T> T gotoPage(PageMenu menu, Class<T> pageClass) {
 		Constant.WEBDRIVER.findElement(menu.getLocator()).click();
 		try {

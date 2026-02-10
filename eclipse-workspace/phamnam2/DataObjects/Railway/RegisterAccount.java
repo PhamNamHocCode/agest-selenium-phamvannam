@@ -23,6 +23,7 @@ public class RegisterAccount {
 		this.email = email;
 	}
 	
+	//Constructor
 	public RegisterAccount(String email, String password, String pip) {
 		this.email = email;
 		this.password = password;

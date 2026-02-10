@@ -5,18 +5,21 @@ import org.testng.annotations.Test;
 
 import Common.Utilities;
 import Constant.PageMenu;
+import Guerrilla.GuerrillaHomePage;
 import Constant.Constant;
 
 public class CreateAccount extends TestBase{
 	
 	@Test
 	public void TC07() {
+		HomePage homePage = new HomePage();
+		RegisterPage registerPage = new RegisterPage();
 		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
 		System.out.println("Pre-condition: an actived account is existing");
 		homePage.open();
-		
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
-		account = PreconditionHelper.createActivedAccount(account, false, null, null);
+		account = PreconditionHelper.createAnAccount(account);
+		registerPage = PreconditionHelper.activeAccount(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -26,7 +29,7 @@ public class CreateAccount extends TestBase{
 		
 		System.out.println("Step 3: Enter information of the created account in Pre-condition");
 		System.out.println("Step 4: Click on \"Register\" button");
-		registerPage.registerNewAccount(account, false, null);
+		registerPage.registerNewAccount(account);
 		
 		String actualMsg = registerPage.getTextLblMsgGeneralError();
 		String expectedMsg = "This email address is already in use.";
@@ -37,6 +40,8 @@ public class CreateAccount extends TestBase{
 	
 	@Test
 	public void TC08() {
+		HomePage homePage = new HomePage();
+		RegisterPage registerPage = new RegisterPage();
 		System.out.println("TC08: Verify that user can't create account while password and PID fields are empty");
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -66,6 +71,9 @@ public class CreateAccount extends TestBase{
 	
 	@Test
 	public void TC09() {
+		HomePage homePage = new HomePage();
+		RegisterPage registerPage = new RegisterPage();
+		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		System.out.println("TC09: Verify that user create and activate account");
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -78,12 +86,21 @@ public class CreateAccount extends TestBase{
 		System.out.println("Step 7: Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
 		System.out.println("Step 8: Click on the activate link");
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
+		account = PreconditionHelper.createAnAccount(account);
 		String expectedMsgThankyou = "Thank you for registering your account";
-		String expectedMsgConfirmed = "Registration Confirmed! You can now log in to the site.";
-		System.out.println("VP: \"Thank you for registering your account\" is shown"
-				+ "Redirect to Railways page and message \"Registration Confirmed! You can now log in to the site\" is shown");
+		String actualMsgThankyou = registerPage.getTextLblMsgThankyou();
 		
-		account = PreconditionHelper.createActivedAccount(account, true, expectedMsgThankyou, expectedMsgConfirmed);
-
+		registerPage = registerPage.registerNewAccount(account);
+		System.out.println("VP: \"Thank you for registering your account\" is shown");
+		Assert.assertEquals(actualMsgThankyou, expectedMsgThankyou, "Message is not displayed as expected");
+		
+		guerrillaHomePage.open();
+		registerPage = guerrillaHomePage.confirmRegistrationEmail(account.getEmail());
+		
+		String expectedMsgConfirmed = "Registration Confirmed! You can now log in to the site.";
+		String actualMsgConfirmed = registerPage.getTextLblMsgRegistrationConfirmed();
+		
+		System.out.println("VP: Redirect to Railways page and message \"Registration Confirmed! You can now log in to the site\" is shown");
+		Assert.assertEquals(actualMsgConfirmed, expectedMsgConfirmed, "Message is not displayed as expected");
 	}
 }

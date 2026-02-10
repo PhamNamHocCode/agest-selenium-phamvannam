@@ -1,6 +1,6 @@
 package Constant;
 
-public enum LoginElement {
+public enum FieldsLogin {
 	
     // Login elements
     USERNAME,
@@ -8,6 +8,8 @@ public enum LoginElement {
     LOGIN_ERROR_MSG,
     FORGOT_PASSWROD_GENERAL_MSG,
     FORGOT_PASSWORD_LINK,
-    FORGOT_PASSWORD_CONFIRM_PASSWORD_MSG
+    FORGOT_PASSWORD_CONFIRM_PASSWORD_MSG,
+    RESET_PASSWORD_TOKEN
+    
 }
 

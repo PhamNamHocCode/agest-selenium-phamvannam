@@ -7,9 +7,9 @@ import Guerrilla.GuerrillaHomePage;
 
 public class PreconditionHelper {
 	
-	public static RegisterAccount createActivedAccount(RegisterAccount account, Boolean isCheckLabel, String expectedMsgThankyou, String expectedMsgConfirmed) {
+	//Account
+	public static RegisterAccount createAnAccount(RegisterAccount account) {
 		HomePage homePage = new HomePage();
-		RegisterPage registerPage = new RegisterPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
 		
@@ -18,15 +18,20 @@ public class PreconditionHelper {
 		
 		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
 		homePage.getLinkCreateAccount().click();
-		registerPage = registerPage.registerNewAccount(account, isCheckLabel, expectedMsgThankyou);
-		
-		guerrillaHomePage.open();
-		registerPage = guerrillaHomePage.confirmRegistrationEmail(account.getEmail(), isCheckLabel, expectedMsgConfirmed);
 		
 		return account;
 	}
 	
-	public static RegisterAccount createUnactiveAccout(RegisterAccount account, Boolean isCheck, String expectedMsgThankyou) {
+	public static RegisterPage activeAccount(RegisterAccount account) {
+		RegisterPage registerPage = new RegisterPage();
+		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
+		
+		registerPage = registerPage.registerNewAccount(account);
+		guerrillaHomePage.open();
+		return guerrillaHomePage.confirmRegistrationEmail(account.getEmail());
+	}
+	
+	public static RegisterAccount createUnactiveAccout(RegisterAccount account) {
 		RegisterPage registerPage = new RegisterPage();
 		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
 		
@@ -36,7 +41,6 @@ public class PreconditionHelper {
 
 		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
 		registerPage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
-		registerPage = registerPage.registerNewAccount(account, isCheck, expectedMsgThankyou);
 		
 		return account;
 	}
@@ -49,6 +53,33 @@ public class PreconditionHelper {
 		);
 	}
 	
+	//Book ticket
+	public BookTicketPage bookTicket(BookTicketData data) {
+		if (data.getDepartDate() != null) {
+			if (!BookTicketPage.isDepartDateAvailable(Utilities.formatDate(data.getDepartDate()))) {
+			    throw new IllegalStateException(
+			        "Cannot select a date because select does not have a suitable date option: " + Utilities.formatDate(data.getDepartDate())
+			    );
+			}
+			BookTicketPage.selectDepartDate(data.getDepartDate());
+		}
+		if (data.getDepartFrom() != null) {
+			BookTicketPage.selectDepartFrom(data.getDepartFrom());
+		}
+		if (data.getArriveAt() != null) {
+			Utilities.waitUntilStale(BookTicketPage.getSltArriveAt());
+			BookTicketPage.selectArriveAt(data.getArriveAt());
+		}
+		if (data.getSeatType() != null) {
+			BookTicketPage.selectSeatType(data.getSeatType());
+		}
+		BookTicketPage.selectTicketAmount(data.getTicketAmount());
+        
+        Utilities.scrollToElement(BookTicketPage.getBtnBookTicket());
+        BookTicketPage.clickBookTicket();
+
+        return new BookTicketPage();
+    }
 	
 	
 }

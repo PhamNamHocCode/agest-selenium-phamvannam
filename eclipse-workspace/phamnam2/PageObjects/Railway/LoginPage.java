@@ -2,80 +2,80 @@ package Railway;
 
 import Constant.Constant;
 import Constant.PageMenu;
-import Constant.LoginElement;
+import Constant.FieldsLogin;
 import Guerrilla.GuerrillaHomePage;
 import Common.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 public class LoginPage extends GeneralPage{
 	
 	//Locators
-	private final By _txtUsername = By.xpath("//input[@id='username']");
-	private final By _txtPassword= By.xpath("//input[@id='password']");
+	private final static By _txtUsername = By.xpath("//input[@id='username']");
+	private final static By _txtPassword= By.xpath("//input[@id='password']");
 	private final By _btnLogin = By.xpath("//input[@value='login']");
-	private final By _lblLoginErrorMsg = By.xpath("//div[@id='content']//p[contains(@class, 'message error LoginForm')]");
-	private final By _linkForgotPassword = By.xpath("//div[@id='content']//a[contains(@href,'ForgotPassword')]");
+	private final static By _lblLoginErrorMsg = By.xpath("//div[@id='content']//p[contains(@class, 'message error LoginForm')]");
+	private final static By _linkForgotPassword = By.xpath("//div[@id='content']//a[contains(@href,'ForgotPassword')]");
 	private final By _txtEmailForgotPassword = By.xpath("//input[@id='email']");
 	private final By _btnSendInstructions = By.xpath("//div[@id='content']//input[@value='Send Instructions']");
 	private final By _txtNewPassword = By.xpath("//input[@id='newPassword']");
 	private final By _txtConfirmNewPassword = By.xpath("//input[@id='confirmPassword']");
 	private final By _btnResetPassword = By.xpath("//input[@value='Reset Password']");
-	private final By _txtResetPasswordToken = By.xpath("//input[@id='resetToken']");
-	private final By _lblForgotPasswordGeneralMsg = By.xpath("//div[@id='content']//p[contains(@class,'message')]");
-	private final By _lblForgotPasswordConfirmPasswordMsg = By.xpath("//label[@for='confirmPassword' and @class='validation-error']");
+	private final static By _txtResetPasswordToken = By.xpath("//input[@id='resetToken']");
+	private final static By _lblForgotPasswordGeneralMsg = By.xpath("//div[@id='content']//p[contains(@class,'message')]");
+	private final static By _lblForgotPasswordConfirmPasswordMsg = By.xpath("//label[@for='confirmPassword' and @class='validation-error']");
 	
 	// Elements
-	public WebElement getTxtUsername() {
+	protected WebElement getTxtUsername() {
 		return Constant.WEBDRIVER.findElement(_txtUsername);
 	}
 	
-	public WebElement getTxtPassword() {
+	protected WebElement getTxtPassword() {
 		return Constant.WEBDRIVER.findElement(_txtPassword);
 	}
 
-	public WebElement getBtnLogin() {
+	protected WebElement getBtnLogin() {
 		return Constant.WEBDRIVER.findElement(_btnLogin);
 	}
 	
-	public WebElement getLblLoginErrorMsg() {
+	protected WebElement getLblLoginErrorMsg() {
 		return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
 	}
 	
-	public WebElement getLinkForgotPassword() {
+	protected WebElement getLinkForgotPassword() {
 		return Constant.WEBDRIVER.findElement(_linkForgotPassword);
 	}
 	
-	public WebElement getTxtEmailForgotPassword() {
+	protected WebElement getTxtEmailForgotPassword() {
 		return Constant.WEBDRIVER.findElement(_txtEmailForgotPassword);
 	}
 	
-	public WebElement getTxtNewPassword() {
+	protected WebElement getTxtNewPassword() {
 		return Constant.WEBDRIVER.findElement(_txtNewPassword);
 	}
 	
-	public WebElement getTxtConfirmNewPassword() {
+	protected WebElement getTxtConfirmNewPassword() {
 		return Constant.WEBDRIVER.findElement(_txtConfirmNewPassword);
 	}
 	
-	public WebElement getBtnResetPassword() {
+	protected WebElement getBtnResetPassword() {
 		return Constant.WEBDRIVER.findElement(_btnResetPassword);
 	}
 	
-	public WebElement getTxtResetPasswordToken() {
+	protected WebElement getTxtResetPasswordToken() {
 		return Constant.WEBDRIVER.findElement(_txtResetPasswordToken);
 	}
 	
-	public WebElement getLblForgotPasswordGeneralMsg() {
+	protected WebElement getLblForgotPasswordGeneralMsg() {
+		Utilities.waitForVisible(_lblForgotPasswordGeneralMsg);
 		return Constant.WEBDRIVER.findElement(_lblForgotPasswordGeneralMsg);
 	}
 	
-	public WebElement getLblForgotPasswordConfirmPasswordMsg() {
+	protected WebElement getLblForgotPasswordConfirmPasswordMsg() {
 		return Constant.WEBDRIVER.findElement(_lblForgotPasswordConfirmPasswordMsg);
 	}
 	
-	public By getLocator(LoginElement element) {
+	protected static By getLocator(FieldsLogin element) {
 		switch (element) {
         case USERNAME:
             return _txtUsername;
@@ -94,6 +94,9 @@ public class LoginPage extends GeneralPage{
          
         case FORGOT_PASSWORD_CONFIRM_PASSWORD_MSG:
         	return _lblForgotPasswordConfirmPasswordMsg;
+        
+        case RESET_PASSWORD_TOKEN:
+        	return _txtResetPasswordToken;
         	
         default:
             throw new IllegalArgumentException("Unsupported element: " + element);
@@ -135,19 +138,17 @@ public class LoginPage extends GeneralPage{
 		return this.getLblLoginErrorMsg().getText();
 	}
 	
-	public LoginPage forgotPassword(String email, String newPassword, String confirmPassword, Boolean isCheck, String expectedGenralMsg, String failMsgForPassToken) {
+	public LoginPage forgotPassword(String email, String newPassword, String confirmPassword) {
 		LoginPage loginPage = new LoginPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		loginPage.getLinkForgotPassword().click();
 		loginPage = sendInstructions(email);
 		
 		guerrillaHomePage.open();
-		loginPage = guerrillaHomePage.confirmForgotPasswordEmail(email);
-		
-		if (isCheck) {
-			Assert.assertTrue(Utilities.hasValue(_txtResetPasswordToken), failMsgForPassToken);
-		}
-		
+		return guerrillaHomePage.confirmForgotPasswordEmail(email);
+	}
+	
+	public LoginPage enterResetPassword(String newPassword, String confirmPassword) {
 		this.getTxtNewPassword().clear();
 		this.getTxtNewPassword().sendKeys(newPassword);
 		
@@ -156,31 +157,7 @@ public class LoginPage extends GeneralPage{
 		
 		this.getBtnResetPassword().click();
 		
-		if (isCheck) {
-			String actualMsg = getLblForgotPasswordGeneralMsg().getText();
-			Assert.assertEquals(actualMsg, expectedGenralMsg, "The message is not displayed as expected");
-		}
-		
-		return loginPage;
-	}
-	
-	public void checkLblExists(LoginElement element, String expectedMsg) {
-		By locator = getLocator(element);
-		String actualMsg = Utilities.getElementTextStatus(locator);
-		
-		if ("NOT_FOUND".equals(actualMsg)) {
-	        Assert.fail("The error messege NOT FOUND: " + element);
-	    }
-
-	    if ("HIDDEN".equals(actualMsg)) {
-	        Assert.fail("The error messege is HIDDEN: " + element);
-	    }
-
-	    Assert.assertEquals(
-	        actualMsg,
-	        expectedMsg,
-	        "The error messege is not displayed as expected: " + element
-	    );	
+		return new LoginPage();
 	}
 	
 	public LoginPage sendInstructions(String email) {
