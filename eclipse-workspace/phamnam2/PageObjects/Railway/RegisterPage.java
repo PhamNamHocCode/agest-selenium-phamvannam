@@ -59,32 +59,32 @@ public class RegisterPage extends GeneralPage{
 		return Constant.WEBDRIVER.findElement(_lblMsgThankyou);
 	}
 	
-	protected String getTextLblMsgGeneralError() {
-		return this.getLblMsgGeneralError().getText();
-	}
-	
-	protected String getTextLblMsgErrorPassword() {
-		return this.getLblMsgErrorPassword().getText();
-	}
-	
-	protected String getTextLblMsgErrorPip() {
-		return this.getLblMsgErrorPip().getText();
-	}
-	
-	protected String getTextLblMsgThankyou() {
-	    return Utilities.waitForVisible(_lblMsgThankyou)
-	            .getText();
-	}
-	
-	protected String getTextLblMsgRegistrationConfirmed() {
-		return this.getLblMsgRegistrationConfirmed().getText();
-	}
-	
 	protected By getByLblMsgRegistrationConfirmed() {
 		return _lblMsgRegistrationConfirmed;
 	}
 	
 	// Methods
+	public String geMsgGeneralError() {
+		return this.getLblMsgGeneralError().getText();
+	}
+	
+	public String getMsgErrorPassword() {
+		return this.getLblMsgErrorPassword().getText();
+	}
+	
+	public String getMsgErrorPip() {
+		return this.getLblMsgErrorPip().getText();
+	}
+	
+	public String getMsgThankyou() {
+	    return Utilities.waitForVisible(_lblMsgThankyou)
+	            .getText();
+	}
+	
+	public String getMsgRegistrationConfirmed() {
+		return this.getLblMsgRegistrationConfirmed().getText();
+	}
+	
 	public RegisterPage registerNewAccount(RegisterAccount account) {
 		this.getTxtEmail().clear();
 		this.getTxtEmail().sendKeys(account.getEmail());

@@ -11,7 +11,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class GuerrillaHomePage {
-
 	// Locators
 	private final By _editNameBtn = By.xpath("//span[@class='editable button' and @id='inbox-id']");
 	private final By _txtName = By.xpath("//span[@id='inbox-id']/input");
@@ -72,7 +71,7 @@ public class GuerrillaHomePage {
 		return this.getFullEmailAddress().getText().trim();
 	}
 
-	public RegisterPage confirmRegistrationEmail(String emailName) {
+	public void confirmRegistrationEmail(String emailName) {
 		this.getEditNameBtn().click();
 
 		this.getTxtName().clear();
@@ -86,7 +85,6 @@ public class GuerrillaHomePage {
 		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
 			Constant.WEBDRIVER.switchTo().window(handle);
 		}
-		return new RegisterPage();
 	}
 
 	public LoginPage confirmForgotPasswordEmail(String emailName) {

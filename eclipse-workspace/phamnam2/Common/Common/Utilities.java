@@ -7,7 +7,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
@@ -18,7 +17,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import Constant.Constant;
 
 public class Utilities {
-	
 	/* Scroll */
 	public static void scrollToElement(WebElement element) {
 		((JavascriptExecutor) Constant.WEBDRIVER)
@@ -166,19 +164,6 @@ public class Utilities {
 	    } catch (Exception e) {
 	        return false;
 	    }
-	}
-	
-	public static String getElementTextStatus(By locator) {
-		try {
-			WebElement element = Constant.WEBDRIVER.findElement(locator);
-			if (element.isDisplayed()) {
-				return element.getText();
-			}
-			return "HIDDEN";
-		}
-		catch (NoSuchElementException e) {
-			return "NOT_FOUND";
-		}
 	}
 	
 	/*Format */

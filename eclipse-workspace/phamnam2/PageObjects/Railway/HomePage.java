@@ -15,14 +15,16 @@ public class HomePage extends GeneralPage{
 		return _lblWelcomeMsg;
 	}
 	
+	protected WebElement getLinkCreateAccount() {
+		return Constant.WEBDRIVER.findElement(_linkCreateAccount);
+	}
+	
 	// Methods
 	public HomePage open() {
 		Constant.WEBDRIVER.navigate().to(Constant.RAILWAY_URL);
 		return this;
 	}
-	public WebElement getLinkCreateAccount() {
-		return Constant.WEBDRIVER.findElement(_linkCreateAccount);
-	}
+	
 	public boolean isHomePageDisplayed() {
 		return !Constant.WEBDRIVER
 				.findElements(_lblWelcomeMsg)

@@ -2,7 +2,6 @@ package Railway;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 
 import Common.Utilities;
 import Constant.Constant;
@@ -11,7 +10,7 @@ import Constant.TicketTableCol;
 
 public class MyTicketPage extends GeneralPage{
 	//Locators
-	private static final String _btnCancle = "//input";
+	private static final String _btnCancle = "//input[@value='Cancel']";
 	
 	//Elements
 	protected String getBtnCancle() {

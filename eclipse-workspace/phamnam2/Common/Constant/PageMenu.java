@@ -3,7 +3,6 @@ package Constant;
 import org.openqa.selenium.By;
 
 public enum PageMenu {
-	
 	// Menu items
 	LOGIN("Login"),
     LOGOUT("Logout"),

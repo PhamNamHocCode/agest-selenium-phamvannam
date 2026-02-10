@@ -22,13 +22,13 @@ public class PreconditionHelper {
 		return account;
 	}
 	
-	public static RegisterPage activeAccount(RegisterAccount account) {
+	public static void activeAccount(RegisterAccount account) {
 		RegisterPage registerPage = new RegisterPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		
 		registerPage = registerPage.registerNewAccount(account);
 		guerrillaHomePage.open();
-		return guerrillaHomePage.confirmRegistrationEmail(account.getEmail());
+		guerrillaHomePage.confirmRegistrationEmail(account.getEmail());
 	}
 	
 	public static RegisterAccount createUnactiveAccout(RegisterAccount account) {
@@ -55,6 +55,8 @@ public class PreconditionHelper {
 	
 	//Book ticket
 	public BookTicketPage bookTicket(BookTicketData data) {
+		BookTicketPage bookTicketPage = new BookTicketPage();
+		
 		if (data.getDepartDate() != null) {
 			if (!BookTicketPage.isDepartDateAvailable(Utilities.formatDate(data.getDepartDate()))) {
 			    throw new IllegalStateException(
@@ -67,7 +69,7 @@ public class PreconditionHelper {
 			BookTicketPage.selectDepartFrom(data.getDepartFrom());
 		}
 		if (data.getArriveAt() != null) {
-			Utilities.waitUntilStale(BookTicketPage.getSltArriveAt());
+			bookTicketPage.waintUntilArriveStationRefreshed();
 			BookTicketPage.selectArriveAt(data.getArriveAt());
 		}
 		if (data.getSeatType() != null) {

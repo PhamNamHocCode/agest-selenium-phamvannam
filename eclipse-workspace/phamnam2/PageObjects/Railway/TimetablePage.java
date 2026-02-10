@@ -16,10 +16,6 @@ public class TimetablePage extends GeneralPage{
 	private static final String _linkInTbl = "//a[normalize-space()='%s']";
 	
 	//Elements
-	protected static String getLinkInTbl() {
-		return _linkInTbl;
-	}
-	
 	protected WebElement getTblHeader() {
 		return Constant.WEBDRIVER.findElement(_tblHeader);
 	}
@@ -29,6 +25,10 @@ public class TimetablePage extends GeneralPage{
 	}
 	
 	//Methods
+	public static String getLinkInTbl() {
+		return _linkInTbl;
+	}
+	
 	public static int getColIndexByHeader(TicketTableCol ticketTableCol) {
 		List<WebElement> headers = Constant.WEBDRIVER.findElements(getByTblHeader());
 		
@@ -40,7 +40,7 @@ public class TimetablePage extends GeneralPage{
 		throw new RuntimeException("Header in table not found: " + ticketTableCol.getDisplayName());
 	}
 	
-	public BookTicketPage bookTicket(StationCity departStation, StationCity arriveStation) {
+	public BookTicketPage bookTicketFromTimetable(StationCity departStation, StationCity arriveStation) {
 		int departCol = getColIndexByHeader(TicketTableCol.DEPART_STATION);
 		int arriveCol = getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
 		
@@ -50,5 +50,15 @@ public class TimetablePage extends GeneralPage{
 		Utilities.clickByJs(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
 		return new BookTicketPage();
+	}
+	
+	public TicketPricePage clickCheckPriceLink(StationCity departStation, StationCity arriveStation) {
+		int departCol = TimetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
+		int arriveCol = TimetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
+		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(TimetablePage.getLinkInTbl(), "check price"));
+		
+		Utilities.clickByJs(Constant.WEBDRIVER.findElement(linkCheckPrice));
+		
+		return new TicketPricePage();
 	}
 }

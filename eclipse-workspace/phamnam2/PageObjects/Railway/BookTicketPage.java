@@ -6,6 +6,7 @@ import Constant.StationCity;
 import Constant.TicketTableCol;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,34 +16,34 @@ import Common.Utilities;
 
 public class BookTicketPage extends GeneralPage{
 	//Locators
-	private static final By _sltDepartDate = By.xpath("//select[@name='Date']");
-	private static final By _sltDepratFrom = By.xpath("//select[@name='DepartStation']");
-	private static final By _sltArriveAt = By.xpath("//select[@name='ArriveStation']");
-	private static final By _sltSeatType = By.xpath("//select[@name='SeatType']");
-	private static final By _sltTicketAmount = By.xpath("//select[@name='TicketAmount']");
+	private static final By _slbDepartDate = By.xpath("//select[@name='Date']");
+	private static final By _slbDepartFrom = By.xpath("//select[@name='DepartStation']");
+	private static final By _slbArriveAt = By.xpath("//select[@name='ArriveStation']");
+	private static final By _slbSeatType = By.xpath("//select[@name='SeatType']");
+	private static final By _slbTicketAmount = By.xpath("//select[@name='TicketAmount']");
 	private static final By _btnBookTicket = By.xpath("//input[@value='Book ticket']");
 	private static final By _lblCenterMsg = By.xpath("//div[@id='content']//h1");
-	private static final String _tblCellXpath = "//tr[td[normalize-space()='%s']]/td[count(//table//th[normalize-space()='%s']/preceding-sibling::th) + 1]";
+	private static final String _cellTblXpath = "//tr[td[normalize-space()='%s']]/td[count(//table//th[normalize-space()='%s']/preceding-sibling::th) + 1]";
 	
 	// Elements
-	protected static WebElement getSltDepartDate() {
-		return Constant.WEBDRIVER.findElement(_sltDepartDate);
+	protected static WebElement getSlbDepartDate() {
+		return Constant.WEBDRIVER.findElement(_slbDepartDate);
 	}
 	
-	protected static WebElement getSltDepratFrom() {
-		return Constant.WEBDRIVER.findElement(_sltDepratFrom);
+	protected static WebElement getSlbDepartFrom() {
+		return Constant.WEBDRIVER.findElement(_slbDepartFrom);
 	}
 	
-	protected static WebElement getSltArriveAt() {
-		return Constant.WEBDRIVER.findElement(_sltArriveAt);
+	protected static WebElement getSlbArriveAt() {
+		return Constant.WEBDRIVER.findElement(_slbArriveAt);
 	}
 	
-	protected static WebElement getSltSeatType() {
-		return Constant.WEBDRIVER.findElement(_sltSeatType);
+	protected static WebElement getSlbSeatType() {
+		return Constant.WEBDRIVER.findElement(_slbSeatType);
 	}
 	
-	protected static WebElement getSltTicketAmount() {
-		return Constant.WEBDRIVER.findElement(_sltTicketAmount);
+	protected static WebElement getSlbTicketAmount() {
+		return Constant.WEBDRIVER.findElement(_slbTicketAmount);
 	}
 	
 	protected static WebElement getBtnBookTicket() {
@@ -54,40 +55,63 @@ public class BookTicketPage extends GeneralPage{
 	}
 	
 	protected static String getTblCellXpath() {
-		return _tblCellXpath;
+		return _cellTblXpath;
 	}
 	
-	
 	// Methods
-	
 	public static boolean isDepartDateAvailable(String expectedDate) {
-		Select select = new Select(getSltDepartDate());
+		Select select = new Select(getSlbDepartDate());
 		
 		return select.getOptions().stream().anyMatch(
 				option -> option.getText().equals(expectedDate));
 	}
 	
+	public String getCenterMsg() {
+		return getLblCenterMsg().getText();
+	}
+	
+	public LocalDate getSelectedDepartDate(int index, DateTimeFormatter dateFormat) {
+		Select select = new Select(getSlbDepartDate());
+		String departDate = select.getOptions().get(index).getText();
+		return LocalDate.parse(departDate, dateFormat);
+	}
+	
+	public String getSelectedDepartStation() {
+	    Select departSelect = new Select(getSlbDepartFrom());
+	    return departSelect.getFirstSelectedOption().getText();
+	}
+
+	public String getSelectedArriveStation() {
+	    Select arriveSelect = new Select(getSlbArriveAt());
+	    return arriveSelect.getFirstSelectedOption().getText();
+	}
+	
+	public void waintUntilArriveStationRefreshed() {
+		WebElement element = getSlbArriveAt();
+		Utilities.waitUntilStale(element);
+	}
+	
     //Low levels actions
 	public static void selectDepartDate(LocalDate date) {
         WebElement element =
-                Constant.WEBDRIVER.findElement(_sltDepartDate);
+                Constant.WEBDRIVER.findElement(_slbDepartDate);
         element.sendKeys(Utilities.formatDate(date));
     }
 
     public static void selectDepartFrom(StationCity city) {
-        selectByVisibleText(_sltDepratFrom, city.getDisplayText());
+        selectByVisibleText(_slbDepartFrom, city.getDisplayText());
     }
 
     public static void selectArriveAt(StationCity city) {
-        selectByVisibleText(_sltArriveAt, city.getDisplayText());
+        selectByVisibleText(_slbArriveAt, city.getDisplayText());
     }
 
     public static void selectSeatType(SeatType seatType) {
-        selectByVisibleText(_sltSeatType, seatType.getDisplayText());
+        selectByVisibleText(_slbSeatType, seatType.getDisplayText());
     }
 
     public static void selectTicketAmount(int amount) {
-        selectByVisibleText(_sltTicketAmount, String.valueOf(amount));
+        selectByVisibleText(_slbTicketAmount, String.valueOf(amount));
     }
 
     public static void clickBookTicket() {
@@ -103,8 +127,8 @@ public class BookTicketPage extends GeneralPage{
         select.selectByVisibleText(text);
     }
     
-    public static String getTableCellValue(String rowValue, TicketTableCol ticketTableCol) {
-        String xpath = String.format(_tblCellXpath,
+    public  String getTableCellValue(String rowValue, TicketTableCol ticketTableCol) {
+        String xpath = String.format(_cellTblXpath,
                 rowValue, ticketTableCol.getDisplayName());
         return Constant.WEBDRIVER.findElement(By.xpath(xpath)).getText().trim();
     }

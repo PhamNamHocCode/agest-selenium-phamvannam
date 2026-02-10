@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends GeneralPage{
-	
 	//Locators
 	private final static By _txtUsername = By.xpath("//input[@id='username']");
 	private final static By _txtPassword= By.xpath("//input[@id='password']");
@@ -136,6 +135,18 @@ public class LoginPage extends GeneralPage{
 
 	public String getLoginErrorMsg() {
 		return this.getLblLoginErrorMsg().getText();
+	}
+	
+	public String getForgotPasswordGeneralMsg() {
+		return getLblForgotPasswordGeneralMsg().getText();
+	}
+	
+	public String getForgotConfirmPasswordMsg() {
+		return getLblForgotPasswordConfirmPasswordMsg().getText();
+	}
+	
+	public boolean isResetPasswordTokenDisplayed() {
+		return Utilities.isElementHasValue(getLocator(FieldsLogin.RESET_PASSWORD_TOKEN));
 	}
 	
 	public LoginPage forgotPassword(String email, String newPassword, String confirmPassword) {

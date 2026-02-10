@@ -6,14 +6,13 @@ import org.openqa.selenium.WebDriver;
 
 
 public class Constant {
-	
 	// WebDriver
     public static WebDriver WEBDRIVER;  
     
     // Base URL
     public static final String RAILWAY_URL = "http://saferailway.somee.com"; 
     
-    // Username and Password
+    // User name and Password
     public static final String VALID_USERNAME = "phamnam@sharklasers.com";   
     public static final String VALID_PASSWORD = "11111111";     
     public static final String USERNAME_HASNT_ACTIVATED = "phamnam02@sharklasers.com"; 

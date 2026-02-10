@@ -3,7 +3,6 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Common.Utilities;
 import Constant.PageMenu;
 import Guerrilla.GuerrillaHomePage;
 import Constant.Constant;
@@ -14,12 +13,13 @@ public class CreateAccount extends TestBase{
 	public void TC07() {
 		HomePage homePage = new HomePage();
 		RegisterPage registerPage = new RegisterPage();
+		
 		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
 		System.out.println("Pre-condition: an actived account is existing");
 		homePage.open();
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
 		account = PreconditionHelper.createAnAccount(account);
-		registerPage = PreconditionHelper.activeAccount(account);
+		PreconditionHelper.activeAccount(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -31,10 +31,9 @@ public class CreateAccount extends TestBase{
 		System.out.println("Step 4: Click on \"Register\" button");
 		registerPage.registerNewAccount(account);
 		
-		String actualMsg = registerPage.getTextLblMsgGeneralError();
-		String expectedMsg = "This email address is already in use.";
-		
 		System.out.println("VP: Error message \"This email address is already in use.\" displays above the form.");
+		String actualMsg = registerPage.geMsgGeneralError();
+		String expectedMsg = "This email address is already in use.";
 		Assert.assertEquals(actualMsg, expectedMsg.trim(), "Error message is not displayed as expected");
 	}
 	
@@ -42,6 +41,7 @@ public class CreateAccount extends TestBase{
 	public void TC08() {
 		HomePage homePage = new HomePage();
 		RegisterPage registerPage = new RegisterPage();
+		
 		System.out.println("TC08: Verify that user can't create account while password and PID fields are empty");
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -53,19 +53,19 @@ public class CreateAccount extends TestBase{
 		System.out.println("Step 4: Click on \"Register\" button");
 		registerPage = registerPage.registerWithOnlyEmail(Constant.VALID_USERNAME);
 		
-		String actualMsgGeneralError = registerPage.getTextLblMsgGeneralError();
-		String expectedMsgGeneralError = "There're errors in the form. Please correct the errors and try again.";
 		System.out.println("VP: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
+		String actualMsgGeneralError = registerPage.geMsgGeneralError();
+		String expectedMsgGeneralError = "There're errors in the form. Please correct the errors and try again.";
 		Assert.assertEquals(actualMsgGeneralError.replaceFirst("\\.$", ""), expectedMsgGeneralError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
 		
-		String actualMsgPasswordError = registerPage.getTextLblMsgErrorPassword();
-		String expectedMsgPasswordError = "Invalid password length.";
 		System.out.println("VP: Next to password fields, error message \"Invalid password length.\" displays");
+		String actualMsgPasswordError = registerPage.getMsgErrorPassword();
+		String expectedMsgPasswordError = "Invalid password length.";
 		Assert.assertEquals(actualMsgPasswordError.replaceFirst("\\.$", ""), expectedMsgPasswordError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
 		
-		String actualMsgPipError = registerPage.getTextLblMsgErrorPip();
-		String expectedMsgPipError = "Invalid ID length.";
 		System.out.println("VP: Next to PID field, error message \"Invalid ID length.\" displays");
+		String actualMsgPipError = registerPage.getMsgErrorPip();
+		String expectedMsgPipError = "Invalid ID length.";
 		Assert.assertEquals(actualMsgPipError.replaceFirst("\\.$", ""), expectedMsgPipError.trim().replaceFirst("\\.$", ""), "Error message is not displayed as expected");
 	}
 	
@@ -74,6 +74,7 @@ public class CreateAccount extends TestBase{
 		HomePage homePage = new HomePage();
 		RegisterPage registerPage = new RegisterPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
+		
 		System.out.println("TC09: Verify that user create and activate account");
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -88,19 +89,18 @@ public class CreateAccount extends TestBase{
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
 		account = PreconditionHelper.createAnAccount(account);
 		String expectedMsgThankyou = "Thank you for registering your account";
-		String actualMsgThankyou = registerPage.getTextLblMsgThankyou();
+		String actualMsgThankyou = registerPage.getMsgThankyou();
 		
 		registerPage = registerPage.registerNewAccount(account);
 		System.out.println("VP: \"Thank you for registering your account\" is shown");
 		Assert.assertEquals(actualMsgThankyou, expectedMsgThankyou, "Message is not displayed as expected");
 		
 		guerrillaHomePage.open();
-		registerPage = guerrillaHomePage.confirmRegistrationEmail(account.getEmail());
-		
-		String expectedMsgConfirmed = "Registration Confirmed! You can now log in to the site.";
-		String actualMsgConfirmed = registerPage.getTextLblMsgRegistrationConfirmed();
+		guerrillaHomePage.confirmRegistrationEmail(account.getEmail());
 		
 		System.out.println("VP: Redirect to Railways page and message \"Registration Confirmed! You can now log in to the site\" is shown");
+		String expectedMsgConfirmed = "Registration Confirmed! You can now log in to the site.";
+		String actualMsgConfirmed = registerPage.getMsgRegistrationConfirmed();
 		Assert.assertEquals(actualMsgConfirmed, expectedMsgConfirmed, "Message is not displayed as expected");
 	}
 }

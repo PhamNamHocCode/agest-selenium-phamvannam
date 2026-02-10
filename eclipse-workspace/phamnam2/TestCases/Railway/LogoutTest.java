@@ -13,6 +13,7 @@ public class LogoutTest extends TestBase{
 		HomePage homePage = new HomePage();
 		LoginPage loginPage = new LoginPage();
 		FAQPage faqPage = new FAQPage();
+		
 		System.out.println("TC06: Verify that user is redirected to Home page after logging out ");
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();

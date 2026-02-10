@@ -16,11 +16,9 @@ public class CancelBooking extends TestBase{
 	public void TC16() {
 		MyTicketPage myTicketPage = new MyTicketPage();
 		HomePage homePage = new HomePage();
-		RegisterPage registerPage = new RegisterPage();
 		LoginPage loginPage = new LoginPage();
 		BookTicketPage bookTicketPage = new BookTicketPage();
 		PreconditionHelper preconditionHelper = new PreconditionHelper();
-		AssertionHelper assertionHelper  = new AssertionHelper();
 		int ticketAmount = 1;
 		LocalDate targetDate = LocalDate.now();
 		
@@ -30,7 +28,7 @@ public class CancelBooking extends TestBase{
 		
 		RegisterAccount account = PreconditionHelper.createRandomAccount();
 		account = PreconditionHelper.createAnAccount(account);
-		registerPage = PreconditionHelper.activeAccount(account);
+		PreconditionHelper.activeAccount(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -46,9 +44,10 @@ public class CancelBooking extends TestBase{
 		preconditionHelper.bookTicket(bookTicketData);
 		
 		System.out.println("Step 4:  Click on \"My ticket\" tab"); 
+		myTicketPage = bookTicketPage.gotoPage(PageMenu.MY_TICKET, MyTicketPage.class);
+		
 		System.out.println("Step 5: Click on \"Cancel\" button of ticket which user want to cancel");
 		System.out.println("Step 6: Click on \"OK\" button on Confirmation message \"Are you sure?\"");
-		myTicketPage = bookTicketPage.gotoPage(PageMenu.MY_TICKET, MyTicketPage.class);
 		myTicketPage = myTicketPage.cancleBooking(bookTicketData.getDepartFrom(), bookTicketData.getArriveAt());
 		
 		System.out.println("VP: The canceled ticket is disappeared.");

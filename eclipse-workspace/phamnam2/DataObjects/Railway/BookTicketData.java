@@ -6,7 +6,6 @@ import Constant.SeatType;
 import Constant.StationCity;
 
 public class BookTicketData {
-	
 	//Fields
 	private LocalDate departDate;
 	private StationCity departFrom;

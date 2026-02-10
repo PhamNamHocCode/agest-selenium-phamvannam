@@ -1,7 +1,6 @@
 package Constant;
 
 public enum FieldsLogin {
-	
     // Login elements
     USERNAME,
     PASSWORD,

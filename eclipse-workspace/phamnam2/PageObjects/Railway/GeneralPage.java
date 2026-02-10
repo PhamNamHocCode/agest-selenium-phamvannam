@@ -7,20 +7,19 @@ import Constant.Constant;
 import Constant.PageMenu;
 
 public class GeneralPage {
-	
 	// Locators
-	private final By lblWelcomeMessage = By.xpath("//div[@id='banner']//strong");
+	private final By _lblWelcomeMsg = By.xpath("//div[@id='banner']//strong");
 	
 	//Elements
 	protected WebElement getLblWelcomeMessage() {
-		return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
-	}
-	
-	protected String getWelcomeMessage() {
-		return this.getLblWelcomeMessage().getText();
+		return Constant.WEBDRIVER.findElement(_lblWelcomeMsg);
 	}
 	
 	//Methods
+	public String getWelcomeMsg() {
+		return this.getLblWelcomeMessage().getText();
+	}
+	
 	public <T> T gotoPage(PageMenu menu, Class<T> pageClass) {
 		Constant.WEBDRIVER.findElement(menu.getLocator()).click();
 		try {
