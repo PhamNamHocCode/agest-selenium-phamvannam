@@ -27,8 +27,7 @@ public class BookTicket extends TestBase{
 		
 		System.out.println("TC12: Verify that user can book 1 ticket at a time");
 		System.out.println("Pre-condition: an actived account is existing");
-		homePage = homePage.open();
-		
+		homePage = homePage.open();	
 		account = PreconditionHelper.createAnAccount(account);
 		RegisterPage registerPage = homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
 		PreconditionHelper.activateAccount(account);

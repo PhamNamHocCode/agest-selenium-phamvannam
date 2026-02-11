@@ -17,7 +17,7 @@ public class CancelBooking extends TestBase{
 		HomePage homePage = new HomePage();
 		PreconditionHelper preconditionHelper = new PreconditionHelper();
 		int ticketAmount = 1;
-		LocalDate targetDate = LocalDate.now();
+		LocalDate targetDate = LocalDate.now().plusDays(3);
 		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.HUE, SeatType.SBC, ticketAmount);
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 
