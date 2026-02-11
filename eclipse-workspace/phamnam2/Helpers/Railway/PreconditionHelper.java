@@ -47,11 +47,20 @@ public class PreconditionHelper {
 		return new RegisterAccount(
 			Utilities.generateRandomEmail(5),
 			Utilities.generateRandomPassword(5),
-			Utilities.generateRandomPIP(5)
+			Utilities.generateRandomPIP()
 		);
 	}
 	
 	//Book ticket
+	
+	/**
+	 * Fills and submits the book ticket form with provided data
+	 * Null values in BookTicketData are skipped (form defaults are used)
+	 * 
+	 * @param data Ticket booking information
+	 * @return BookTicketPage with booking result
+	 * @throws IllegalStateException if selected date is not available in drop down
+	 */
 	public BookTicketPage bookTicket(BookTicketData data) {
 		BookTicketPage bookTicketPage = new BookTicketPage();
 		

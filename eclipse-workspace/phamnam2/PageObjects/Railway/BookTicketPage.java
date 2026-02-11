@@ -127,6 +127,18 @@ public class BookTicketPage extends GeneralPage{
         select.selectByVisibleText(text);
     }
     
+    /**
+     * Gets cell value from ticket information table using row and column identifiers
+     * 
+     * How it works:
+     * - Finds row by matching cell value (e.g., "Nha Trang")
+     * - Gets value from specified column in that row (e.g., "Depart Station")
+     * 
+     * @param rowValue Value to identify the row (e.g., station name, date)
+     * @param ticketTableCol Column header enum to identify which cell to read
+     * @return Cell text content
+     * @throws NoSuchElementException if row or column not found
+     */
     public  String getTableCellValue(String rowValue, TicketTableCol ticketTableCol) {
         String xpath = String.format(_cellTblXpath,
                 rowValue, ticketTableCol.getDisplayName());

@@ -38,7 +38,14 @@ public class GuerrillaHomePage {
 	protected WebElement getFullEmailAddress() {
 		return Constant.WEBDRIVER.findElement(_fullEmailAddress);
 	}
-
+	
+	/**
+	 * Returns locator for specific email type in inbox
+	 * 
+	 * @param letterKeyword Email type: "Registration" or "ForgotPassword"
+	 * @return By locator to find email in inbox list
+	 * @throws IllegalArgumentException if email type is not supported
+	 */
 	protected By getByEmailLetter(String letterKeyword) {
 		switch (letterKeyword) {
 			case "Registration":
@@ -57,10 +64,12 @@ public class GuerrillaHomePage {
 	}
 
 	// Methods
+	
 	/**
 	 * Creates a new temporary email address on Guerrilla Mail
-	 * @param emailName Desired username for the email
-	 * @return Full email address (username@guerrillamail.com)
+	 * 
+	 * @param emailName Desired username (domain is added automatically by Guerrilla)
+	 * @return Complete email address (e.g., "user12345@guerrillamail.com")
 	 */
 	public String createNewEmail(String emailName) {
 		Utilities.waitForVisible(_editNameBtn, Constant.WAIT_TIMEOUT).click();
@@ -75,6 +84,12 @@ public class GuerrillaHomePage {
 		return this.getFullEmailAddress().getText().trim();
 	}
 
+	/**
+	 * Opens registration confirmation email and clicks activation link
+	 * This switches to the Railway site window after clicking the link
+	 * 
+	 * @param emailName Email user name to check (without domain)
+	 */
 	public void confirmRegistrationEmail(String emailName) {
 		this.getEditNameBtn().click();
 

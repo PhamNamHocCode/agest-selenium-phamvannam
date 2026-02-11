@@ -34,6 +34,14 @@ public class TimetablePage extends GeneralPage{
 		throw new RuntimeException("Header in table not found: " + ticketTableCol.getDisplayName());
 	}
 	
+	/**
+	 * Navigates to book ticket page by clicking "book ticket" link for specific route in timetable
+	 * The resulting BookTicketPage will have departure and arrival stations pre-selected
+	 * 
+	 * @param departStation Departure station for the desired route
+	 * @param arriveStation Arrival station for the desired route
+	 * @return BookTicketPage with pre-filled station information
+	 */
 	public BookTicketPage bookTicketFromTimetable(StationCity departStation, StationCity arriveStation) {
 		int departCol = getColIndexByHeader(TicketTableCol.DEPART_STATION);
 		int arriveCol = getColIndexByHeader(TicketTableCol.ARRIVE_STATION);

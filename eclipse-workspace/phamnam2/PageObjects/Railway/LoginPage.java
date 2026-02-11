@@ -110,6 +110,14 @@ public class LoginPage extends GeneralPage{
 		}
 	}
 	
+	/**
+	 * Attempts to login with provided account credentials
+	 * Returns different page types based on login success
+	 * 
+	 * @param <T> Page type to return (LoginPage on failure, HomePage on success)
+	 * @param account Account with email and/or password (null values are skipped)
+	 * @return LoginPage if login failed, HomePage if successful
+	 */
 	@SuppressWarnings("unchecked")
 	public <T extends GeneralPage> T login(RegisterAccount account) {
 		if (account.getEmail() != null) {
@@ -153,9 +161,16 @@ public class LoginPage extends GeneralPage{
 		return sendInstructions(account.getEmail());
 	}
 	
+	/**
+	 * Enters password information in the reset password form
+	 * 
+	 * @param account Account object containing the new password
+	 * @param confirmPassword Password confirmation value 
+	 * @return LoginPage after submitting the reset password form
+	 */
 	public LoginPage enterResetPassword(RegisterAccount account, String confirmPassword) {
 		this.getTxtNewPassword().clear();
-		this.getTxtNewPassword().sendKeys(account.getEmail());
+		this.getTxtNewPassword().sendKeys(account.getPassword());
 		
 		this.getTxtConfirmNewPassword().clear();
 		this.getTxtConfirmNewPassword().sendKeys(confirmPassword);

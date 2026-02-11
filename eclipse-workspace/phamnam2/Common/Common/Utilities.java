@@ -43,14 +43,14 @@ public class Utilities {
 	
 	/*Data generator*/
 	public static String generateRandomEmail(int limit) {
-		return "user" + getRandomString(5);
+		return "user" + getRandomString(limit);
 	}
 	
 	public static String generateRandomPassword(int limit) {
-		return "password" + getRandomString(5);
+		return "password" + getRandomString(limit);
 	}
 	
-	public static String generateRandomPIP(int limit) {
+	public static String generateRandomPIP() {
 		StringBuilder result = new StringBuilder();
 
 	    result.append((int) (Math.random() * 9) + 1);
@@ -60,7 +60,18 @@ public class Utilities {
 	    }
 	    return result.toString();
     }
-	
+	/**
+	 * Generates a random alphanumeric string of specified length
+	 * Uses base-36 encoding (0-9, a-z) for compact representation
+	 * 
+	 * Strategy:
+	 * 1. Combine time stamp + random number in base-36 for uniqueness
+	 * 2. If result is longer than needed, take last N characters
+	 * 3. If result is shorter, pad with random lower case letters
+	 * 
+	 * @param limit Desired length of the string
+	 * @return Random alphanumeric string of exactly 'limit' length
+	 */
 	private static String getRandomString(int limit) {
 	    String timestamp = Long.toString(System.currentTimeMillis(), 36);
 	    String randomPart = Integer.toString(ThreadLocalRandom.current().nextInt(1000000), 36);
@@ -97,6 +108,17 @@ public class Utilities {
         return waitForVisibleWithRefresh(locator, Constant.WAIT_TIMEOUT);
 	}
 	
+	/**
+	 * Waits for element to be visible. If timeout occurs, refreshes page and retries.
+	 * 
+	 * Use case: When elements are loaded dynamically or may need page refresh to appear
+	 * (e.g., email list that needs refresh to show new email)
+	 * 
+	 * @param locator Element locator
+	 * @param timeout Maximum wait time in seconds for each attempt
+	 * @return WebElement when visible
+	 * @throws TimeoutException if element not visible after refresh and second wait
+	 */
 	public static WebElement  waitForVisibleWithRefresh(By locator, int timeout) {
 	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
 	    
@@ -109,6 +131,15 @@ public class Utilities {
 	    }
 	}
 	
+	/**
+	 * Waits for element to become stale (removed/replaced in DOM)
+	 * Useful when waiting for page elements to refresh (e.g., drop down options reload)
+	 * 
+	 * Note: Silently catches exceptions if element doesn't become stale within timeout.
+	 * This is intentional to avoid breaking flow when element state is uncertain.
+	 * 
+	 * @param element WebElement to wait for staleness
+	 */
 	public static void waitUntilStale(WebElement element) {
 		try {
 			WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.WAIT_TIMEOUT));
@@ -119,18 +150,28 @@ public class Utilities {
 	}
 	
 	/* Switch */
-	public static void switchToPageByUrlContains(String locator) {
+	
+	/**
+	 * Switches to browser window/tab whose URL contains the specified text
+	 * Useful when dealing with multiple windows (e.g., email verification flow)
+	 * 
+	 * Example: switchToPageByUrlContains("safe railway") will switch to Railway site
+	 * 
+	 * @param urlFragment Text that the target window's URL should contain
+	 * @throws RuntimeException if no window with matching URL is found
+	 */
+	public static void switchToPageByUrlContains(String urlFragment) {
         for (String window : Constant.WEBDRIVER.getWindowHandles()) {
         	Constant.WEBDRIVER.switchTo().window(window);
 
             String currentUrl = Constant.WEBDRIVER.getCurrentUrl();
-            if (currentUrl != null && currentUrl.contains(locator)) {
+            if (currentUrl != null && currentUrl.contains(urlFragment)) {
                 return;
             }
         }
 
         throw new RuntimeException(
-            "Cannot switch to window with URL contains: " + locator
+            "Cannot switch to window with URL contains: " + urlFragment
         );
     }
 	
@@ -142,6 +183,16 @@ public class Utilities {
 	}
 	
 	/* Quit Browser */
+	
+	/**
+	 * Closes current browser window/tab and switches to another if available
+	 * Does NOT quit entire browser - only closes current window
+	 * 
+	 * Behavior:
+	 * - If driver is null: do nothing
+	 * - If only 1 window: do nothing (keeps window open)
+	 * - If multiple windows: close current and switch to first remaining window
+	 */
 	public static void closeBrowser() {
 		if (Constant.WEBDRIVER == null) return;
 
