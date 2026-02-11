@@ -17,9 +17,9 @@ public class CreateAccount extends TestBase{
 		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
 		System.out.println("Pre-condition: an actived account is existing");
 		homePage.open();
-		RegisterAccount account = PreconditionHelper.createRandomAccount();
+		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		account = PreconditionHelper.createAnAccount(account);
-		PreconditionHelper.activeAccount(account);
+		PreconditionHelper.activateAccountViaEmail(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -86,13 +86,13 @@ public class CreateAccount extends TestBase{
 		System.out.println("Step 6: Login to the mailbox");
 		System.out.println("Step 7: Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
 		System.out.println("Step 8: Click on the activate link");
-		RegisterAccount account = PreconditionHelper.createRandomAccount();
+		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		account = PreconditionHelper.createAnAccount(account);
+		registerPage = registerPage.registerNewAccount(account);
+		
+		System.out.println("VP: \"Thank you for registering your account\" is shown");
 		String expectedMsgThankyou = "Thank you for registering your account";
 		String actualMsgThankyou = registerPage.getMsgThankyou();
-		
-		registerPage = registerPage.registerNewAccount(account);
-		System.out.println("VP: \"Thank you for registering your account\" is shown");
 		Assert.assertEquals(actualMsgThankyou, expectedMsgThankyou, "Message is not displayed as expected");
 		
 		guerrillaHomePage.open();

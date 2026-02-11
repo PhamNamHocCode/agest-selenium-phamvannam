@@ -28,9 +28,9 @@ public class BookTicket extends TestBase{
 		System.out.println("Pre-condition: an actived account is existing");
 		homePage.open();
 		
-		RegisterAccount account = PreconditionHelper.createRandomAccount();
+		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		account = PreconditionHelper.createAnAccount(account);
-		PreconditionHelper.activeAccount(account);
+		PreconditionHelper.activateAccountViaEmail(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -82,9 +82,9 @@ public class BookTicket extends TestBase{
 		System.out.println("Pre-condition: an actived account is existing");
 		homePage.open();
 		
-		RegisterAccount account = PreconditionHelper.createRandomAccount();
+		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		account = PreconditionHelper.createAnAccount(account);
-		PreconditionHelper.activeAccount(account);
+		PreconditionHelper.activateAccountViaEmail(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -145,9 +145,9 @@ public class BookTicket extends TestBase{
 		System.out.println("Pre-condition: an actived account is existing");
 		homePage.open();
 		
-		RegisterAccount account = PreconditionHelper.createRandomAccount();
+		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		account = PreconditionHelper.createAnAccount(account);
-		PreconditionHelper.activeAccount(account);
+		PreconditionHelper.activateAccountViaEmail(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();
@@ -192,9 +192,9 @@ public class BookTicket extends TestBase{
 		System.out.println("Pre-condition: an actived account is existing");
 		homePage.open();
 		
-		RegisterAccount account = PreconditionHelper.createRandomAccount();
+		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		account = PreconditionHelper.createAnAccount(account);
-		PreconditionHelper.activeAccount(account);
+		PreconditionHelper.activateAccountViaEmail(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage.open();

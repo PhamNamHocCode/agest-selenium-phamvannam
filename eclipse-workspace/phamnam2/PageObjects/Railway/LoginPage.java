@@ -3,7 +3,6 @@ package Railway;
 import Constant.Constant;
 import Constant.PageMenu;
 import Constant.FieldsLogin;
-import Guerrilla.GuerrillaHomePage;
 import Common.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -151,17 +150,13 @@ public class LoginPage extends GeneralPage{
 	
 	public LoginPage forgotPassword(RegisterAccount account) {
 		LoginPage loginPage = new LoginPage();
-		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		loginPage.getLinkForgotPassword().click();
-		loginPage = sendInstructions(account.getEmail());
-		
-		guerrillaHomePage.open();
-		return guerrillaHomePage.confirmForgotPasswordEmail(account.getEmail());
+		return sendInstructions(account.getEmail());
 	}
 	
-	public LoginPage enterResetPassword(String newPassword, String confirmPassword) {
+	public LoginPage enterResetPassword(RegisterAccount account, String confirmPassword) {
 		this.getTxtNewPassword().clear();
-		this.getTxtNewPassword().sendKeys(newPassword);
+		this.getTxtNewPassword().sendKeys(account.getEmail());
 		
 		this.getTxtConfirmNewPassword().clear();
 		this.getTxtConfirmNewPassword().sendKeys(confirmPassword);

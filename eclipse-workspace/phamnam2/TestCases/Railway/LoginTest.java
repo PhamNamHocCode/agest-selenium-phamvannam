@@ -110,7 +110,7 @@ public class LoginTest extends TestBase {
 		System.out.println("TC05: Verify that user can't login with an account hasn't been activated");
 		System.out.println("Pre-condition: a not-active account is existing");
 		homePage.open();
-		RegisterAccount account = PreconditionHelper.createRandomAccount();
+		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		account = PreconditionHelper.createUnactiveAccout(account);
 		registerPage = registerPage.registerNewAccount(account);
 

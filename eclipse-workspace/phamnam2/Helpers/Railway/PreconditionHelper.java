@@ -22,7 +22,7 @@ public class PreconditionHelper {
 		return account;
 	}
 	
-	public static void activeAccount(RegisterAccount account) {
+	public static void activateAccountViaEmail(RegisterAccount account) {
 		RegisterPage registerPage = new RegisterPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		
@@ -45,7 +45,7 @@ public class PreconditionHelper {
 		return account;
 	}
 	
-	public static RegisterAccount createRandomAccount() {
+	public static RegisterAccount generateRandomRegisterAccount() {
 		return new RegisterAccount(
 			Utilities.generateRandomEmail(5),
 			Utilities.generateRandomPassword(5),
