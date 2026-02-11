@@ -86,33 +86,29 @@ public class RegisterPage extends GeneralPage{
 	}
 	
 	public RegisterPage registerNewAccount(RegisterAccount account) {
-		this.getTxtEmail().clear();
-		this.getTxtEmail().sendKeys(account.getEmail());
+		if(account.getEmail() != null) {
+			this.getTxtEmail().clear();
+			this.getTxtEmail().sendKeys(account.getEmail());
+		}
 		
-		this.getTxtPassword().clear();
-		this.getTxtPassword().sendKeys(account.getPassword());
+		if(account.getPassword() != null) {
+			this.getTxtPassword().clear();
+			this.getTxtPassword().sendKeys(account.getPassword());
+			
+			Utilities.scrollToElement(getTxtConfirmPassword());
+			this.getTxtConfirmPassword().clear();
+			this.getTxtConfirmPassword().sendKeys(account.getPassword());
+		}
 		
-		Utilities.scrollToElement(getTxtConfirmPassword());
-		this.getTxtConfirmPassword().clear();
-		this.getTxtConfirmPassword().sendKeys(account.getPassword());
-		
-		Utilities.scrollToElement(getTxtPIPNumber());
-		this.getTxtPIPNumber().clear();
-		this.getTxtPIPNumber().sendKeys(account.getPip());
-		
-		Utilities.scrollToElement(getBtnRegister());
-		this.getBtnRegister().click();
-		
-		return new RegisterPage();
-	}
-	
-	public RegisterPage registerWithOnlyEmail(String registerEmail) {
-		this.getTxtEmail().clear();
-		this.getTxtEmail().sendKeys(registerEmail);
+		if(account.getPip() != null) {
+			Utilities.scrollToElement(getTxtPIPNumber());
+			this.getTxtPIPNumber().clear();
+			this.getTxtPIPNumber().sendKeys(account.getPip());
+		}
 		
 		Utilities.scrollToElement(getBtnRegister());
 		this.getBtnRegister().click();
 		
-		return new RegisterPage();
+		return this;
 	}
 }

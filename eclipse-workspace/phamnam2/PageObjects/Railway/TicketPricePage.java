@@ -8,6 +8,8 @@ import Constant.Constant;
 public class TicketPricePage extends GeneralPage{
 	//Locators
 	private static final By _lblTblHeader = By.xpath("//table[@class='MyTable MedTable']//th[contains(text(), 'Ticket price from')]");
+	
+	//Dynamic locators
 	private static final String _dymSeatType = "//div[@class='DivTable']//td[text()='%s']";
     private static final String _dymSeatPrice = "//div[@class='DivTable']//th[normalize-space()='Price (VND)']/following-sibling::td[%s]";
     
@@ -16,10 +18,6 @@ public class TicketPricePage extends GeneralPage{
 		return Constant.WEBDRIVER.findElement(_lblTblHeader);
 	}
     
-    protected static By getByLblTblHeader() {
-		return _lblTblHeader;
-	}
-	
     //Methods
     public String getTicketPriceTblHeader() {
     	return getLblTblHeader().getText();

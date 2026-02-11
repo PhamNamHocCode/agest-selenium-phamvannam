@@ -9,19 +9,16 @@ import Constant.StationCity;
 import Constant.TicketTableCol;
 
 public class MyTicketPage extends GeneralPage{
-	//Locators
+	// Dynamic locators
 	private static final String _btnCancle = "//input[@value='Cancel']";
 	
 	//Elements
-	protected String getBtnCancle() {
-		return _btnCancle;
-	}
 	
 	//Methods
 	public MyTicketPage cancleBooking(StationCity departStation, StationCity arriveStation) {
 		int departCol = TimetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
 		int arriveCol = TimetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
-		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + getBtnCancle());
+		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + _btnCancle);
 		
 		Utilities.clickByJs(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		

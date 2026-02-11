@@ -101,7 +101,6 @@ public class LoginPage extends GeneralPage{
 		}
 	}
 	
-	
 	// Methods
 	public boolean isLoggedIn () {
 		try {
@@ -112,15 +111,15 @@ public class LoginPage extends GeneralPage{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T extends GeneralPage> T login(String username, String password) {
-		if (username != null) {
+	public <T extends GeneralPage> T login(RegisterAccount account) {
+		if (account.getEmail() != null) {
 	        this.getTxtUsername().clear();
-	        this.getTxtUsername().sendKeys(username);
+	        this.getTxtUsername().sendKeys(account.getEmail());
 	    }
 
-	    if (password != null) {
+	    if (account.getPassword() != null) {
 	        this.getTxtPassword().clear();
-	        this.getTxtPassword().sendKeys(password);
+	        this.getTxtPassword().sendKeys(account.getPassword());
 	    }
 		
 	    Utilities.scrollToElement(this.getBtnLogin());

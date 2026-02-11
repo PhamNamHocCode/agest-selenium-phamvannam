@@ -9,7 +9,6 @@ public class PreconditionHelper {
 	
 	//Account
 	public static RegisterAccount createAnAccount(RegisterAccount account) {
-		HomePage homePage = new HomePage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
 		
@@ -17,12 +16,11 @@ public class PreconditionHelper {
 		account.setEmail(guerrillaHomePage.createNewEmail(account.getEmail()));
 		
 		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
-		homePage.getLinkCreateAccount().click();
 		
 		return account;
 	}
 	
-	public static void activateAccountViaEmail(RegisterAccount account) {
+	public static void activateAccount(RegisterAccount account) {
 		RegisterPage registerPage = new RegisterPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		

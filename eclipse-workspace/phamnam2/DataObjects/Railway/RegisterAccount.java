@@ -24,6 +24,10 @@ public class RegisterAccount {
 	}
 	
 	//Constructor
+	public RegisterAccount(String email, String password) {
+        this(email, password, null);
+    }
+	
 	public RegisterAccount(String email, String password, String pip) {
 		this.email = email;
 		this.password = password;

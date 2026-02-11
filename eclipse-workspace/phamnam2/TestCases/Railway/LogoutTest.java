@@ -11,19 +11,18 @@ public class LogoutTest extends TestBase{
 	@Test
 	public void TC06() {
 		HomePage homePage = new HomePage();
-		LoginPage loginPage = new LoginPage();
-		FAQPage faqPage = new FAQPage();
+		RegisterAccount account = new RegisterAccount(Constant.VALID_USERNAME, Constant.VALID_PASSWORD);
 		
 		System.out.println("TC06: Verify that user is redirected to Home page after logging out ");
 		System.out.println("Step 1: Navigate to QA Railway Website");
-		homePage.open();
+		homePage = homePage.open();
 		
 		System.out.println("Step 2: Login with valid Email and Password");
-		loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
-		homePage = loginPage.login(Constant.VALID_USERNAME, Constant.VALID_PASSWORD);
+		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
+		homePage = loginPage.login(account);
 		
 		System.out.println("Step 3:  Click on 'FAQ' tab");
-		faqPage = homePage.gotoPage(PageMenu.FAQ, FAQPage.class);
+		FAQPage faqPage = homePage.gotoPage(PageMenu.FAQ, FAQPage.class);
 		
 		System.out.println("Step 4: Click on 'Log out' tab");
 		homePage = homePage.gotoPage(PageMenu.LOGOUT, HomePage.class);

@@ -11,12 +11,12 @@ public class HomePage extends GeneralPage{
 	private final By _linkCreateAccount = By.xpath("//div[@id='content']//a[contains(@href, 'Register')]");
 
 	// Elements
-	protected By getLblWelcomeMsg() {
-		return _lblWelcomeMsg;
-	}
-	
 	protected WebElement getLinkCreateAccount() {
 		return Constant.WEBDRIVER.findElement(_linkCreateAccount);
+	}
+	
+	protected WebElement getLblWelcomeMsg() {
+		return Constant.WEBDRIVER.findElement(_lblWelcomeMsg);
 	}
 	
 	// Methods
@@ -29,5 +29,16 @@ public class HomePage extends GeneralPage{
 		return !Constant.WEBDRIVER
 				.findElements(_lblWelcomeMsg)
 				.isEmpty();
+	}
+	
+	public boolean isCreateAccountLinkDisplayed() {
+		return !Constant.WEBDRIVER
+				.findElements(_linkCreateAccount)
+				.isEmpty();
+	}
+	
+	public RegisterPage clickCreateAccountLink() {
+	    getLinkCreateAccount().click();
+	    return new RegisterPage();
 	}
 }

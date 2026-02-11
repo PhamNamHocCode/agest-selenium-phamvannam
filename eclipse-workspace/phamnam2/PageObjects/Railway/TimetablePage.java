@@ -13,6 +13,8 @@ import Constant.TicketTableCol;
 public class TimetablePage extends GeneralPage{
 	//Locators
 	private final static By _tblHeader = By.xpath("//table[contains(@class,'MyTable')]//th");
+	
+	// Dynamic locators
 	private static final String _linkInTbl = "//a[normalize-space()='%s']";
 	
 	//Elements
@@ -20,17 +22,9 @@ public class TimetablePage extends GeneralPage{
 		return Constant.WEBDRIVER.findElement(_tblHeader);
 	}
 	
-	protected static By getByTblHeader() {
-		return _tblHeader;
-	}
-	
 	//Methods
-	public static String getLinkInTbl() {
-		return _linkInTbl;
-	}
-	
 	public static int getColIndexByHeader(TicketTableCol ticketTableCol) {
-		List<WebElement> headers = Constant.WEBDRIVER.findElements(getByTblHeader());
+		List<WebElement> headers = Constant.WEBDRIVER.findElements(_tblHeader);
 		
 		for (int i = 0; i < headers.size(); i++) {
 	        if (headers.get(i).getText().trim().equalsIgnoreCase(ticketTableCol.getDisplayName())) {
@@ -44,7 +38,7 @@ public class TimetablePage extends GeneralPage{
 		int departCol = getColIndexByHeader(TicketTableCol.DEPART_STATION);
 		int arriveCol = getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
 		
-		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(getLinkInTbl(), "book ticket"));
+		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(_linkInTbl, "book ticket"));
 		
 		Utilities.scrollToElement(linkCheckPrice);
 		Utilities.clickByJs(Constant.WEBDRIVER.findElement(linkCheckPrice));
@@ -55,7 +49,7 @@ public class TimetablePage extends GeneralPage{
 	public TicketPricePage clickCheckPriceLink(StationCity departStation, StationCity arriveStation) {
 		int departCol = TimetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
 		int arriveCol = TimetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
-		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(TimetablePage.getLinkInTbl(), "check price"));
+		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + String.format(_linkInTbl, "check price"));
 		
 		Utilities.clickByJs(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
