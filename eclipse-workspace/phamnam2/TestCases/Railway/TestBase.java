@@ -22,7 +22,7 @@ public class TestBase {
 			Constant.WEBDRIVER = new FirefoxDriver();
 		}
 		else {
-			throw new RuntimeException("Unsuported browser: "+ runBrowser);
+			throw new RuntimeException("Unsupported browser: "+ runBrowser);
 		}
 		System.out.println("Pre-condition");
 		

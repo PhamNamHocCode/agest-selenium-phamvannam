@@ -1,7 +1,7 @@
 package Constant;
 
 public enum TicketTableCol {
-	//Table column
+	//Ticket table column headers
     DEPART_STATION("Depart Station"),
     ARRIVE_STATION("Arrive Station"),
     SEAT_TYPE("Seat Type"),

@@ -10,15 +10,15 @@ import Constant.TicketTableCol;
 
 public class MyTicketPage extends GeneralPage{
 	// Dynamic locators
-	private static final String _btnCancle = "//input[@value='Cancel']";
+	private static final String _btnCancel = "//input[@value='Cancel']";
 	
 	//Elements
 	
 	//Methods
-	public MyTicketPage cancleBooking(StationCity departStation, StationCity arriveStation) {
+	public MyTicketPage cancelBooking(StationCity departStation, StationCity arriveStation) {
 		int departCol = TimetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
 		int arriveCol = TimetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
-		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + _btnCancle);
+		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + _btnCancel);
 		
 		Utilities.clickByJs(Constant.WEBDRIVER.findElement(linkCheckPrice));
 		
@@ -28,7 +28,7 @@ public class MyTicketPage extends GeneralPage{
 		return new MyTicketPage();
 	}
 	
-	public boolean isTicketCancled(int departCol, int arriveCol, BookTicketData bookTicketData) {
+	public boolean isTicketCanceled(int departCol, int arriveCol, BookTicketData bookTicketData) {
 		By bookedTicket = By.xpath(TableHelper.getRowBy2Cols(departCol, bookTicketData.getDepartFrom().getDisplayText(), arriveCol, bookTicketData.getArriveAt().getDisplayText()));
 		
 		Boolean actualResult = Constant.WEBDRIVER.findElements(bookedTicket).size() > 0;

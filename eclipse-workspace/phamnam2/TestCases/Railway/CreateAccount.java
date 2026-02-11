@@ -15,7 +15,7 @@ public class CreateAccount extends TestBase{
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		String expectedMsg = "This email address is already in use.";
 
-		System.out.println("TC07: Verify that user is redirected to Home page after logging out ");
+		System.out.println("TC07: User can't create account with an already in-use email");
 		System.out.println("Pre-condition: an actived account is existing");
 		homePage = homePage.open();
 		

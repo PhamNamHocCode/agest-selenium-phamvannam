@@ -29,7 +29,7 @@ public class PreconditionHelper {
 		guerrillaHomePage.confirmRegistrationEmail(account.getEmail());
 	}
 	
-	public static RegisterAccount createUnactiveAccout(RegisterAccount account) {
+	public static RegisterAccount createInactiveAccount(RegisterAccount account) {
 		RegisterPage registerPage = new RegisterPage();
 		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
 		

@@ -6,7 +6,7 @@ public class RegisterAccount {
 	private String password;
 	private String pip;
 	
-	//Elements
+	//Getters
 	public String getEmail() {
 		return email;
 	}
@@ -19,6 +19,7 @@ public class RegisterAccount {
 		return pip;
 	}
 	
+	//Setters
 	public void setEmail(String email) {
 		this.email = email;
 	}

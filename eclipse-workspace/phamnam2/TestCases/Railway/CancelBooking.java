@@ -46,12 +46,12 @@ public class CancelBooking extends TestBase{
 		
 		System.out.println("Step 5: Click on \"Cancel\" button of ticket which user want to cancel");
 		System.out.println("Step 6: Click on \"OK\" button on Confirmation message \"Are you sure?\"");
-		myTicketPage = myTicketPage.cancleBooking(bookTicketData.getDepartFrom(), bookTicketData.getArriveAt());
+		myTicketPage = myTicketPage.cancelBooking(bookTicketData.getDepartFrom(), bookTicketData.getArriveAt());
 		
 		System.out.println("VP: The canceled ticket is disappeared.");
 		int departCol = TimetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
 		int arriveCol = TimetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
-		Boolean actualResult = myTicketPage.isTicketCancled(departCol, arriveCol, bookTicketData);
+		Boolean actualResult = myTicketPage.isTicketCanceled(departCol, arriveCol, bookTicketData);
 		
 		Assert.assertFalse(actualResult, "The canceled ticket is not disappeared");
 

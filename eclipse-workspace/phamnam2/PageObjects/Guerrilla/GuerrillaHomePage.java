@@ -27,7 +27,7 @@ public class GuerrillaHomePage {
 		return Constant.WEBDRIVER.findElement(_txtName);
 	}
 
-	protected WebElement getLinkConfirmAccout() {
+	protected WebElement getLinkConfirmAccount() {
 		return Constant.WEBDRIVER.findElement(_linkConfirmAccount);
 	}
 
@@ -57,6 +57,11 @@ public class GuerrillaHomePage {
 	}
 
 	// Methods
+	/**
+	 * Creates a new temporary email address on Guerrilla Mail
+	 * @param emailName Desired username for the email
+	 * @return Full email address (username@guerrillamail.com)
+	 */
 	public String createNewEmail(String emailName) {
 		Utilities.waitForVisible(_editNameBtn, Constant.WAIT_TIMEOUT).click();
 		this.getTxtName().clear();

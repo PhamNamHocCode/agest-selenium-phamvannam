@@ -13,16 +13,19 @@ public class BookTicketData {
 	private SeatType seatType;
 	private int ticketAmount;
 	
-	//Elements
+	//Getters
 	public LocalDate getDepartDate() {
 		return departDate;
 	}
+	
 	public StationCity getDepartFrom() {
 		return departFrom;
 	}
+	
 	public StationCity getArriveAt() {
 		return arriveAt;
 	}
+	
 	public SeatType getSeatType() {
 		if(seatType == null) {
 			return SeatType.HS;
@@ -31,19 +34,24 @@ public class BookTicketData {
 			return seatType;
 		}
 	}
+	
 	public int getTicketAmount() {
 		return ticketAmount;
 	}
 	
+	// Setters
 	public void setDepartDate(LocalDate departDate) {
 		this.departDate = departDate;
 	}
+	
 	public void setDepartFrom(StationCity departFrom) {
 		this.departFrom = departFrom;
 	}
+	
 	public void setArriveAt(StationCity arriveAt) {
 		this.arriveAt = arriveAt;
 	}
+	
 	public void setSeatType(SeatType seatType) {
 		if(seatType == null) {
 			seatType = SeatType.HS;
@@ -52,6 +60,7 @@ public class BookTicketData {
 			this.seatType = seatType;
 		}
 	}
+	
 	public void setTicketAmount(int ticketAmount) {
 		this.ticketAmount = ticketAmount;
 	}

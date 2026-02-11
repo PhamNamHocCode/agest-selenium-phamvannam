@@ -116,7 +116,7 @@ public class LoginTest extends TestBase {
 		System.out.println("Pre-condition: a not-active account is existing");
 		homePage = homePage.open();
 		
-		unactivatedAccount = PreconditionHelper.createUnactiveAccout(unactivatedAccount);
+		unactivatedAccount = PreconditionHelper.createInactiveAccount(unactivatedAccount);
 		registerPage = registerPage.registerNewAccount(unactivatedAccount);
 
 		System.out.println("Step 1: Navigate to QA Railway Website");
