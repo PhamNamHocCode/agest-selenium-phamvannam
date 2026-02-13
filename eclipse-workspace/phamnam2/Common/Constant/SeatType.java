@@ -2,12 +2,12 @@ package Constant;
 
 public enum SeatType {
 	// Seat type options
-	HS("Hard seat"),
-    SS("Soft seat"),
-    SSC("Soft seat with air conditioner"),
-    HB("Hard bed"),
-    SB("Soft bed"),
-    SBC("Soft bed with air conditioner");
+	HARD_SEAT("Hard seat"),
+    SOFT_SEAT("Soft seat"),
+    SOFT_SEAT_WITH_AIR_CONDITIONER("Soft seat with air conditioner"),
+    HARD_BED("Hard bed"),
+    SOFT_BED("Soft bed"),
+    SOFT_BED_WITH_AIR_CONDITIONER("Soft bed with air conditioner");
 
 	// Display text
     private final String seatType;

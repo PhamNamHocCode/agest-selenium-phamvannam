@@ -43,7 +43,7 @@ public class BookTicket extends TestBase{
 		System.out.println("Step 6: Select \"Soft bed with air conditioner\" for \"Seat type\""); 
 		System.out.println("Step 7: Select \"1\" for \"Ticket amount\""); 
 		System.out.println("Step 8: Click on \"Book ticket\" button"); 
-		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.HUE, SeatType.SBC, ticketAmout);
+		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.HUE, SeatType.SOFT_BED_WITH_AIR_CONDITIONER, ticketAmout);
 		bookTicketPage = bookTicketPage.bookTicket(bookTicketData);
 		
 		System.out.println("VP: Message \"Ticket booked successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
@@ -93,7 +93,7 @@ public class BookTicket extends TestBase{
 		System.out.println("Step 7: Select \"5\" for \"Ticket amount\""); 
 		System.out.println("Step 8: Click on \"Book ticket\" button"); 
 		LocalDate targetDate = bookTicketPage.getSelectedDepartDate(25, Constant.DATE_FORMAT);
-		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.SAI_GON, SeatType.SSC, ticketAmout);
+		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.SAI_GON, SeatType.SOFT_SEAT_WITH_AIR_CONDITIONER, ticketAmout);
 		bookTicketPage = bookTicketPage.bookTicket(bookTicketData);
 		
 		System.out.println("VP: Message \"Ticket booked successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
@@ -122,12 +122,12 @@ public class BookTicket extends TestBase{
 		StationCity departStation = StationCity.DA_NANG;
 		StationCity arriveStation = StationCity.SAI_GON;
 		Map<SeatType, String> prices = new EnumMap<>(SeatType.class);
-		prices.put(SeatType.HS, "310000");
-		prices.put(SeatType.SS, "335000");
-		prices.put(SeatType.SSC, "360000");
-		prices.put(SeatType.HB, "410000");
-		prices.put(SeatType.SB, "460000");
-		prices.put(SeatType.SBC, "510000");
+		prices.put(SeatType.HARD_SEAT, "310000");
+		prices.put(SeatType.SOFT_SEAT, "335000");
+		prices.put(SeatType.SOFT_SEAT_WITH_AIR_CONDITIONER, "360000");
+		prices.put(SeatType.HARD_BED, "410000");
+		prices.put(SeatType.SOFT_BED, "460000");
+		prices.put(SeatType.SOFT_BED_WITH_AIR_CONDITIONER, "510000");
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		String expectedHeaderMsg = "Ticket price from Đà Nẵng to Sài Gòn";
 

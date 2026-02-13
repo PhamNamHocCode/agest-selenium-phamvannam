@@ -28,7 +28,7 @@ public class BookTicketData {
 	
 	public SeatType getSeatType() {
 		if(seatType == null) {
-			return SeatType.HS;
+			return SeatType.HARD_SEAT;
 		}
 		else {
 			return seatType;
@@ -54,7 +54,7 @@ public class BookTicketData {
 	
 	public void setSeatType(SeatType seatType) {
 		if(seatType == null) {
-			seatType = SeatType.HS;
+			seatType = SeatType.HARD_SEAT;
 		}
 		else {
 			this.seatType = seatType;

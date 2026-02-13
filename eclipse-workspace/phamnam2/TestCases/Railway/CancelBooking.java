@@ -18,7 +18,7 @@ public class CancelBooking extends TestBase{
 		TimetablePage timetablePage = new TimetablePage();
 		int ticketAmount = 1;
 		LocalDate targetDate = LocalDate.now().plusDays(3);
-		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.HUE, SeatType.SBC, ticketAmount);
+		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.HUE, SeatType.SOFT_BED_WITH_AIR_CONDITIONER, ticketAmount);
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 
 		System.out.println("TC16: Verify that user can cancel a ticket");
