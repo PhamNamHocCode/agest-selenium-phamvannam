@@ -8,7 +8,23 @@ import Guerrilla.GuerrillaHomePage;
 public class PreconditionHelper {
 	
 	//Account
-	public static RegisterAccount createAnAccount(RegisterAccount account) {
+	public static RegisterAccount createAnActiveAccount(RegisterAccount account) {
+		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
+		HomePage homePage = new HomePage();
+		homePage = homePage.open();
+		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
+		
+		Utilities.openUrlInNewTab(Constant.GUERRILLA_URL);
+		String guerrillaHanlde = Constant.WEBDRIVER.getWindowHandle();
+		account.setEmail(guerrillaHomePage.createNewEmail(account.getEmail()));
+		
+		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
+		RegisterPage registerPage = homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
+		PreconditionHelper.activateAccount(account, guerrillaHanlde);
+		return account;
+	}
+	
+	public static RegisterAccount createAnEmail(RegisterAccount account) {
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
 		
@@ -16,30 +32,28 @@ public class PreconditionHelper {
 		account.setEmail(guerrillaHomePage.createNewEmail(account.getEmail()));
 		
 		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
-		
 		return account;
 	}
 	
-	public static void activateAccount(RegisterAccount account) {
+	public static void activateAccount(RegisterAccount account, String guerrillaHanlde) {
 		RegisterPage registerPage = new RegisterPage();
 		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		
 		registerPage = registerPage.registerNewAccount(account);
-		guerrillaHomePage.open();
+		Constant.WEBDRIVER.switchTo().window(guerrillaHanlde);
 		guerrillaHomePage.confirmRegistrationEmail(account.getEmail());
 	}
 	
 	public static RegisterAccount createInactiveAccount(RegisterAccount account) {
 		RegisterPage registerPage = new RegisterPage();
+		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		String railwayHanlde = Constant.WEBDRIVER.getWindowHandle();
 		
 		Utilities.openUrlInNewTab(Constant.GUERRILLA_URL);
-		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		account.setEmail(guerrillaHomePage.createNewEmail(account.getEmail()));
 
 		Constant.WEBDRIVER.switchTo().window(railwayHanlde);
 		registerPage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
-		
 		return account;
 	}
 	
@@ -51,44 +65,7 @@ public class PreconditionHelper {
 		);
 	}
 	
-	//Book ticket
 	
-	/**
-	 * Fills and submits the book ticket form with provided data
-	 * Null values in BookTicketData are skipped (form defaults are used)
-	 * 
-	 * @param data Ticket booking information
-	 * @return BookTicketPage with booking result
-	 * @throws IllegalStateException if selected date is not available in drop down
-	 */
-	public BookTicketPage bookTicket(BookTicketData data) {
-		BookTicketPage bookTicketPage = new BookTicketPage();
-		
-		if (data.getDepartDate() != null) {
-			if (!BookTicketPage.isDepartDateAvailable(Utilities.formatDate(data.getDepartDate()))) {
-			    throw new IllegalStateException(
-			        "Cannot select a date because select does not have a suitable date option: " + Utilities.formatDate(data.getDepartDate())
-			    );
-			}
-			BookTicketPage.selectDepartDate(data.getDepartDate());
-		}
-		if (data.getDepartFrom() != null) {
-			BookTicketPage.selectDepartFrom(data.getDepartFrom());
-		}
-		if (data.getArriveAt() != null) {
-			bookTicketPage.waintUntilArriveStationRefreshed();
-			BookTicketPage.selectArriveAt(data.getArriveAt());
-		}
-		if (data.getSeatType() != null) {
-			BookTicketPage.selectSeatType(data.getSeatType());
-		}
-		BookTicketPage.selectTicketAmount(data.getTicketAmount());
-        
-        Utilities.scrollToElement(BookTicketPage.getBtnBookTicket());
-        BookTicketPage.clickBookTicket();
-
-        return new BookTicketPage();
-    }
 	
 	
 }

@@ -15,7 +15,7 @@ public class CancelBooking extends TestBase{
 	@Test
 	public void TC16() {
 		HomePage homePage = new HomePage();
-		PreconditionHelper preconditionHelper = new PreconditionHelper();
+		TimetablePage timetablePage = new TimetablePage();
 		int ticketAmount = 1;
 		LocalDate targetDate = LocalDate.now().plusDays(3);
 		BookTicketData bookTicketData = new BookTicketData(targetDate, StationCity.NHA_TRANG, StationCity.HUE, SeatType.SBC, ticketAmount);
@@ -23,11 +23,7 @@ public class CancelBooking extends TestBase{
 
 		System.out.println("TC16: Verify that user can cancel a ticket");
 		System.out.println("Pre-condition: an actived account is existing");
-		homePage = homePage.open();
-		
-		account = PreconditionHelper.createAnAccount(account);
-		RegisterPage registerPage = homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
-		PreconditionHelper.activateAccount(account);
+		account = PreconditionHelper.createAnActiveAccount(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
 		homePage = homePage.open();
@@ -39,7 +35,7 @@ public class CancelBooking extends TestBase{
 		System.out.println("Step 3: Book a ticket"); 
 		BookTicketPage bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
 		
-		bookTicketPage = preconditionHelper.bookTicket(bookTicketData);
+		bookTicketPage = bookTicketPage.bookTicket(bookTicketData);
 		
 		System.out.println("Step 4:  Click on \"My ticket\" tab"); 
 		MyTicketPage myTicketPage = bookTicketPage.gotoPage(PageMenu.MY_TICKET, MyTicketPage.class);
@@ -49,8 +45,8 @@ public class CancelBooking extends TestBase{
 		myTicketPage = myTicketPage.cancelBooking(bookTicketData.getDepartFrom(), bookTicketData.getArriveAt());
 		
 		System.out.println("VP: The canceled ticket is disappeared.");
-		int departCol = TimetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
-		int arriveCol = TimetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
+		int departCol = timetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
+		int arriveCol = timetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
 		Boolean actualResult = myTicketPage.isTicketCanceled(departCol, arriveCol, bookTicketData);
 		
 		Assert.assertFalse(actualResult, "The canceled ticket is not disappeared");

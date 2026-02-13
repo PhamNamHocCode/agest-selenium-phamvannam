@@ -6,19 +6,19 @@ import org.openqa.selenium.WebElement;
 import Constant.Constant;
 
 public class TicketPricePage extends GeneralPage{
-	//Locators
-	private static final By _lblTblHeader = By.xpath("//table[@class='MyTable MedTable']//th[contains(text(), 'Ticket price from')]");
+	// Locators
+	private final By _lblTblHeader = By.xpath("//table[@class='MyTable MedTable']//th[contains(text(), 'Ticket price from')]");
 	
-	//Dynamic locators
-	private static final String _dymSeatType = "//div[@class='DivTable']//td[text()='%s']";
-    private static final String _dymSeatPrice = "//div[@class='DivTable']//th[normalize-space()='Price (VND)']/following-sibling::td[%s]";
+	// Dynamic locators
+	private final String _dymSeatType = "//div[@class='DivTable']//td[text()='%s']";
+    private final String _dymSeatPrice = "//div[@class='DivTable']//th[normalize-space()='Price (VND)']/following-sibling::td[%s]";
     
-    //Elements
-    protected static WebElement getLblTblHeader() {
+    // Elements
+    private WebElement getLblTblHeader() {
 		return Constant.WEBDRIVER.findElement(_lblTblHeader);
 	}
     
-    //Methods
+    // Methods
     public String getTicketPriceTblHeader() {
     	return getLblTblHeader().getText();
     }

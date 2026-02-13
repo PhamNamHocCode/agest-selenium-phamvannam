@@ -15,51 +15,70 @@ import org.openqa.selenium.support.ui.Select;
 import Common.Utilities;
 
 public class BookTicketPage extends GeneralPage{
-	//Locators
-	private static final By _slbDepartDate = By.xpath("//select[@name='Date']");
-	private static final By _slbDepartFrom = By.xpath("//select[@name='DepartStation']");
-	private static final By _slbArriveAt = By.xpath("//select[@name='ArriveStation']");
-	private static final By _slbSeatType = By.xpath("//select[@name='SeatType']");
-	private static final By _slbTicketAmount = By.xpath("//select[@name='TicketAmount']");
-	private static final By _btnBookTicket = By.xpath("//input[@value='Book ticket']");
-	private static final By _lblCenterMsg = By.xpath("//div[@id='content']//h1");
-	private static final String _cellTblXpath = "//tr[td[normalize-space()='%s']]/td[count(//table//th[normalize-space()='%s']/preceding-sibling::th) + 1]";
+	// Locators
+	private final By _slbDepartDate = By.xpath("//select[@name='Date']");
+	private final By _slbDepartFrom = By.xpath("//select[@name='DepartStation']");
+	private final By _slbArriveAt = By.xpath("//select[@name='ArriveStation']");
+	private final By _slbSeatType = By.xpath("//select[@name='SeatType']");
+	private final By _slbTicketAmount = By.xpath("//select[@name='TicketAmount']");
+	private final By _btnBookTicket = By.xpath("//input[@value='Book ticket']");
+	private final By _lblCenterMsg = By.xpath("//div[@id='content']//h1");
+	
+	// Dynamic locators
+	private final String _cellTblXpath = "//tr[td[normalize-space()='%s']]/td[count(//table//th[normalize-space()='%s']/preceding-sibling::th) + 1]";
 	
 	// Elements
-	protected static WebElement getSlbDepartDate() {
+	private WebElement getSlbDepartDate() {
 		return Constant.WEBDRIVER.findElement(_slbDepartDate);
 	}
 	
-	protected static WebElement getSlbDepartFrom() {
+	private WebElement getSlbDepartFrom() {
 		return Constant.WEBDRIVER.findElement(_slbDepartFrom);
 	}
 	
-	protected static WebElement getSlbArriveAt() {
+	private WebElement getSlbArriveAt() {
 		return Constant.WEBDRIVER.findElement(_slbArriveAt);
 	}
 	
-	protected static WebElement getSlbSeatType() {
-		return Constant.WEBDRIVER.findElement(_slbSeatType);
-	}
-	
-	protected static WebElement getSlbTicketAmount() {
-		return Constant.WEBDRIVER.findElement(_slbTicketAmount);
-	}
-	
-	protected static WebElement getBtnBookTicket() {
+	private WebElement getBtnBookTicket() {
 		return Constant.WEBDRIVER.findElement(_btnBookTicket);
 	}
 	
-	protected static WebElement getLblCenterMsg() {
+	private WebElement getLblCenterMsg() {
 		return Constant.WEBDRIVER.findElement(_lblCenterMsg);
 	}
 	
-	protected static String getTblCellXpath() {
-		return _cellTblXpath;
-	}
-	
 	// Methods
-	public static boolean isDepartDateAvailable(String expectedDate) {
+	public BookTicketPage bookTicket(BookTicketData data) {
+		BookTicketPage bookTicketPage = new BookTicketPage();
+		
+		if (data.getDepartDate() != null) {
+			if (!bookTicketPage.isDepartDateAvailable(Utilities.formatDate(data.getDepartDate()))) {
+			    throw new IllegalStateException(
+			        "Cannot select a date because select does not have a suitable date option: " + Utilities.formatDate(data.getDepartDate())
+			    );
+			}
+			bookTicketPage.selectDepartDate(data.getDepartDate());
+		}
+		if (data.getDepartFrom() != null) {
+			bookTicketPage.selectDepartFrom(data.getDepartFrom());
+		}
+		if (data.getArriveAt() != null) {
+			bookTicketPage.waintUntilArriveStationRefreshed();
+			bookTicketPage.selectArriveAt(data.getArriveAt());
+		}
+		if (data.getSeatType() != null) {
+			bookTicketPage.selectSeatType(data.getSeatType());
+		}
+		bookTicketPage.selectTicketAmount(data.getTicketAmount());
+        
+        Utilities.scrollToElement(bookTicketPage.getBtnBookTicket());
+        bookTicketPage.clickBookTicket();
+
+        return bookTicketPage;
+    }
+	
+	public boolean isDepartDateAvailable(String expectedDate) {
 		Select select = new Select(getSlbDepartDate());
 		
 		return select.getOptions().stream().anyMatch(
@@ -91,35 +110,33 @@ public class BookTicketPage extends GeneralPage{
 		Utilities.waitUntilStale(element);
 	}
 	
-    //Low levels actions
-	public static void selectDepartDate(LocalDate date) {
+	public void selectDepartDate(LocalDate date) {
         WebElement element =
                 Constant.WEBDRIVER.findElement(_slbDepartDate);
         element.sendKeys(Utilities.formatDate(date));
     }
 
-    public static void selectDepartFrom(StationCity city) {
+    public void selectDepartFrom(StationCity city) {
         selectByVisibleText(_slbDepartFrom, city.getDisplayText());
     }
 
-    public static void selectArriveAt(StationCity city) {
+    public void selectArriveAt(StationCity city) {
         selectByVisibleText(_slbArriveAt, city.getDisplayText());
     }
 
-    public static void selectSeatType(SeatType seatType) {
+    public void selectSeatType(SeatType seatType) {
         selectByVisibleText(_slbSeatType, seatType.getDisplayText());
     }
 
-    public static void selectTicketAmount(int amount) {
+    public void selectTicketAmount(int amount) {
         selectByVisibleText(_slbTicketAmount, String.valueOf(amount));
     }
 
-    public static void clickBookTicket() {
+    public void clickBookTicket() {
         Constant.WEBDRIVER.findElement(_btnBookTicket).click();
     }
 
-    // Helper
-    public static void selectByVisibleText(By locator, String text) {
+    public void selectByVisibleText(By locator, String text) {
     	
         Select select = new Select(
         	Utilities.waitForVisible(locator)
@@ -127,18 +144,6 @@ public class BookTicketPage extends GeneralPage{
         select.selectByVisibleText(text);
     }
     
-    /**
-     * Gets cell value from ticket information table using row and column identifiers
-     * 
-     * How it works:
-     * - Finds row by matching cell value (e.g., "Nha Trang")
-     * - Gets value from specified column in that row (e.g., "Depart Station")
-     * 
-     * @param rowValue Value to identify the row (e.g., station name, date)
-     * @param ticketTableCol Column header enum to identify which cell to read
-     * @return Cell text content
-     * @throws NoSuchElementException if row or column not found
-     */
     public  String getTableCellValue(String rowValue, TicketTableCol ticketTableCol) {
         String xpath = String.format(_cellTblXpath,
                 rowValue, ticketTableCol.getDisplayName());

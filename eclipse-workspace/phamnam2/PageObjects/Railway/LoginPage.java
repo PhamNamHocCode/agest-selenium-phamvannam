@@ -8,72 +8,64 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends GeneralPage{
-	//Locators
-	private final static By _txtUsername = By.xpath("//input[@id='username']");
-	private final static By _txtPassword= By.xpath("//input[@id='password']");
+	// Locators
+	private final By _txtUsername = By.xpath("//input[@id='username']");
+	private final By _txtPassword= By.xpath("//input[@id='password']");
 	private final By _btnLogin = By.xpath("//input[@value='login']");
-	private final static By _lblLoginErrorMsg = By.xpath("//div[@id='content']//p[contains(@class, 'message error LoginForm')]");
-	private final static By _linkForgotPassword = By.xpath("//div[@id='content']//a[contains(@href,'ForgotPassword')]");
+	private final By _lblLoginErrorMsg = By.xpath("//div[@id='content']//p[contains(@class, 'message error LoginForm')]");
+	private final By _linkForgotPassword = By.xpath("//div[@id='content']//a[contains(@href,'ForgotPassword')]");
 	private final By _txtEmailForgotPassword = By.xpath("//input[@id='email']");
 	private final By _btnSendInstructions = By.xpath("//div[@id='content']//input[@value='Send Instructions']");
 	private final By _txtNewPassword = By.xpath("//input[@id='newPassword']");
 	private final By _txtConfirmNewPassword = By.xpath("//input[@id='confirmPassword']");
 	private final By _btnResetPassword = By.xpath("//input[@value='Reset Password']");
-	private final static By _txtResetPasswordToken = By.xpath("//input[@id='resetToken']");
-	private final static By _lblForgotPasswordGeneralMsg = By.xpath("//div[@id='content']//p[contains(@class,'message')]");
-	private final static By _lblForgotPasswordConfirmPasswordMsg = By.xpath("//label[@for='confirmPassword' and @class='validation-error']");
+	private final By _txtResetPasswordToken = By.xpath("//input[@id='resetToken']");
+	private final By _lblForgotPasswordGeneralMsg = By.xpath("//div[@id='content']//p[contains(@class,'message')]");
+	private final By _lblForgotPasswordConfirmPasswordMsg = By.xpath("//label[@for='confirmPassword' and @class='validation-error']");
 	
 	// Elements
-	protected WebElement getTxtUsername() {
+	private WebElement getTxtUsername() {
 		return Constant.WEBDRIVER.findElement(_txtUsername);
 	}
 	
-	protected WebElement getTxtPassword() {
+	private WebElement getTxtPassword() {
 		return Constant.WEBDRIVER.findElement(_txtPassword);
 	}
 
-	protected WebElement getBtnLogin() {
+	private WebElement getBtnLogin() {
 		return Constant.WEBDRIVER.findElement(_btnLogin);
 	}
 	
-	protected WebElement getLblLoginErrorMsg() {
+	private WebElement getLblLoginErrorMsg() {
 		return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
 	}
 	
-	protected WebElement getLinkForgotPassword() {
+	private WebElement getLinkForgotPassword() {
 		return Constant.WEBDRIVER.findElement(_linkForgotPassword);
 	}
 	
-	protected WebElement getTxtEmailForgotPassword() {
-		return Constant.WEBDRIVER.findElement(_txtEmailForgotPassword);
-	}
-	
-	protected WebElement getTxtNewPassword() {
+	private WebElement getTxtNewPassword() {
 		return Constant.WEBDRIVER.findElement(_txtNewPassword);
 	}
 	
-	protected WebElement getTxtConfirmNewPassword() {
+	private WebElement getTxtConfirmNewPassword() {
 		return Constant.WEBDRIVER.findElement(_txtConfirmNewPassword);
 	}
 	
-	protected WebElement getBtnResetPassword() {
+	private WebElement getBtnResetPassword() {
 		return Constant.WEBDRIVER.findElement(_btnResetPassword);
 	}
 	
-	protected WebElement getTxtResetPasswordToken() {
-		return Constant.WEBDRIVER.findElement(_txtResetPasswordToken);
-	}
-	
-	protected WebElement getLblForgotPasswordGeneralMsg() {
+	private WebElement getLblForgotPasswordGeneralMsg() {
 		Utilities.waitForVisible(_lblForgotPasswordGeneralMsg);
 		return Constant.WEBDRIVER.findElement(_lblForgotPasswordGeneralMsg);
 	}
 	
-	protected WebElement getLblForgotPasswordConfirmPasswordMsg() {
+	private WebElement getLblForgotPasswordConfirmPasswordMsg() {
 		return Constant.WEBDRIVER.findElement(_lblForgotPasswordConfirmPasswordMsg);
 	}
 	
-	protected static By getLocator(FieldsLogin element) {
+	private By getLocator(FieldsLogin element) {
 		switch (element) {
         case USERNAME:
             return _txtUsername;
@@ -110,14 +102,6 @@ public class LoginPage extends GeneralPage{
 		}
 	}
 	
-	/**
-	 * Attempts to login with provided account credentials
-	 * Returns different page types based on login success
-	 * 
-	 * @param <T> Page type to return (LoginPage on failure, HomePage on success)
-	 * @param account Account with email and/or password (null values are skipped)
-	 * @return LoginPage if login failed, HomePage if successful
-	 */
 	@SuppressWarnings("unchecked")
 	public <T extends GeneralPage> T login(RegisterAccount account) {
 		if (account.getEmail() != null) {
@@ -161,13 +145,6 @@ public class LoginPage extends GeneralPage{
 		return sendInstructions(account.getEmail());
 	}
 	
-	/**
-	 * Enters password information in the reset password form
-	 * 
-	 * @param account Account object containing the new password
-	 * @param confirmPassword Password confirmation value 
-	 * @return LoginPage after submitting the reset password form
-	 */
 	public LoginPage enterResetPassword(RegisterAccount account, String confirmPassword) {
 		this.getTxtNewPassword().clear();
 		this.getTxtNewPassword().sendKeys(account.getPassword());

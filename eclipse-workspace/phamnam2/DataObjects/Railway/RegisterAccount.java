@@ -25,6 +25,8 @@ public class RegisterAccount {
 	}
 	
 	//Constructor
+	public RegisterAccount () {}
+	
 	public RegisterAccount(String email, String password) {
         this(email, password, null);
     }

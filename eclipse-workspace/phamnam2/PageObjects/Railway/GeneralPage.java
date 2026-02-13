@@ -11,7 +11,7 @@ public class GeneralPage {
 	private final By _lblWelcomeMsg = By.xpath("//div[@id='banner']//strong");
 	
 	//Elements
-	protected WebElement getLblWelcomeMessage() {
+	private WebElement getLblWelcomeMessage() {
 		return Constant.WEBDRIVER.findElement(_lblWelcomeMsg);
 	}
 	

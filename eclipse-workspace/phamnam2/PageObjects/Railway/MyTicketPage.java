@@ -16,8 +16,10 @@ public class MyTicketPage extends GeneralPage{
 	
 	//Methods
 	public MyTicketPage cancelBooking(StationCity departStation, StationCity arriveStation) {
-		int departCol = TimetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
-		int arriveCol = TimetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
+		TimetablePage timetablePage = new TimetablePage();
+		
+		int departCol = timetablePage.getColIndexByHeader(TicketTableCol.DEPART_STATION);
+		int arriveCol = timetablePage.getColIndexByHeader(TicketTableCol.ARRIVE_STATION);
 		By linkCheckPrice = By.xpath(TableHelper.getRowBy2Cols(departCol, departStation.getDisplayText(), arriveCol, arriveStation.getDisplayText()) + _btnCancel);
 		
 		Utilities.clickByJs(Constant.WEBDRIVER.findElement(linkCheckPrice));

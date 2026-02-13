@@ -15,15 +15,12 @@ public class Constant {
     // User name and Password
     public static final String VALID_USERNAME = "phamnam@sharklasers.com";   
     public static final String VALID_PASSWORD = "11111111";     
-    public static final String USERNAME_HASNT_ACTIVATED = "phamnam02@sharklasers.com"; 
-    public static final String PASSWORD_HASNT_ACTIVATED = "11111111";
     
     // Mail service
     public static final String GUERRILLA_URL = "https://www.guerrillamail.com/"; 
     
-
     // Timeout
-    public static final int WAIT_TIMEOUT = 20;      
+    public static final int WAIT_TIMEOUT = 12;      
     
     // Date format
     public static final DateTimeFormatter DATE_FORMAT =

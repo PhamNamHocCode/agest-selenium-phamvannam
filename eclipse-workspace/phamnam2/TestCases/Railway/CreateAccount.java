@@ -12,19 +12,16 @@ public class CreateAccount extends TestBase{
 	@Test
 	public void TC07() {
 		HomePage homePage = new HomePage();
+		RegisterPage registerPage = new RegisterPage();
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		String expectedMsg = "This email address is already in use.";
 
 		System.out.println("TC07: User can't create account with an already in-use email");
 		System.out.println("Pre-condition: an actived account is existing");
-		homePage = homePage.open();
-		
-		account = PreconditionHelper.createAnAccount(account);
-		RegisterPage registerPage = homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
-		PreconditionHelper.activateAccount(account);
+		account = PreconditionHelper.createAnActiveAccount(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Website");
-		homePage.open();
+		homePage = homePage.open();
 		
 		System.out.println("Step 2:  Click on \"Register\" tab");
 		registerPage  = homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
@@ -74,15 +71,15 @@ public class CreateAccount extends TestBase{
 	
 	@Test
 	public void TC09() {
-		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
+		HomePage homePage = new HomePage();
 		RegisterPage registerPage = new RegisterPage();
+		GuerrillaHomePage guerrillaHomePage = new GuerrillaHomePage();
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 		String expectedMsgThankyou = "Thank you for registering your account";
 		String expectedMsgConfirmed = "Registration Confirmed! You can now log in to the site.";
 
 		System.out.println("TC09: Verify that user create and activate account");
 		System.out.println("Step 1: Navigate to QA Railway Website");
-		HomePage homePage = new HomePage();
 		homePage = homePage.open();
 		
 		System.out.println("VP: Home page is shown with guide containing href \"create an account\" to \"Register\" page");
@@ -92,7 +89,6 @@ public class CreateAccount extends TestBase{
 		);		
 		
 		System.out.println("Step 2:  Click on \"Create an account\"");
-		account = PreconditionHelper.createAnAccount(account);
 		registerPage = homePage.clickCreateAccountLink();
 		
 		System.out.println("Step 3:  Enter valid information into all fields");
@@ -101,6 +97,7 @@ public class CreateAccount extends TestBase{
 		System.out.println("Step 6: Login to the mailbox");
 		System.out.println("Step 7: Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
 		System.out.println("Step 8: Click on the activate link");
+		account = PreconditionHelper.createAnEmail(account);
 		registerPage = registerPage.registerNewAccount(account);
 		
 		System.out.println("VP: \"Thank you for registering your account\" is shown");

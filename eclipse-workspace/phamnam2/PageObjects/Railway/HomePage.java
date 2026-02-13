@@ -11,12 +11,8 @@ public class HomePage extends GeneralPage{
 	private final By _linkCreateAccount = By.xpath("//div[@id='content']//a[contains(@href, 'Register')]");
 
 	// Elements
-	protected WebElement getLinkCreateAccount() {
+	private WebElement getLinkCreateAccount() {
 		return Constant.WEBDRIVER.findElement(_linkCreateAccount);
-	}
-	
-	protected WebElement getLblWelcomeMsg() {
-		return Constant.WEBDRIVER.findElement(_lblWelcomeMsg);
 	}
 	
 	// Methods

@@ -20,47 +20,39 @@ public class RegisterPage extends GeneralPage{
 	private final By _lblMsgErrorPip = By.xpath("//form[@id='RegisterForm']//label[@class='validation-error' and @for='pid']");
 	
 	// Elements
-	protected WebElement getTxtEmail() {
+	private WebElement getTxtEmail() {
 		return Constant.WEBDRIVER.findElement(_txtEmail);
 	}
 	
-	protected WebElement getTxtPassword() {
+	private WebElement getTxtPassword() {
 		return Constant.WEBDRIVER.findElement(_txtPassword);
 	}
 	
-	protected WebElement getTxtConfirmPassword() {
+	private WebElement getTxtConfirmPassword() {
 		return Constant.WEBDRIVER.findElement(_txtConfirmPassword);
 	}
 	
-	protected WebElement getTxtPIPNumber() {
+	private WebElement getTxtPIPNumber() {
 		return Constant.WEBDRIVER.findElement(_txtPIPNumber);
 	}
 	
-	protected WebElement getBtnRegister() {
+	private WebElement getBtnRegister() {
 		return Constant.WEBDRIVER.findElement(_btnRegister);
 	}
 	
-	protected WebElement getLblMsgGeneralError() {
+	private WebElement getLblMsgGeneralError() {
 		return Constant.WEBDRIVER.findElement(_lblMsgGeneralError);
 	}
-	protected WebElement getLblMsgRegistrationConfirmed() {
+	private WebElement getLblMsgRegistrationConfirmed() {
 		return Constant.WEBDRIVER.findElement(_lblMsgRegistrationConfirmed);
 	}
 	
-	protected WebElement getLblMsgErrorPassword() {
+	private WebElement getLblMsgErrorPassword() {
 		return Constant.WEBDRIVER.findElement(_lblMsgErrorPassword);
 	}
 	 
-	protected WebElement getLblMsgErrorPip() {
+	private WebElement getLblMsgErrorPip() {
 		return Constant.WEBDRIVER.findElement(_lblMsgErrorPip);
-	}
-	
-	protected WebElement getLblMsgThankyou() {
-		return Constant.WEBDRIVER.findElement(_lblMsgThankyou);
-	}
-	
-	protected By getByLblMsgRegistrationConfirmed() {
-		return _lblMsgRegistrationConfirmed;
 	}
 	
 	// Methods

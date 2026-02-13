@@ -30,7 +30,7 @@ public class Utilities {
 	        .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 	}
 	
-	/*Click*/
+	/* Click */
 	public static void clickByJs(WebElement element) {
 	    try {
 	        element.click();
@@ -41,7 +41,7 @@ public class Utilities {
 	    }
 	}
 	
-	/*Data generator*/
+	/* Data generator */
 	public static String generateRandomEmail(int limit) {
 		return "user" + getRandomString(limit);
 	}
@@ -60,18 +60,7 @@ public class Utilities {
 	    }
 	    return result.toString();
     }
-	/**
-	 * Generates a random alphanumeric string of specified length
-	 * Uses base-36 encoding (0-9, a-z) for compact representation
-	 * 
-	 * Strategy:
-	 * 1. Combine time stamp + random number in base-36 for uniqueness
-	 * 2. If result is longer than needed, take last N characters
-	 * 3. If result is shorter, pad with random lower case letters
-	 * 
-	 * @param limit Desired length of the string
-	 * @return Random alphanumeric string of exactly 'limit' length
-	 */
+
 	private static String getRandomString(int limit) {
 	    String timestamp = Long.toString(System.currentTimeMillis(), 36);
 	    String randomPart = Integer.toString(ThreadLocalRandom.current().nextInt(1000000), 36);
@@ -108,17 +97,6 @@ public class Utilities {
         return waitForVisibleWithRefresh(locator, Constant.WAIT_TIMEOUT);
 	}
 	
-	/**
-	 * Waits for element to be visible. If timeout occurs, refreshes page and retries.
-	 * 
-	 * Use case: When elements are loaded dynamically or may need page refresh to appear
-	 * (e.g., email list that needs refresh to show new email)
-	 * 
-	 * @param locator Element locator
-	 * @param timeout Maximum wait time in seconds for each attempt
-	 * @return WebElement when visible
-	 * @throws TimeoutException if element not visible after refresh and second wait
-	 */
 	public static WebElement  waitForVisibleWithRefresh(By locator, int timeout) {
 	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
 	    
@@ -131,15 +109,6 @@ public class Utilities {
 	    }
 	}
 	
-	/**
-	 * Waits for element to become stale (removed/replaced in DOM)
-	 * Useful when waiting for page elements to refresh (e.g., drop down options reload)
-	 * 
-	 * Note: Silently catches exceptions if element doesn't become stale within timeout.
-	 * This is intentional to avoid breaking flow when element state is uncertain.
-	 * 
-	 * @param element WebElement to wait for staleness
-	 */
 	public static void waitUntilStale(WebElement element) {
 		try {
 			WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.WAIT_TIMEOUT));
@@ -150,16 +119,6 @@ public class Utilities {
 	}
 	
 	/* Switch */
-	
-	/**
-	 * Switches to browser window/tab whose URL contains the specified text
-	 * Useful when dealing with multiple windows (e.g., email verification flow)
-	 * 
-	 * Example: switchToPageByUrlContains("safe railway") will switch to Railway site
-	 * 
-	 * @param urlFragment Text that the target window's URL should contain
-	 * @throws RuntimeException if no window with matching URL is found
-	 */
 	public static void switchToPageByUrlContains(String urlFragment) {
         for (String window : Constant.WEBDRIVER.getWindowHandles()) {
         	Constant.WEBDRIVER.switchTo().window(window);
@@ -175,7 +134,6 @@ public class Utilities {
         );
     }
 	
-	
 	/* Open Tab */
 	public static void openUrlInNewTab(String url) {
 		Constant.WEBDRIVER.switchTo().newWindow(WindowType.TAB);
@@ -183,16 +141,6 @@ public class Utilities {
 	}
 	
 	/* Quit Browser */
-	
-	/**
-	 * Closes current browser window/tab and switches to another if available
-	 * Does NOT quit entire browser - only closes current window
-	 * 
-	 * Behavior:
-	 * - If driver is null: do nothing
-	 * - If only 1 window: do nothing (keeps window open)
-	 * - If multiple windows: close current and switch to first remaining window
-	 */
 	public static void closeBrowser() {
 		if (Constant.WEBDRIVER == null) return;
 
@@ -217,9 +165,95 @@ public class Utilities {
 	    }
 	}
 	
-	/*Format */
+	/* Format */
 	public static String formatDate(LocalDate date) {
 		return date.format(Constant.DATE_FORMAT);
 	}
 	
+	/* Pop up handle */
+	public static void handleUnexpectedPopup() {
+	    try {
+	        JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+	        
+	        // Remove all ads and popups in one script
+	        js.executeScript(
+	            "document.querySelectorAll(" +
+	            "  'ins.adsbygoogle, " +
+	            "  div[id^=\"google_ads_iframe\"], iframe[id^=\"aswift\"], [class*=\"adsbygoogle\"], " +
+	            "  .popup, .overlay, .modal, .dialog, [role=\"dialog\"], " +
+	            "  .ads-banner, .advertisement, " +
+	            "  [class*=\"popup\"], [class*=\"overlay\"], [class*=\"modal\"], " +
+	            "  [id*=\"popup\"], [id*=\"modal\"], " +
+	            "  .modal-backdrop, .overlay-backdrop, [class*=\"backdrop\"], [class*=\"dimmer\"]'" +
+	            ").forEach(el => el.remove());" +
+	            "document.body.style.overflow = 'auto';"
+	        );
+	        
+	        // Try to click close button if exists
+	        try {
+	            new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(2))
+	                .until(ExpectedConditions.elementToBeClickable(
+	                    By.xpath("//button[@id='close-ad'] | " +
+	                            "//span[text()='Close'] | " +
+	                            "//div[@id='dismiss-button'] | " +
+	                            "//div[contains(@class, 'close-button')] | " +
+	                            "//*[contains(@aria-label, 'Close')]")))
+	                .click();
+	        } catch (TimeoutException ignored) {}
+	        
+	    } catch (Exception ignored) {}
+	}
+
+	public static void handleGoogleVignette() {
+	    try {
+	        String currentUrl = Constant.WEBDRIVER.getCurrentUrl();
+	        
+	        if (!currentUrl.contains("google_vignette") && !currentUrl.contains("/aclk?")) {
+	            return;
+	        }
+	        
+	        // Try iframe dismiss
+	        if (!tryDismissVignetteInIframe()) {
+	            // Fallback: navigate to clean URL
+	            String cleanUrl = currentUrl.split("[#?]")[0];
+	            Constant.WEBDRIVER.get(cleanUrl);
+	        }
+	        
+	        // Remove remaining ad iframes
+	        ((JavascriptExecutor) Constant.WEBDRIVER).executeScript(
+	            "document.querySelectorAll('[id^=\"google_ads_iframe\"]')" +
+	            ".forEach(v => v.remove());"
+	        );
+	        
+	    } catch (Exception ignored) {}
+	}
+
+	private static boolean tryDismissVignetteInIframe() {
+	    try {
+	        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(3));
+	        
+	        // Switch to ad iframe
+	        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(
+	            By.xpath("//iframe[contains(@id, 'aswift') or contains(@name, 'aswift')]")));
+	        
+	        // Try nested iframe
+	        try {
+	            Constant.WEBDRIVER.switchTo().frame("ad_iframe");
+	        } catch (Exception ignored) {}
+	        
+	        // Click dismiss
+	        wait.until(ExpectedConditions.elementToBeClickable(
+	            By.xpath("//div[@id='dismiss-button'] | " +
+	                    "//span[text()='Close'] | " +
+	                    "//button[@aria-label='Close']")))
+	            .click();
+	        
+	        Constant.WEBDRIVER.switchTo().defaultContent();
+	        return true;
+	        
+	    } catch (Exception e) {
+	        Constant.WEBDRIVER.switchTo().defaultContent();
+	        return false;
+	    }
+	}
 }

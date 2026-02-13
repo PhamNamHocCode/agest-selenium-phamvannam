@@ -18,10 +18,7 @@ public class ResetPassword extends TestBase{
 
 		System.out.println("TC10: Verify that reset password shows error if the new password is same as current");
 		System.out.println("Pre-condition: an actived account is existing");
-		homePage = homePage.open();
-		account = PreconditionHelper.createAnAccount(account);
-		RegisterPage registerPage = homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
-		PreconditionHelper.activateAccount(account);
+		account = PreconditionHelper.createAnActiveAccount(account);
 
 		System.out.println("Step 1: Navigate to QA Railway Login page");
 		homePage = homePage.open();
@@ -62,11 +59,7 @@ public class ResetPassword extends TestBase{
 
 		System.out.println("TC11: Verify that reset password shows error if the new password and confirm password doesn't match");
 		System.out.println("Pre-condition: an actived account is existing");
-		homePage = homePage.open();
-		
-		account = PreconditionHelper.createAnAccount(account);
-		RegisterPage registerPage = homePage.gotoPage(PageMenu.REGISTER, RegisterPage.class);
-		PreconditionHelper.activateAccount(account);
+		account = PreconditionHelper.createAnActiveAccount(account);
 		
 		System.out.println("Step 1: Navigate to QA Railway Login page");
 		homePage = homePage.open();
