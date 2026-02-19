@@ -5,75 +5,75 @@ import java.time.LocalDate;
 import Constant.SeatType;
 import Constant.StationCity;
 
-public class BookTicketData {
-	//Fields
+public class BookTicketData extends DataObjectBase {
+	// Fields
 	private LocalDate departDate;
-	private StationCity departFrom;
-	private StationCity arriveAt;
+	private StationCity departStation;
+	private StationCity arriveStation;
 	private SeatType seatType;
-	private int ticketAmount;
-	
-	//Getters
+	private Integer ticketAmount;
+
+	// Getters
 	public LocalDate getDepartDate() {
 		return departDate;
 	}
-	
-	public StationCity getDepartFrom() {
-		return departFrom;
+
+	public StationCity getDepartStation() {
+		return departStation;
 	}
-	
-	public StationCity getArriveAt() {
-		return arriveAt;
+
+	public StationCity getArriveStation() {
+		return arriveStation;
 	}
-	
+
 	public SeatType getSeatType() {
-		if(seatType == null) {
+		if (seatType == null) {
 			return SeatType.HARD_SEAT;
-		}
-		else {
+		} else {
 			return seatType;
 		}
 	}
-	
-	public int getTicketAmount() {
+
+	public Integer getTicketAmount() {
 		return ticketAmount;
 	}
-	
+
 	// Setters
 	public void setDepartDate(LocalDate departDate) {
 		this.departDate = departDate;
 	}
-	
-	public void setDepartFrom(StationCity departFrom) {
-		this.departFrom = departFrom;
+
+	public void setDepartStation(StationCity departStation) {
+		this.departStation = departStation;
 	}
-	
-	public void setArriveAt(StationCity arriveAt) {
-		this.arriveAt = arriveAt;
+
+	public void setArriveStation(StationCity arriveStation) {
+		this.arriveStation = arriveStation;
 	}
-	
+
 	public void setSeatType(SeatType seatType) {
-		if(seatType == null) {
+		if (seatType == null) {
 			seatType = SeatType.HARD_SEAT;
-		}
-		else {
+		} else {
 			this.seatType = seatType;
 		}
 	}
-	
-	public void setTicketAmount(int ticketAmount) {
+
+	public void setTicketAmount(Integer ticketAmount) {
 		this.ticketAmount = ticketAmount;
 	}
-	
-	//Constructor
-	public BookTicketData() {}
-	
-	public BookTicketData(LocalDate departDate, StationCity departFrom, StationCity arriveAt, SeatType seatType, int ticketAmount) {
-	    this.departDate = departDate;
-	    this.departFrom = departFrom;
-	    this.arriveAt = arriveAt;
-	    this.seatType = seatType;
-	    this.ticketAmount = ticketAmount;
+
+	// Constructor
+	public BookTicketData() {
 	}
-	
+
+	public BookTicketData(LocalDate departDate, StationCity departStation, StationCity arriveStation, SeatType seatType,
+			int ticketAmount) {
+		this.departDate = departDate;
+		this.departStation = departStation;
+		this.arriveStation = arriveStation;
+		this.seatType = seatType;
+		this.ticketAmount = ticketAmount;
+	}
+
 }

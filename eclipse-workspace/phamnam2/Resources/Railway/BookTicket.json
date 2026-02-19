@@ -1,11 +1,36 @@
 [
 	{
+		"testCaseId": "TC12",
 		"departStation": "NHA_TRANG",
 		"arriveStation": "HUE",
 		"seatType": "SOFT_BED_WITH_AIR_CONDITIONER",
 		"ticketAmount": 1
+	},
+	{
+		"testCaseId": "TC13",
+		"departStation": "NHA_TRANG",
+		"arriveStation": "SAI_GON",
+		"seatType": "SOFT_SEAT_WITH_AIR_CONDITIONER",
+		"ticketAmount": 5
+	},
+	{
+		"testCaseId": "TC14",
+		"departStation": "DA_NANG",
+		"arriveStation": "SAI_GON"
+	},
+	{
+		"testCaseId": "TC15",
+		"departStation": "QUANG_NGAI",
+		"arriveStation": "HUE",
+		"ticketAmount": 5
+	},	
+	{
+		"testCaseId": "TC16",
+		"departStation": "NHA_TRANG",
+		"arriveStation": "SAI_GON",
+		"seatType": "SOFT_SEAT_WITH_AIR_CONDITIONER",
+		"ticketAmount": 1
 	}
-	
 	
 	
 	

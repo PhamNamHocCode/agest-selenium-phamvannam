@@ -12,7 +12,7 @@ public enum PageMenu {
     TIMETABLE("TrainTimeListPage"),
     MY_TICKET("ManageTicket");
 	
-	//Locators
+	//Loators
 	private final By locator;
 	
 	//Build locator for each menu item

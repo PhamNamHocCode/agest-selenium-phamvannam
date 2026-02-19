@@ -9,29 +9,28 @@ import Constant.PageMenu;
 public class GeneralPage {
 	// Locators
 	private final By _lblWelcomeMsg = By.xpath("//div[@id='banner']//strong");
-	
-	//Elements
+
+	// Elements
 	private WebElement getLblWelcomeMessage() {
 		return Constant.WEBDRIVER.findElement(_lblWelcomeMsg);
 	}
-	
-	//Methods
+
+	// Methods
 	public String getWelcomeMsg() {
 		return this.getLblWelcomeMessage().getText();
 	}
-	
+
 	public <T> T gotoPage(PageMenu menu, Class<T> pageClass) {
 		Constant.WEBDRIVER.findElement(menu.getLocator()).click();
 		try {
 			return pageClass.getDeclaredConstructor().newInstance();
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			throw new RuntimeException("Cannot navigate to page: " + pageClass.getSimpleName(), e);
 		}
 	}
-	
+
 	public boolean isMenuDisplayed(PageMenu menu) {
-	    return !Constant.WEBDRIVER.findElements(menu.getLocator()).isEmpty();
+		return !Constant.WEBDRIVER.findElements(menu.getLocator()).isEmpty();
 	}
-	
+
 }

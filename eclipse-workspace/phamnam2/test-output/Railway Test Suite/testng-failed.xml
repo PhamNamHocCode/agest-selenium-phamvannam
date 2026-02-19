@@ -4,39 +4,27 @@
   <parameter name="browser" value="firefox"/>
   <test thread-count="5" name="Railway Test(failed)">
     <classes>
+      <class name="Railway.BookTicket">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+          <include name="TC15" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- Railway.BookTicket -->
       <class name="Railway.CancelBooking">
         <methods>
           <include name="beforeMethod"/>
           <include name="afterMethod"/>
-          <include name="TC16"/>
+          <include name="TC16" invocation-numbers="0"/>
         </methods>
       </class> <!-- Railway.CancelBooking -->
       <class name="Railway.ResetPassword">
         <methods>
-          <include name="TC11"/>
           <include name="beforeMethod"/>
           <include name="TC10"/>
           <include name="afterMethod"/>
         </methods>
       </class> <!-- Railway.ResetPassword -->
-      <class name="Railway.CreateAccount">
-        <methods>
-          <include name="TC07"/>
-          <include name="TC09"/>
-          <include name="beforeMethod"/>
-          <include name="afterMethod"/>
-        </methods>
-      </class> <!-- Railway.CreateAccount -->
-      <class name="Railway.BookTicket">
-        <methods>
-          <include name="beforeMethod"/>
-          <include name="TC14"/>
-          <include name="TC15"/>
-          <include name="afterMethod"/>
-          <include name="TC12"/>
-          <include name="TC13"/>
-        </methods>
-      </class> <!-- Railway.BookTicket -->
       <class name="Railway.LoginTest">
         <methods>
           <include name="beforeMethod"/>

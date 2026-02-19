@@ -1,13 +1,12 @@
 package Guerrilla;
 
-import Railway.LoginPage;
-
-import Constant.Constant;
-import Common.Utilities;
-
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+
+import Common.Utilities;
+import Constant.Constant;
+import Railway.LoginPage;
 
 public class GuerrillaHomePage {
 	// Locators
@@ -16,7 +15,7 @@ public class GuerrillaHomePage {
 	private final By _linkConfirmAccount = By.xpath("//a[contains(text(), 'saferailway')]");
 	private final By _checkboxScramble = By.xpath("//input[@id='use-alias']");
 	private final By _fullEmailAddress = By.xpath("//span[@id='email-widget']");
-	
+
 	// Dynamic locators
 	private final String _emailLetter = "//tbody[@id='email_list']//span[contains(text(),'%s')]";
 
@@ -36,7 +35,7 @@ public class GuerrillaHomePage {
 	private WebElement getFullEmailAddress() {
 		return Constant.WEBDRIVER.findElement(_fullEmailAddress);
 	}
-	
+
 	private By getByEmailLetter(String letterKeyword) {
 		switch (letterKeyword) {
 			case "Registration":
@@ -62,8 +61,7 @@ public class GuerrillaHomePage {
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 
-		if (this.getCheckboxScramble().isEnabled()
-				&& this.getCheckboxScramble().isSelected()) {
+		if (this.getCheckboxScramble().isEnabled() && this.getCheckboxScramble().isSelected()) {
 			this.getCheckboxScramble().click();
 		}
 
@@ -79,12 +77,11 @@ public class GuerrillaHomePage {
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 
 		Utilities.waitForVisibleWithRefresh(getByEmailLetter("Registration"), Constant.WAIT_TIMEOUT);
-		getEmailLetterElement("Registration").click();
-		Utilities.waitForClickable(_linkConfirmAccount).click();
+		Utilities.scrollToElement(getEmailLetterElement("Registration"));
+		Utilities.clickByJs(getEmailLetterElement("Registration"));
 
-		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
-			Constant.WEBDRIVER.switchTo().window(handle);
-		}
+		Utilities.waitForClickable(_linkConfirmAccount).click();
+		Utilities.waitAndSwitchToNewWindow();
 	}
 
 	public LoginPage confirmForgotPasswordEmail(String emailName) {
@@ -95,7 +92,10 @@ public class GuerrillaHomePage {
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
 
-		Utilities.waitForVisibleWithRefresh(getByEmailLetter("ForgotPassword")).click();
+		Utilities.waitForVisibleWithRefresh(getByEmailLetter("ForgotPassword"), Constant.WAIT_TIMEOUT);
+		Utilities.scrollToElement(getEmailLetterElement("ForgotPassword"));
+		Utilities.clickByJs(getEmailLetterElement("ForgotPassword"));
+
 		Utilities.waitForClickable(_linkConfirmAccount, Constant.WAIT_TIMEOUT).click();
 
 		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {

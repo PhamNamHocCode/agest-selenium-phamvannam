@@ -8,9 +8,9 @@
             <class name="Railway.LoginTest"/>
             <class name="Railway.LogoutTest"/>
             <class name="Railway.CreateAccount"/>
+            <class name="Railway.ResetPassword"/>
             <class name="Railway.BookTicket"/>
             <class name="Railway.CancelBooking"/>
-            <class name="Railway.ResetPassword"/>
         </classes>
     </test>
 </suite>
