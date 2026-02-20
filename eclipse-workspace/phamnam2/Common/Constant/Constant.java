@@ -29,5 +29,4 @@ public class Constant {
 
 	// File path
 	public static final String BOOK_TICKET_DATA_JSON = "Railway/BookTicket.json";
-
 }

@@ -35,7 +35,7 @@ public class Utilities {
 		try {
 			element.click();
 		} catch (StaleElementReferenceException | ElementNotInteractableException e) {
-			System.out.println("Normal click failed, using JS click: " + e.getMessage());
+			Log4j.warn("Normal click failed, using JS click: " + e.getMessage());
 
 			((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].click();", element);
 		}

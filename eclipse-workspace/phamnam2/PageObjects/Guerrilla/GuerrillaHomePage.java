@@ -80,8 +80,9 @@ public class GuerrillaHomePage {
 		Utilities.scrollToElement(getEmailLetterElement("Registration"));
 		Utilities.clickByJs(getEmailLetterElement("Registration"));
 
-		Utilities.waitForClickable(_linkConfirmAccount).click();
-		Utilities.waitAndSwitchToNewWindow();
+		WebElement confirmLink = Utilities.waitForClickable(_linkConfirmAccount);
+		String confirmUrl = confirmLink.getDomAttribute("href");
+		Utilities.openUrlInNewTab(confirmUrl);
 	}
 
 	public LoginPage confirmForgotPasswordEmail(String emailName) {

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import Common.Log4j;
 import Common.Utilities;
 import Constant.Constant;
 import Constant.SeatType;
@@ -140,7 +141,7 @@ public class BookTicketPage extends GeneralPage {
 			Select select = new Select(element);
 			select.selectByVisibleText(text);
 		} catch (org.openqa.selenium.ElementClickInterceptedException e) {
-			System.out.println("Normal select failed, using JS select: " + e.getMessage());
+			Log4j.warn("Normal select failed, using JS select: " + e.getMessage());
 
 			String jsScript = "var select = arguments[0];" + "for(var i=0; i < select.options.length; i++) {"
 					+ "  if(select.options[i].text.trim() === arguments[1]) {" + "    select.selectedIndex = i;"

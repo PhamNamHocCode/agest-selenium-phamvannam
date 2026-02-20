@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Common.DataProviders;
+import Common.Log4j;
 import Common.Utilities;
 import Constant.Constant;
 import Constant.PageMenu;
@@ -21,30 +22,30 @@ public class BookTicket extends TestBase {
 		HomePage homePage = new HomePage();
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 
-		System.out.println("TC12: Verify that user can book 1 ticket at a time");
-		System.out.println("Pre-condition: an actived account is existing");
+		Log4j.info("TC12: Verify that user can book 1 ticket at a time");
+		Log4j.info("Pre-condition: an actived account is existing");
 		account = PreconditionHelper.createAnActiveAccount(account);
 
-		System.out.println("Step 1: Navigate to QA Railway Website");
+		Log4j.info("Step 1: Navigate to QA Railway Website");
 		homePage = homePage.open();
 
-		System.out.println("Step 2: Login with a valid account");
+		Log4j.info("Step 2: Login with a valid account");
 		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		homePage = loginPage.login(account);
 
-		System.out.println("Step 3: Click on \"Book ticket\" tab");
+		Log4j.info("Step 3: Click on \"Book ticket\" tab");
 		BookTicketPage bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
 		LocalDate targetDate = bookTicketPage.getSelectedDepartDate(2, Constant.DATE_FORMAT);
 		bookTicketData.setDepartDate(targetDate);
 
-		System.out.println("Step 4: Select the next 2 days from \"Depart date\"");
-		System.out.println("Step 5: Select Depart from \"Nha Trang\" and Arrive at \"Huế\"");
-		System.out.println("Step 6: Select \"Soft bed with air conditioner\" for \"Seat type\"");
-		System.out.println("Step 7: Select \"1\" for \"Ticket amount\"");
-		System.out.println("Step 8: Click on \"Book ticket\" button");
+		Log4j.info("Step 4: Select the next 2 days from \"Depart date\"");
+		Log4j.info("Step 5: Select Depart from \"Nha Trang\" and Arrive at \"Huế\"");
+		Log4j.info("Step 6: Select \"Soft bed with air conditioner\" for \"Seat type\"");
+		Log4j.info("Step 7: Select \"1\" for \"Ticket amount\"");
+		Log4j.info("Step 8: Click on \"Book ticket\" button");
 		bookTicketPage = bookTicketPage.bookTicket(bookTicketData);
 
-		System.out.println(
+		Log4j.info(
 				"VP: Message \"Ticket booked successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
 		String actualCenterMsg = bookTicketPage.getCenterMsg();
 		Assert.assertEquals(actualCenterMsg, "Ticket booked successfully!", "The message is not displayed as expected");
@@ -80,30 +81,30 @@ public class BookTicket extends TestBase {
 		HomePage homePage = new HomePage();
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 
-		System.out.println("TC13: Verify that user can book many tickets at a time");
-		System.out.println("Pre-condition: an actived account is existing");
+		Log4j.info("TC13: Verify that user can book many tickets at a time");
+		Log4j.info("Pre-condition: an actived account is existing");
 		account = PreconditionHelper.createAnActiveAccount(account);
 
-		System.out.println("Step 1: Navigate to QA Railway Website");
+		Log4j.info("Step 1: Navigate to QA Railway Website");
 		homePage = homePage.open();
 
-		System.out.println("Step 2: Login with a valid account");
+		Log4j.info("Step 2: Login with a valid account");
 		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		homePage = loginPage.login(account);
 
-		System.out.println("Step 3: Click on \"Book ticket\" tab");
+		Log4j.info("Step 3: Click on \"Book ticket\" tab");
 		BookTicketPage bookTicketPage = homePage.gotoPage(PageMenu.BOOK_TICKET, BookTicketPage.class);
 
-		System.out.println("Step 4: Select the next 25 days from \"Depart date\"");
-		System.out.println("Step 5: Select \"Nha Trang\" for \"Depart from\" and \"Sài Gòn\" for \"Arrive at\"");
-		System.out.println("Step 6: Select \"Soft seat with air conditioner\" for \"Seat type\"");
-		System.out.println("Step 7: Select \"5\" for \"Ticket amount\"");
-		System.out.println("Step 8: Click on \"Book ticket\" button");
+		Log4j.info("Step 4: Select the next 25 days from \"Depart date\"");
+		Log4j.info("Step 5: Select \"Nha Trang\" for \"Depart from\" and \"Sài Gòn\" for \"Arrive at\"");
+		Log4j.info("Step 6: Select \"Soft seat with air conditioner\" for \"Seat type\"");
+		Log4j.info("Step 7: Select \"5\" for \"Ticket amount\"");
+		Log4j.info("Step 8: Click on \"Book ticket\" button");
 		LocalDate targetDate = bookTicketPage.getSelectedDepartDate(25, Constant.DATE_FORMAT);
 		bookTicketData.setDepartDate(targetDate);
 		bookTicketPage = bookTicketPage.bookTicket(bookTicketData);
 
-		System.out.println(
+		Log4j.info(
 				"VP: Message \"Ticket booked successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
 		String actualCenterMsg = bookTicketPage.getCenterMsg();
 		Assert.assertEquals(actualCenterMsg, "Ticket booked successfully!", "The message is not displayed as expected");
@@ -146,25 +147,25 @@ public class BookTicket extends TestBase {
 		prices.put(SeatType.SOFT_BED_WITH_AIR_CONDITIONER, "510000");
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 
-		System.out.println("TC14: Verify that user can check price of ticket from Timetable");
-		System.out.println("Pre-condition: an actived account is existing");
+		Log4j.info("TC14: Verify that user can check price of ticket from Timetable");
+		Log4j.info("Pre-condition: an actived account is existing");
 		account = PreconditionHelper.createAnActiveAccount(account);
 
-		System.out.println("Step 1: Navigate to QA Railway Website");
+		Log4j.info("Step 1: Navigate to QA Railway Website");
 		homePage = homePage.open();
 
-		System.out.println("Step 2: Login with a valid account");
+		Log4j.info("Step 2: Login with a valid account");
 		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		homePage = loginPage.login(account);
 
-		System.out.println("Step 3: Click on \"Timetable\" tab");
+		Log4j.info("Step 3: Click on \"Timetable\" tab");
 		TimetablePage timetablePage = homePage.gotoPage(PageMenu.TIMETABLE, TimetablePage.class);
 
-		System.out.println("Step 4: Click on \"check price\" link of the route from \"Đà Nẵng\" to \"Sài Gòn\"");
+		Log4j.info("Step 4: Click on \"check price\" link of the route from \"Đà Nẵng\" to \"Sài Gòn\"");
 		TicketPricePage ticketPricePage = timetablePage.clickCheckPriceLink(bookTicketData.getDepartStation(),
 				bookTicketData.getArriveStation());
 
-		System.out.println("VP: \"Ticket Price\" page is loaded.\r\n"
+		Log4j.info("VP: \"Ticket Price\" page is loaded.\r\n"
 				+ "Ticket table shows \"Ticket price from Đà Nẵng to Sài Gòn\".\r\n"
 				+ "Price for each seat displays correctly\r\n"
 				+ "HS = 310000, SS = 335000, SSC = 360000, HB = 410000, SB = 460000, SBC = 510000");
@@ -185,25 +186,25 @@ public class BookTicket extends TestBase {
 		bookTicketData.setDepartDate(targetDate);
 		RegisterAccount account = PreconditionHelper.generateRandomRegisterAccount();
 
-		System.out.println("TC15: Verify that user can book ticket from Timetable");
-		System.out.println("Pre-condition: an actived account is existing");
+		Log4j.info("TC15: Verify that user can book ticket from Timetable");
+		Log4j.info("Pre-condition: an actived account is existing");
 		account = PreconditionHelper.createAnActiveAccount(account);
 
-		System.out.println("Step 1: Navigate to QA Railway Website");
+		Log4j.info("Step 1: Navigate to QA Railway Website");
 		homePage.open();
 
-		System.out.println("Step 2: Login with a valid account");
+		Log4j.info("Step 2: Login with a valid account");
 		LoginPage loginPage = homePage.gotoPage(PageMenu.LOGIN, LoginPage.class);
 		homePage = loginPage.login(account);
 
-		System.out.println("Step 3: Click on \"Timetable\" tab");
+		Log4j.info("Step 3: Click on \"Timetable\" tab");
 		TimetablePage timetablePage = homePage.gotoPage(PageMenu.TIMETABLE, TimetablePage.class);
 
-		System.out.println("Step 4: Click on book ticket of route \"Quảng Ngãi\" to \"Huế\"");
+		Log4j.info("Step 4: Click on book ticket of route \"Quảng Ngãi\" to \"Huế\"");
 		BookTicketPage bookTicketPage = timetablePage.bookTicketFromTimetable(bookTicketData.getDepartStation(),
 				bookTicketData.getArriveStation());
 
-		System.out.println("VP: Book ticket form is shown with the corrected \"depart from\" and \"Arrive at\"");
+		Log4j.info("VP: Book ticket form is shown with the corrected \"depart from\" and \"Arrive at\"");
 		Assert.assertEquals(bookTicketPage.getSelectedDepartStation(),
 				bookTicketData.getDepartStation().getDisplayText(),
 				"The depart selection is not displayed as expected");
@@ -211,12 +212,12 @@ public class BookTicket extends TestBase {
 				bookTicketData.getArriveStation().getDisplayText(),
 				"The arrive selection is not displayed as expected");
 
-		System.out.println("Step 5: Select Depart date = tomorrow");
-		System.out.println("Step 6: Select Ticket amount = 5");
-		System.out.println("Step 7: Click on \"Book ticket\" button");
+		Log4j.info("Step 5: Select Depart date = tomorrow");
+		Log4j.info("Step 6: Select Ticket amount = 5");
+		Log4j.info("Step 7: Click on \"Book ticket\" button");
 		bookTicketPage = bookTicketPage.bookTicket(bookTicketData);
 
-		System.out.println("VP: Message \"Ticket booked successfully!\" displays. "
+		Log4j.info("VP: Message \"Ticket booked successfully!\" displays. "
 				+ "Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
 		String actualCenterMsg = bookTicketPage.getCenterMsg();
 		Assert.assertEquals(actualCenterMsg, "Ticket booked successfully!", "The message is not displayed as expected");

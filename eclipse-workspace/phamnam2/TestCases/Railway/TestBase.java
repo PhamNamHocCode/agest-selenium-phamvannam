@@ -7,12 +7,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import Common.Log4j;
 import Constant.Constant;
 
 public class TestBase {
 	@Parameters("browser")
 	@BeforeMethod
-	public void beforeMethod(@Optional("firefox") String browser) {
+	public void beforeMethod(@Optional("chrome") String browser) {
 		String runBrowser = System.getProperty("browser", browser);
 
 		if ("chrome".equalsIgnoreCase(runBrowser)) {
@@ -22,14 +23,14 @@ public class TestBase {
 		} else {
 			throw new RuntimeException("Unsupported browser: " + runBrowser);
 		}
-		System.out.println("Pre-condition");
+		Log4j.info("Pre-condition");
 
 		Constant.WEBDRIVER.manage().window().maximize();
 	}
 
 	@AfterMethod
 	public void afterMethod() {
-		System.out.println("Post-condition");
+		Log4j.info("Post-condition");
 
 		Constant.WEBDRIVER.quit();
 	}
