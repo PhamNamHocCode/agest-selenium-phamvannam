@@ -126,25 +126,6 @@ public class Utilities {
 		}
 	}
 
-	public static void waitAndSwitchToNewWindow(int timeout) {
-		String currentWindow = Constant.WEBDRIVER.getWindowHandle();
-		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
-		wait.until(driver -> driver.getWindowHandles().size() > 1);
-
-		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
-			if (!handle.equals(currentWindow)) {
-				Constant.WEBDRIVER.switchTo().window(handle);
-				return;
-			}
-		}
-
-		throw new RuntimeException("New window not found after waiting.");
-	}
-
-	public static void waitAndSwitchToNewWindow() {
-		waitAndSwitchToNewWindow(Constant.WAIT_TIMEOUT);
-	}
-
 	/* Switch */
 	public static void switchToPageByUrlContains(String urlFragment) {
 		for (String window : Constant.WEBDRIVER.getWindowHandles()) {
