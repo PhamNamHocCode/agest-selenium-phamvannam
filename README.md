@@ -313,18 +313,5 @@ Browser Window: Maximized
 
 ---
 
-## 📞 Contact & Support
-
-For questions or issues, please contact: **phamnam@sharklasers.com**
-
----
-
-## 📝 Version History
-
-| Version        | Date | Changes                            |
-| -------------- | ---- | ---------------------------------- |
-| 0.0.1-SNAPSHOT | 2026 | Initial setup with core test cases |
-
----
 
 **Note:** This framework is designed to showcase professional QA automation practices and is suitable for enterprise-level test automation projects.
