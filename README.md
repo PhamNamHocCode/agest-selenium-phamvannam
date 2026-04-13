@@ -1,109 +1,47 @@
-# Railway Ticket Booking - Selenium WebUI Automation
+# Railway Ticket Booking - Selenium Test Automation
 
-A comprehensive **automated testing framework** for the Railway Ticket Booking System (SafeRailway) using Selenium WebDriver, TestNG, and following the **Page Object Model (POM)** design pattern.
+Automated testing framework for Railway Ticket Booking System using Selenium WebDriver, TestNG, and Page Object Model (POM) pattern.
 
----
+## Project Information
 
-## 📋 Project Overview
+**Application Under Test:** SafeRailway  
+**Author:** Phạm Văn Nam
 
-This project demonstrates professional-grade **automated functional testing** capabilities for a complex web application. It covers end-to-end user workflows including authentication, account management, ticket booking, and transaction processing.
+## Technologies
 
-**Application Under Test:** [SafeRailway](http://saferailway.somee.com)  
-**Test Coverage:** User login, account creation, password reset, ticket booking, ticket cancellation  
-**Framework Version:** 0.0.1-SNAPSHOT  
-**Maintainer:** Phạm Văn Nam
+- Java 11+
+- Selenium WebDriver 4.27.0
+- TestNG 7.12.0
+- Maven 3.x
+- Log4j 2
+- Jackson
 
----
-
-## 🛠️ Technologies & Dependencies
-
-| Component              | Version | Purpose                               |
-| ---------------------- | ------- | ------------------------------------- |
-| **Java**               | 11+     | Programming language                  |
-| **Selenium WebDriver** | 4.27.0  | Web browser automation                |
-| **TestNG**             | 7.12.0  | Test framework & test execution       |
-| **WebDriverManager**   | 5.9.2   | Automatic browser driver management   |
-| **Log4j 2**            | 2.24.3  | Structured logging                    |
-| **Jackson Databind**   | 2.21.0  | JSON data processing                  |
-| **Allure Report**      | 2.33.0  | Test result reporting & visualization |
-| **Maven**              | 3.x     | Build automation                      |
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 web-railway/
-│
-├── 📂 TestCases/Railway/
-│   ├── LoginTest.java              # Login functionality tests
-│   ├── LogoutTest.java             # Logout verification
-│   ├── CreateAccount.java          # User registration tests
-│   ├── ResetPassword.java          # Password reset & recovery
-│   ├── BookTicket.java             # Ticket booking (data-driven)
-│   ├── CancelBooking.java          # Ticket cancellation
-│   └── TestBase.java               # Base class with WebDriver setup
-│
-├── 📂 PageObjects/Railway/
-│   ├── GeneralPage.java            # Base page object class
-│   ├── LoginPage.java              # Login & password reset
-│   ├── RegisterPage.java           # Registration form
-│   ├── HomePage.java               # Main navigation
-│   ├── BookTicketPage.java         # Ticket booking form
-│   ├── MyTicketPage.java           # Booked tickets management
-│   ├── TimetablePage.java          # Train schedule lookup
-│   ├── TicketPricePage.java        # Pricing information
-│   └── FAQPage.java                # FAQ section
-│
-├── 📂 Helpers/Railway/
-│   ├── PreconditionHelper.java     # Pre-test setup utilities
-│   └── TableHelper.java            # Table parsing & verification
-│
-├── 📂 DataObjects/Railway/
-│   ├── RegisterAccount.java        # User account data model
-│   ├── BookTicketData.java         # Ticket booking data model
-│   └── DataObjectBase.java         # Base POJO class
-│
-├── 📂 Common/
-│   ├── Common/
-│   │   ├── Utilities.java          # Reusable utility methods
-│   │   ├── Log4j.java              # Logging wrapper
-│   │   ├── DataProviders.java      # TestNG data providers
-│   │   └── JsonDataReader.java     # JSON test data loader
-│   │
-│   └── Constant/
-│       ├── Constant.java           # Application constants
-│       ├── PageMenu.java           # Navigation menu enum
-│       ├── FieldsLogin.java        # Login field mappings
-│       ├── SeatType.java           # Seat type enumerations
-│       ├── StationCity.java        # Train stations enum
-│       └── TicketTableCol.java     # Table column mappings
-│
-├── 📂 Resources/Railway/
-│   └── BookTicket.json             # Test data for ticket booking
-│
-├── 📂 logs/                        # Test execution logs
-├── 📂 allure-results/              # Allure report data
-├── 📂 test-output/                 # TestNG test output
-│
-├── pom.xml                         # Maven configuration
-├── testng.xml                      # Test suite definition
-└── README.md                       # This file
+├── TestCases/Railway/          # Test cases
+├── PageObjects/Railway/        # Page object classes
+├── Helpers/Railway/            # Helper utilities
+├── DataObjects/Railway/        # Data models
+├── Common/                     # Common utilities and constants
+├── Resources/                  # Test data
+├── pom.xml
+├── testng.xml
+└── README.md
 ```
 
----
+## Test Coverage
 
-## ✨ Key Features
-
-✅ **Page Object Model (POM)** - Clean separation between test logic and page interactions  
-✅ **Parameterized Testing** - Data-driven tests using TestNG DataProviders & JSON data  
-✅ **Cross-Browser Support** - Chrome & Firefox with automatic driver management  
-✅ **Comprehensive Logging** - Detailed test execution logs via Log4j  
-✅ **Allure Reporting** - Rich, interactive test reports with screenshots  
-✅ **Exception Handling** - Robust handling of stale elements and timeouts  
-✅ **Reusable Utilities** - Common helpers for setup, data generation, and assertions  
-✅ **Type-Safe Constants** - Enums for menus, seat types, stations ensuring code reliability  
-✅ **Test Base Class** - Centralized WebDriver initialization & teardown
+- User authentication (login, logout)
+- Account management (create, reset password)
+- Ticket booking and cancellation
+  ✅ **Comprehensive Logging** - Detailed test execution logs via Log4j  
+  ✅ **Allure Reporting** - Rich, interactive test reports with screenshots  
+  ✅ **Exception Handling** - Robust handling of stale elements and timeouts  
+  ✅ **Reusable Utilities** - Common helpers for setup, data generation, and assertions  
+  ✅ **Type-Safe Constants** - Enums for menus, seat types, stations ensuring code reliability  
+  ✅ **Test Base Class** - Centralized WebDriver initialization & teardown
 
 ---
 
