@@ -3,6 +3,7 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import common.Utilities;
 import constant.Constant;
 import constant.PageMenu;
 import io.qameta.allure.Step;
@@ -18,6 +19,7 @@ public class GeneralPage {
 
 	// Methods
 	public String getWelcomeMsg() {
+		Utilities.waitForVisible(_lblWelcomeMsg, Constant.WAIT_TIMEOUT);
 		return this.getLblWelcomeMessage().getText();
 	}
 

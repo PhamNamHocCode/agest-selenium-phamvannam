@@ -86,6 +86,7 @@ public class BookTicketPage extends GeneralPage {
 	}
 
 	public String getCenterMsg() {
+		Utilities.waitForVisible(_lblCenterMsg, Constant.WAIT_TIMEOUT);
 		return getLblCenterMsg().getText();
 	}
 

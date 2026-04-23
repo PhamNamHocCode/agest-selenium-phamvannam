@@ -88,7 +88,7 @@ public class GuerrillaHomePage {
 	public LoginPage confirmForgotPasswordEmail(String emailName) {
 		Utilities.handleUnexpectedPopup();
 		Utilities.handleGoogleVignette();
-		this.getEditNameBtn().click();
+		Utilities.waitForVisible(_editNameBtn, Constant.WAIT_TIMEOUT).click();
 
 		this.getTxtName().clear();
 		this.getTxtName().sendKeys(emailName, Keys.ENTER);
