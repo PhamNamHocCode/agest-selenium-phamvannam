@@ -5,12 +5,12 @@
 
     <test name="Railway Test">
         <classes>
-            <class name="Railway.LoginTest"/>
-            <class name="Railway.LogoutTest"/>
-            <class name="Railway.CreateAccount"/>
-            <class name="Railway.ResetPassword"/>
-            <class name="Railway.BookTicket"/>
-            <class name="Railway.CancelBooking"/>
+            <class name="railway.LoginTest"/>
+            <class name="railway.LogoutTest"/>
+            <class name="railway.CreateAccount"/>
+            <class name="railway.ResetPassword"/>
+            <class name="railway.BookTicket"/>
+            <class name="railway.CancelBooking"/>
         </classes>
     </test>
 </suite>
