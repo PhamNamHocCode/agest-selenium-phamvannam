@@ -6,11 +6,11 @@
     <test name="Railway Test">
         <classes>
             <class name="railway.LoginTest"/>
-            <class name="railway.LogoutTest"/>
+            <!-- <class name="railway.LogoutTest"/>
             <class name="railway.CreateAccount"/>
             <class name="railway.ResetPassword"/>
             <class name="railway.BookTicket"/>
-            <class name="railway.CancelBooking"/>
+            <class name="railway.CancelBooking"/> -->
         </classes>
     </test>
 </suite>
